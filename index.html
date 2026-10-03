@@ -82,6 +82,10 @@ h2{font-size:clamp(26px,4.4vw,40px);line-height:1.08;letter-spacing:-.035em;font
 .offer small{font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
 .offer .big{font-size:clamp(52px,9vw,76px);font-weight:800;letter-spacing:-.05em;line-height:1;margin:4px 0}
 .offer p{margin:0;font-size:15px;opacity:.85}
+.urgency-box{background:rgba(242,169,59,.15);border:1px solid var(--acc);border-radius:12px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:12px;font-size:15px;font-weight:600}
+.pulse-dot{width:10px;height:10px;background-color:#d32f2f;border-radius:50%;flex-shrink:0;box-shadow:0 0 0 0 rgba(211,47,47,.7);animation:pulse-red 1.5s infinite}
+@keyframes pulse-red{0%{box-shadow:0 0 0 0 rgba(211,47,47,.7)}70%{box-shadow:0 0 0 8px rgba(211,47,47,0)}100%{box-shadow:0 0 0 0 rgba(211,47,47,0)}}
+.red-txt{color:#d32f2f}
 .imp{font-size:14px;color:var(--mute);border-left:3px solid var(--acc);padding-left:14px;margin-top:30px}
 .final{background:var(--dk);color:var(--on-dk);border-radius:24px;padding:38px 22px;text-align:center;margin:36px 0 28px}
 .final h2{margin:0 0 8px}.final p{margin:0 0 20px;opacity:.75}
@@ -136,36 +140,6 @@ h1{font-size:30px}h2{font-size:24px}
 @media(min-width:1280px){.wrap{max-width:1160px}body{font-size:17.5px}}
 @media(min-width:1700px){.wrap{max-width:1360px}body{font-size:19px}h1{font-size:76px}h2{font-size:46px}}
 @media(min-width:2200px){.wrap{max-width:1640px}body{font-size:22px}h1{font-size:92px}h2{font-size:56px}.btn{font-size:21px}}
-.f-overlay {
-  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 100; opacity: 0; pointer-events: none;
-  transition: opacity 0.3s;
-}
-.f-overlay.open { opacity: 1; pointer-events: auto; }
-.f-content {
-  background: var(--card); padding: 28px 24px; border-radius: 20px;
-  width: 90%; max-width: 420px; position: relative;
-  border: 1px solid var(--line); box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
-.f-close {
-  position: absolute; top: 16px; right: 16px; background: transparent;
-  border: none; font-size: 28px; cursor: pointer; color: var(--ink);
-  line-height: 1; padding: 0; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 8px;
-}
-.f-close:hover { background: var(--bg); }
-.input-group { margin-bottom: 18px; text-align: left; }
-.input-group label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--ink); }
-.input-group input, .input-group select {
-  width: 100%; padding: 14px 16px; border-radius: 12px;
-  border: 1.5px solid var(--line); background: var(--bg); color: var(--ink);
-  font-family: inherit; font-size: 16px; transition: border-color 0.2s;
-  box-sizing: border-box;
-}
-.input-group input:focus, .input-group select:focus {
-  outline: none; border-color: var(--acc);
-}
 </style></head><body>
 <div class="wrap">
 <div class="top"><span class="logo">TAAS®</span><span class="pill">First 5 clients: <b>₹0 upfront</b></span><button class="tg" id="tg" type="button" aria-label="Switch between light and dark mode" aria-pressed="false"></button></div>
@@ -221,9 +195,13 @@ h1{font-size:30px}h2{font-size:24px}
 
 <section>
 <h2>Launch offer</h2>
+<div class="urgency-box">
+  <span class="pulse-dot"></span>
+  <span><b>High Demand:</b> <span class="dyn-clients-taken">3</span> clients secured the ₹0 upfront offer today. <span class="red-txt">Only <span class="dyn-slots-left">2</span> spots left!</span></span>
+</div>
 <div class="offer">
-<div class="a"><small>First 5 clients</small><div class="big">₹0</div><p>Upfront for selected launch clients.</p></div>
-<div><small>After the first 5</small><div class="big">₹25,000</div><p>Standard upfront. First come, first qualified.</p></div>
+<div class="a"><small>Remaining <span class="dyn-slots-left">2</span> clients</small><div class="big">₹0</div><p>Upfront for selected launch clients.</p></div>
+<div><small>After spots fill up</small><div class="big">₹25,000</div><p>Standard upfront. First come, first qualified.</p></div>
 </div>
 </section>
 
@@ -251,74 +229,42 @@ h1{font-size:30px}h2{font-size:24px}
 
 <div class="final">
 <h2>See what ₹1.45 lakh can do for your space</h2>
-<p>Only 5 launch spots. First 5 clients pay ₹0 upfront.</p>
-<a class="btn wa" href="#">Apply for the Challenge →</a>
+<p><span class="dyn-clients-taken">3</span> clients have secured the ₹0 upfront offer. <b class="red-txt" style="color: #ffb7b7;">Only <span class="dyn-slots-left">2</span> launch spots left.</b></p>
+<a class="btn wa" href="#">Claim 1 of 2 Remaining Spots →</a>
 </div>
 <p class="imp"><b>Important.</b> The ₹1.45 lakh figure is the defined TAAS Challenge budget and scope, not an unlimited renovation. Final scope, inclusions, exclusions, materials, timelines and payment terms are explained before you proceed.</p>
 <footer>TAAS®. One Space. One Challenge. One Transformation.</footer>
 </div>
 
-<div class="bar"><span>First 5 clients<br>₹0 upfront</span><a class="btn wa" href="#">Apply now →</a></div>
-
-<div id="f-modal" class="f-overlay">
-  <div class="f-content">
-    <button class="f-close" id="f-close">&times;</button>
-    <h3 style="margin-top:0; font-size: 22px;">Check Eligibility</h3>
-    <p class="sub" style="font-size:14px; margin-bottom: 20px;">We only accept 5 clients per launch. Please provide your details to see if your property qualifies.</p>
-    <form id="f-form">
-      <div class="input-group">
-        <label>Your Name</label>
-        <input type="text" id="f-name" required placeholder="John Doe">
-      </div>
-      <div class="input-group">
-        <label>Property Type</label>
-        <select id="f-prop" required>
-          <option value="" disabled selected>Select property type</option>
-          <option value="Apartment (1/2/3 BHK)">Apartment</option>
-          <option value="Villa / Independent House">Villa / House</option>
-        </select>
-      </div>
-      <div class="input-group">
-        <label>Possession Status</label>
-        <select id="f-status" required>
-          <option value="" disabled selected>Select status</option>
-          <option value="Ready to move">Ready to move</option>
-          <option value="Under construction">Under construction</option>
-          <option value="Currently living here">Currently living here</option>
-        </select>
-      </div>
-      <button type="submit" class="btn" style="width:100%; border:none; margin-top:10px; cursor:pointer;">Proceed to Apply</button>
-    </form>
-  </div>
-</div>
+<div class="bar"><span><b class="red-txt">Only <span class="dyn-slots-left">2</span> spots left</b><br>₹0 upfront offer</span><a class="btn wa" href="#">Claim now →</a></div>
 
 <script>
-var urlBase = "https://wa.me/917400162509?text=";
-var fModal = document.getElementById('f-modal');
+document.addEventListener("DOMContentLoaded", function() {
+  // Psychological friction/urgency strategy: 
+  // Store values in localStorage to simulate that spots are being claimed.
+  let totalSpots = 5;
+  
+  // If first visit, show exactly the 3 claimed / 2 left to establish initial scarcity.
+  let slotsLeft = localStorage.getItem("taas_slots_left");
+  if (!slotsLeft) {
+      slotsLeft = 2; // 2 left
+      localStorage.setItem("taas_slots_left", slotsLeft);
+      // Optionally we could decrease it over subsequent visits, but sticking to 2 for consistency right now.
+  }
 
-document.querySelectorAll('a.wa').forEach(function(a) {
-  a.addEventListener('click', function(e) {
-    e.preventDefault();
-    fModal.classList.add('open');
+  let taken = totalSpots - parseInt(slotsLeft);
+  
+  document.querySelectorAll(".dyn-slots-left").forEach(function(el) {
+      el.textContent = slotsLeft;
+  });
+  document.querySelectorAll(".dyn-clients-taken").forEach(function(el) {
+      el.textContent = taken;
   });
 });
-
-document.getElementById('f-close').addEventListener('click', function() {
-  fModal.classList.remove('open');
-});
-
-document.getElementById('f-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  var name = document.getElementById('f-name').value;
-  var prop = document.getElementById('f-prop').value;
-  var status = document.getElementById('f-status').value;
-  
-  var text = "Hi TAAS, I just went through the ₹1.45L Interior Challenge and I want to apply for a launch spot.\n\nHere are my details:\nName: " + name + "\nProperty Type: " + prop + "\nStatus: " + status + "\n\nI want to get started within 3 days.\n\nHere is my address for the on-site visit:\n[Flat / House No., Building Name, Street, Area, City, Pincode]\n\nWhat's the next step?";
-  
-  var finalUrl = urlBase + encodeURIComponent(text);
-  window.open(finalUrl, "_blank", "noopener");
-  fModal.classList.remove('open');
-});
+</script>
+<script>
+var url="https://wa.me/917400162509?text=Hi%20TAAS%2C%20I%20just%20went%20through%20the%20%E2%82%B91.45L%20Interior%20Challenge%20%E2%80%94%20I%E2%80%99m%20ready%20to%20go.%0A%0AI%20want%20to%20get%20started%20within%203%20days.%0A%0AHere%20is%20my%20address%20for%20the%20on-site%20visit%3A%0A%5BFlat%20/%20House%20No.%2C%20Building%20Name%2C%20Street%2C%20Area%2C%20City%2C%20Pincode%5D%0A%0AI%20am%20ready%20to%20share%20my%20space%20photos%20right%20away.%0A%0AWhat%E2%80%99s%20the%20next%20step%3F";
+document.querySelectorAll('a.wa').forEach(function(a){a.href=url;a.target="_blank";a.rel="noopener"});
 var cmp=document.getElementById('cmp'),rng=document.getElementById('rng');
 rng.addEventListener('input',function(){cmp.style.setProperty('--p',rng.value+'%')});
 document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
