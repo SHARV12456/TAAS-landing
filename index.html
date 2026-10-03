@@ -82,11 +82,14 @@ h2{font-size:clamp(26px,4.4vw,40px);line-height:1.08;letter-spacing:-.035em;font
 .offer small{font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
 .offer .big{font-size:clamp(52px,9vw,76px);font-weight:800;letter-spacing:-.05em;line-height:1;margin:4px 0}
 .offer p{margin:0;font-size:15px;opacity:.85}
-.urgency-box{background:rgba(242,169,59,.15);border:1px solid var(--acc);border-radius:12px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:12px;font-size:15px;font-weight:600}
-.pulse-dot{width:10px;height:10px;background-color:#d32f2f;border-radius:50%;flex-shrink:0;box-shadow:0 0 0 0 rgba(211,47,47,.7);animation:pulse-red 1.5s infinite}
-@keyframes pulse-red{0%{box-shadow:0 0 0 0 rgba(211,47,47,.7)}70%{box-shadow:0 0 0 8px rgba(211,47,47,0)}100%{box-shadow:0 0 0 0 rgba(211,47,47,0)}}
-.red-txt{color:#d32f2f}
 .imp{font-size:14px;color:var(--mute);border-left:3px solid var(--acc);padding-left:14px;margin-top:30px}
+.modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,0.6);backdrop-filter:blur(4px);padding:20px}
+.modal-content{background-color:var(--bg);margin:40px auto;padding:30px;border-radius:20px;max-width:600px;color:var(--ink);box-shadow:0 20px 40px rgba(0,0,0,0.2)}
+.modal h3{margin-top:0;font-size:24px;font-weight:800}
+.fm-grp{margin-bottom:20px;text-align:left}
+.fm-grp label{display:block;font-weight:700;margin-bottom:8px;font-size:15px}
+.fm-grp select,.fm-grp input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-family:inherit;font-size:15px}
+.modal .close-btn{float:right;font-size:28px;font-weight:bold;cursor:pointer;line-height:1;margin-top:-10px}
 .final{background:var(--dk);color:var(--on-dk);border-radius:24px;padding:38px 22px;text-align:center;margin:36px 0 28px}
 .final h2{margin:0 0 8px}.final p{margin:0 0 20px;opacity:.75}
 footer{text-align:center;color:var(--mute);font-size:13px;padding-bottom:14px}
@@ -148,8 +151,9 @@ h1{font-size:30px}h2{font-size:24px}
 <div>
 <h1>Transform your space for <em>₹1.45L</em></h1>
 <p class="sub">One space. One focused makeover. A clear 10-day process. No heavy civil work, no surprise costs.</p>
-<a class="btn wa" href="#">Apply for the ₹1.45L Challenge →</a>
-<p class="micro">Takes 45 seconds. Only 5 launch spots.</p>
+<div style="font-weight: 800; font-size: 18px; margin-bottom: 20px;">₹25,000 to reserve your Challenge slot.</div>
+<a class="btn" href="#qualify" onclick="openQualifyModal(); return false;">CHECK MY SPACE →</a>
+<p class="micro">45-second qualification. Limited Challenge slots.</p>
 </div>
 <div>
 <div class="tabs" role="group" aria-label="Choose a transformation">
@@ -194,73 +198,184 @@ h1{font-size:30px}h2{font-size:24px}
 </section>
 
 <section>
-<h2>Launch offer</h2>
-<div class="urgency-box">
-  <span class="pulse-dot"></span>
-  <span><b>High Demand:</b> <span class="dyn-clients-taken">3</span> clients secured the ₹0 upfront offer today. <span class="red-txt">Only <span class="dyn-slots-left">2</span> spots left!</span></span>
+<h2>How the booking works</h2>
+<div class="kcis" style="margin-bottom: 20px;">
+<div><b>01 — Reserve your slot</b><p>Pay ₹25,000 to reserve a TAAS Challenge slot.</p></div>
+<div><b>02 — Space assessment</b><p>We review your space, requirements, photos/details and feasibility.</p></div>
+<div><b>03 — Final scope</b><p>We agree on what is included, excluded, materials, timeline and project terms.</p></div>
+<div><b>04 — Start the project</b><p>Once you approve the final scope, the 50% project-start advance is paid and work begins.</p></div>
 </div>
-<div class="offer">
-<div class="a"><small>Remaining <span class="dyn-slots-left">2</span> clients</small><div class="big">₹0</div><p>Upfront for selected launch clients.</p></div>
-<div><small>After spots fill up</small><div class="big">₹25,000</div><p>Standard upfront. First come, first qualified.</p></div>
+<div style="background: var(--card); border: 2px solid var(--acc); border-radius: 16px; padding: 20px; font-weight: 700; text-align: center; font-size: 18px;">
+<span style="color: var(--mute);">₹25K</span> = Reserve your slot &nbsp;&nbsp;|&nbsp;&nbsp; <span style="color: var(--mute);">50% advance</span> = Start the actual project
 </div>
+</section>
+
+<section>
+<h3 style="font-size: clamp(22px, 3.5vw, 28px); margin: 0 0 10px;">Total Challenge Budget: ₹1,45,000</h3>
+<p style="font-size: 16.5px; font-weight: 700; margin-bottom: 0;">The ₹1.45L budget covers the defined TAAS Challenge scope. It is not an unlimited renovation budget.</p>
 </section>
 
 <section>
 <h2>Our 10-day process</h2>
 <ol class="steps">
-<li data-d="Start"><div><b>Apply, plan and 50% advance</b><span>We review your space and agree scope and terms. The 50% advance confirms your start.</span></div></li>
-<li data-d="Day 1"><div><b>Space visit and final details</b><span>We confirm measurements, colours, lighting and fabrics with you.</span></div></li>
-<li data-d="Days 2–9"><div><b>Makeover work on site</b><span>Wall painting, lighting, curtains, rugs and floor decor.</span></div></li>
-<li data-d="Day 10"><div><b>Styling and handover</b><span>Final styling and a walkthrough with you. Handover happens once all payments are cleared.</span></div></li>
+<li data-d="Day 1" style="grid-template-columns: max-content 1fr;"><div><b>Apply & Reserve</b><span>Apply through the qualification form. If selected, pay ₹25,000 to reserve your Challenge slot. We then review your space and requirements and agree on the proposed scope.</span></div></li>
+<li data-d="Before Start" style="grid-template-columns: max-content 1fr;"><div><b>Scope & Advance</b><span>Final scope, inclusions, exclusions, materials, timeline and payment terms are confirmed. The <b>50% project-start advance</b> is then paid.</span></div></li>
+<li data-d="Days 2–8" style="grid-template-columns: max-content 1fr;"><div><b>Makeover work on site</b><span>Makeover work happens on site according to the agreed scope.</span></div></li>
+<li data-d="Days 9–10" style="grid-template-columns: max-content 1fr;"><div><b>Styling and handover</b><span>Styling, finishing and handover. All applicable project payments must be cleared according to the agreed payment schedule before final handover.</span></div></li>
 </ol>
 <p class="micro" style="text-align:left;margin-top:12px">Exact timeline is confirmed in your project plan. Heavy civil, plumbing and major electrical work are not part of the Challenge.</p>
 </section>
 
 <section>
-<h2>Payment milestones</h2>
-<div class="pay" role="img" aria-label="Payment split 50, 30 and 20 percent"><span class="p1">50%</span><span class="p2">30%</span><span class="p3">20%</span></div>
-<div class="pm">
-<div><b>₹72,500</b><span>Start<br>Advance</span></div>
-<div><b>₹43,500</b><span>Day 5<br>Mid-project</span></div>
-<div><b>₹29,000</b><span>Day 9<br>Final</span></div>
+<h2>Project Payment Structure</h2>
+<div class="ms" style="grid-template-columns: repeat(4, 1fr);">
+<div><small>Slot Booking</small><div class="amt">₹25K</div></div>
+<div><small>Project Start</small><div class="amt">50%</div></div>
+<div><small>Mid-Project</small><div class="amt">30%</div></div>
+<div><small>Final Handover</small><div class="amt">20%</div></div>
 </div>
-<p class="micro" style="text-align:left;margin-top:12px">Example on a ₹1,45,000 project. All payments are cleared before the Day 10 handover. Extra work only with your written approval.</p>
+<p class="micro" style="text-align:left;margin-top:12px"><b>The ₹25,000 booking amount reserves your Challenge slot. Final treatment of the booking amount within the project payment schedule should follow the agreed booking terms.</b></p>
 </section>
 
 <div class="final">
 <h2>See what ₹1.45 lakh can do for your space</h2>
-<p><span class="dyn-clients-taken">3</span> clients have secured the ₹0 upfront offer. <b class="red-txt" style="color: #ffb7b7;">Only <span class="dyn-slots-left">2</span> launch spots left.</b></p>
-<a class="btn wa" href="#">Claim 1 of 2 Remaining Spots →</a>
+<p>Limited launch slots available.</p>
+<a class="btn" href="#qualify" onclick="openQualifyModal(); return false;">RESERVE A CHALLENGE SLOT →</a>
 </div>
 <p class="imp"><b>Important.</b> The ₹1.45 lakh figure is the defined TAAS Challenge budget and scope, not an unlimited renovation. Final scope, inclusions, exclusions, materials, timelines and payment terms are explained before you proceed.</p>
 <footer>TAAS®. One Space. One Challenge. One Transformation.</footer>
 </div>
 
-<div class="bar"><span><b class="red-txt">Only <span class="dyn-slots-left">2</span> spots left</b><br>₹0 upfront offer</span><a class="btn wa" href="#">Claim now →</a></div>
+<div class="bar"><span><b>₹25,000 Booking</b><br>Limited Challenge slots</span><a class="btn" href="#qualify" onclick="openQualifyModal(); return false;">CHECK MY SPACE →</a></div>
+
+<!-- Qualification Modal -->
+<div id="qualModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeQualifyModal()">&times;</span>
+    <div id="qform">
+      <h3 style="margin-top:0;">Space Qualification</h3>
+      <p style="margin-top:0; margin-bottom:20px; color:var(--mute);">Takes about 45 seconds.</p>
+      
+      <div class="fm-grp">
+        <label>1. What type of space do you want to transform?</label>
+        <select id="q1">
+          <option value="">Select space type...</option>
+          <option>Bedroom</option>
+          <option>Living room</option>
+          <option>Kid's room</option>
+          <option>Café</option>
+          <option>Restaurant</option>
+          <option>Shop</option>
+          <option>Office</option>
+          <option>Other</option>
+        </select>
+      </div>
+      
+      <div class="fm-grp">
+        <label>2. What are you looking to transform?</label>
+        <select id="q2">
+          <option value="">Select an option...</option>
+          <option>One room/area</option>
+          <option>Multiple areas</option>
+          <option>Full space</option>
+          <option>Refresh/styling</option>
+          <option>New setup</option>
+        </select>
+      </div>
+
+      <div class="fm-grp">
+        <label>3. Is a defined ₹1.45L makeover budget within consideration?</label>
+        <select id="q3">
+          <option value="">Select an option...</option>
+          <option>Yes</option>
+          <option>Maybe — I want to understand the scope</option>
+          <option>No</option>
+        </select>
+      </div>
+
+      <div class="fm-grp">
+        <label>4. If selected, would you be comfortable paying ₹25,000 to reserve your Challenge slot?</label>
+        <select id="q4">
+          <option value="">Select an option...</option>
+          <option>Yes</option>
+          <option>Maybe — I need more information</option>
+          <option>No</option>
+        </select>
+      </div>
+
+      <div class="fm-grp">
+        <label>5. When do you want to start?</label>
+        <select id="q5">
+          <option value="">Select timeline...</option>
+          <option>Immediately</option>
+          <option>Within 1 month</option>
+          <option>1–3 months</option>
+          <option>3–6 months</option>
+          <option>Just exploring</option>
+        </select>
+      </div>
+
+      <div class="fm-grp">
+        <label>6. Approximate overall budget?</label>
+        <select id="q6">
+          <option value="">Select budget range...</option>
+          <option>Under ₹1L</option>
+          <option>₹1–2L</option>
+          <option>₹2–5L</option>
+          <option>₹5L+</option>
+        </select>
+      </div>
+
+      <div class="fm-grp">
+        <label>7. City + area/pincode</label>
+        <input type="text" id="q7" placeholder="e.g. Mumbai, Bandra 400050">
+      </div>
+
+      <div class="fm-grp">
+        <label>8. Name</label>
+        <input type="text" id="q8" placeholder="Your full name">
+      </div>
+
+      <div class="fm-grp">
+        <label>9. WhatsApp number</label>
+        <input type="tel" id="q9" placeholder="10-digit mobile number">
+      </div>
+
+      <div class="fm-grp">
+        <label>10. Email (optional)</label>
+        <input type="email" id="q10" placeholder="your@email.com">
+      </div>
+
+      <button class="btn" style="width:100%; margin-top:10px; border:none; cursor:pointer;" onclick="submitQualifyForm()">Submit Request →</button>
+    </div>
+    
+    <div id="qsuccess" style="display:none; text-align:center; padding: 40px 10px;">
+      <h3 style="margin-bottom:15px;">Thanks — your space is now being reviewed.</h3>
+      <p style="color:var(--mute); margin-bottom:30px;">If your space fits the TAAS Challenge, we'll contact you on WhatsApp to discuss the next step.</p>
+      <button class="btn" style="width:100%; border:none; cursor:pointer; background:var(--dk); color:var(--on-dk);" onclick="closeQualifyModal()">Close</button>
+    </div>
+  </div>
+</div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  // Psychological friction/urgency strategy: 
-  // Store values in localStorage to simulate that spots are being claimed.
-  let totalSpots = 5;
-  
-  // If first visit, show exactly the 3 claimed / 2 left to establish initial scarcity.
-  let slotsLeft = localStorage.getItem("taas_slots_left");
-  if (!slotsLeft) {
-      slotsLeft = 2; // 2 left
-      localStorage.setItem("taas_slots_left", slotsLeft);
-      // Optionally we could decrease it over subsequent visits, but sticking to 2 for consistency right now.
+function openQualifyModal() {
+  document.getElementById('qualModal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+function closeQualifyModal() {
+  document.getElementById('qualModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+function submitQualifyForm() {
+  document.getElementById('qform').style.display = 'none';
+  document.getElementById('qsuccess').style.display = 'block';
+}
+window.onclick = function(event) {
+  var modal = document.getElementById('qualModal');
+  if (event.target == modal) {
+    closeQualifyModal();
   }
-
-  let taken = totalSpots - parseInt(slotsLeft);
-  
-  document.querySelectorAll(".dyn-slots-left").forEach(function(el) {
-      el.textContent = slotsLeft;
-  });
-  document.querySelectorAll(".dyn-clients-taken").forEach(function(el) {
-      el.textContent = taken;
-  });
-});
+}
 </script>
 <script>
 var url="https://wa.me/917400162509?text=Hi%20TAAS%2C%20I%20just%20went%20through%20the%20%E2%82%B91.45L%20Interior%20Challenge%20%E2%80%94%20I%E2%80%99m%20ready%20to%20go.%0A%0AI%20want%20to%20get%20started%20within%203%20days.%0A%0AHere%20is%20my%20address%20for%20the%20on-site%20visit%3A%0A%5BFlat%20/%20House%20No.%2C%20Building%20Name%2C%20Street%2C%20Area%2C%20City%2C%20Pincode%5D%0A%0AI%20am%20ready%20to%20share%20my%20space%20photos%20right%20away.%0A%0AWhat%E2%80%99s%20the%20next%20step%3F";
