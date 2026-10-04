@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -90,9 +90,8 @@ h2{font-size:clamp(26px,4.4vw,40px);line-height:1.08;letter-spacing:-.035em;font
 .final{background:var(--dk);color:var(--on-dk);border-radius:24px;padding:38px 22px;text-align:center;margin:36px 0 28px}
 .final h2{margin:0 0 8px}.final p{margin:0 0 20px;opacity:.75}
 footer{text-align:center;color:var(--mute);font-size:13px;padding-bottom:14px}
-.bar{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:12px;align-items:center;z-index:5}
-.bar span{font-size:13px;font-weight:700;line-height:1.25;flex:0 0 auto}
-.bar .btn{flex:1;padding:14px 16px;font-size:16px;box-shadow:none}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));z-index:5}
+.bar .btn{width:100%;padding:16px 26px;font-size:17px;box-shadow:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 .pay{height:38px;margin:4px 0 10px}
 .pm{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
@@ -228,15 +227,15 @@ h1{font-size:30px}h2{font-size:24px}
 </section>
 
 <div class="final">
-<h2>See what ₹1.45 lakh can do for your space</h2>
-<p><span class="dyn-clients-taken">3</span> clients have secured the ₹0 book the slot as per offer. <b class="red-txt" style="color: #ffb7b7;">Only <span class="dyn-slots-left">2</span> launch spots left.</b></p>
-<a class="btn wa" href="#">Claim 1 of 2 Remaining Spots →</a>
+<h2>Ready to transform your space?</h2>
+<p>Talk to us on WhatsApp — we'll walk you through everything before you decide.</p>
+<a class="btn wa" href="#">Start your project →</a>
 </div>
 <p class="imp"><b>Important.</b> The ₹1.45 lakh figure is the defined TAAS Challenge budget and scope, not an unlimited renovation. Final scope, inclusions, exclusions, materials, timelines and payment terms are explained before you proceed.</p>
 <footer>TAAS®. One Space. One Challenge. One Transformation.</footer>
 </div>
 
-<div class="bar"><span><b class="red-txt">Only <span class="dyn-slots-left">2</span> spots left</b><br>₹0 book the slot as per offer</span><a class="btn wa" href="#">Claim now →</a></div>
+<div class="bar"><a class="btn wa" href="#">Start your project →</a></div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
