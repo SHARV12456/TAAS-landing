@@ -158,154 +158,178 @@ h1{font-size:30px}h2{font-size:24px}
 @media(min-width:2200px){.wrap{max-width:1640px}body{font-size:22px}h1{font-size:92px}h2{font-size:56px}.btn{font-size:21px}}
 
 /* ============================================================
-   CHALLENGE OVERLAY � FUNKY BOLD NEO-BRUTALIST
-   TAAS � CREATIVE STUDIO � DESIGN CHALLENGE
-   Accent: Acid Lime #D7FF3F
+   CHALLENGE OVERLAY � NEO-BRUTALISM � PREMIUM EDITORIAL
    ============================================================ */
 
-.ch-overlay{
-  --c-bg: #F4F1EA;
+.ch-overlay {
+  --c-bg: #F2EFE7;
   --c-txt: #111111;
-  --c-acc: #D7FF3F;
-  --c-brd: 2px solid #111111;
-  --c-shad: 5px 5px 0 #111111;
-  --c-shad-h: 7px 7px 0 #111111;
-  --c-mut: rgba(17,17,17,0.5);
-  position:fixed;inset:0;z-index:100;
-  background:var(--c-bg);
-  overflow-y:auto;
-  display:none;opacity:0;
-  color:var(--c-txt);
-  font-family:inherit;
-  padding-bottom:60px;
+  --c-acc: #D9FF3F;
+  --c-sec: #FF5C35;
+  --brd: 2px solid #111111;
+  --shd: 6px 6px 0 #111111;
+  --shd-h: 9px 9px 0 #111111;
+  --shd-acc: 8px 8px 0 #D9FF3F;
+  position: fixed; inset: 0; z-index: 1000;
+  background: var(--c-bg); color: var(--c-txt);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-y: auto; display: none; opacity: 0;
+  transition: opacity 0.2s ease;
 }
-.ch-overlay *{box-sizing:border-box}
-.ch-overlay.open{display:block;animation:chPop .25s ease-out both}
-.ch-overlay.visible{opacity:1}
+.ch-overlay * { box-sizing: border-box; }
+.ch-overlay.is-active { display: block; opacity: 1; }
 
-@keyframes chPop{from{opacity:0;transform:scale(0.98)}to{opacity:1;transform:scale(1)}}
-
-/* Top bar */
-.ch-top{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:var(--c-brd);background:var(--c-bg);position:sticky;top:0;z-index:10}
-.ch-top-l{display:flex;align-items:center;gap:16px}
-.ch-logo{font-weight:900;font-size:18px;letter-spacing:-0.02em}
-.ch-mode{font-size:10px;font-weight:800;background:var(--c-txt);color:var(--c-bg);padding:4px 8px;text-transform:uppercase;letter-spacing:0.1em;display:flex;align-items:center;gap:6px}
-.ch-mode::before{content:'';display:block;width:6px;height:6px;background:var(--c-acc);border-radius:50%;animation:blink 1.5s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
-.ch-close{background:transparent;border:var(--c-brd);font-weight:900;font-size:12px;padding:6px 12px;cursor:pointer;transition:all 0.15s;text-transform:uppercase}
-.ch-close:hover{background:var(--c-txt);color:var(--c-bg);transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--c-txt)}
-
-/* Body & Grid */
-.ch-body{max-width:1100px;margin:0 auto;padding:40px 24px}
-@media(max-width:768px){.ch-body{padding:24px 16px}}
-
-.ch-step{display:none}
-.ch-step.active{display:block;animation:chSlide .25s ease-out both}
-@keyframes chSlide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-/* Graphic Poster Split */
-.ch-split{display:flex;gap:40px;align-items:flex-start}
-@media(max-width:860px){.ch-split{flex-direction:column;gap:32px}}
-.ch-split-l{flex:0 0 340px}
-@media(max-width:860px){.ch-split-l{flex:none;width:100%}}
-.ch-split-r{flex:1;min-width:0}
-
-/* Left side elements */
-.ch-offer-lbl{font-size:10px;font-weight:800;letter-spacing:0.1em;border:var(--c-brd);padding:4px 8px;display:inline-block;margin-bottom:12px;background:var(--c-acc);transform:rotate(-1deg)}
-.ch-hero-h{font-size:clamp(42px, 6vw, 64px);font-weight:900;line-height:0.9;text-transform:uppercase;letter-spacing:-0.03em;margin:0 0 24px}
-.ch-hero-h em{font-style:normal;background:var(--c-txt);color:var(--c-acc);padding:0 8px;display:inline-block;transform:rotate(1deg)}
-
-/* Step Indicator Block */
-.ch-ind{border:var(--c-brd);padding:12px;display:inline-flex;flex-direction:column;gap:8px;background:#fff;box-shadow:var(--c-shad);transform:rotate(-1deg);margin-bottom:32px}
-.ch-ind-top{font-size:24px;font-weight:900;line-height:1}
-.ch-ind-top span{font-size:14px;color:var(--c-mut)}
-.ch-ind-boxes{display:flex;gap:4px}
-.ch-box{width:12px;height:12px;border:2px solid var(--c-txt)}
-.ch-box.active{background:var(--c-acc)}
-
-/* Right side Q */
-.ch-q-lbl{font-size:12px;font-weight:900;text-transform:uppercase;margin:0 0 4px;color:var(--c-mut)}
-.ch-q{font-size:clamp(28px, 4vw, 36px);font-weight:900;text-transform:uppercase;line-height:1;margin:0 0 24px;letter-spacing:-0.02em}
-
-/* Options Grid */
-.ch-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
-@media(max-width:600px){.ch-grid{grid-template-columns:1fr}}
-.ch-opt{
-  border:var(--c-brd);background:transparent;
-  min-height:64px;padding:12px 16px;
-  display:flex;align-items:center;
-  cursor:pointer;transition:all 0.15s;
+.ch-grid-bg { max-width: 1280px; margin: 0 auto; min-height: 100vh; position: relative; }
+/* Grid lines */
+.ch-grid-bg::before, .ch-grid-bg::after {
+  content:''; position: absolute; top:0; bottom:0; width:1px; background: rgba(17,17,17,0.08); z-index:-1;
 }
-.ch-opt:nth-child(1){transform:rotate(-0.5deg)}
-.ch-opt:nth-child(2){transform:rotate(0.4deg)}
-.ch-opt:nth-child(3){transform:rotate(-0.2deg)}
-.ch-opt:nth-child(4){transform:rotate(0.6deg)}
-.ch-opt:nth-child(5){grid-column:1/-1;transform:rotate(-0.3deg)}
+.ch-grid-bg::before { left: 28px; }
+.ch-grid-bg::after { right: 28px; }
 
-.ch-opt-n{font-size:20px;font-weight:900;width:36px;color:var(--c-mut);transition:color 0.15s}
-.ch-opt-t{font-size:16px;font-weight:900;text-transform:uppercase;flex:1;letter-spacing:-0.02em}
-.ch-opt-arr{font-weight:900;font-size:18px;transition:transform 0.15s}
-
-.ch-opt:hover{background:var(--c-acc);transform:translate(-3px,-3px);box-shadow:var(--c-shad)}
-.ch-opt.selected{background:var(--c-txt);color:var(--c-bg)}
-.ch-opt.selected .ch-opt-n{color:var(--c-acc)}
-.ch-opt.selected .ch-opt-arr{color:var(--c-acc)}
-.ch-opt:hover .ch-opt-arr{transform:translateX(6px)}
-
-/* Chunky Button */
-.ch-btn{
-  background:var(--c-acc);border:var(--c-brd);color:var(--c-txt);
-  height:52px;padding:0 24px;font-family:inherit;font-size:14px;font-weight:900;letter-spacing:0.05em;text-transform:uppercase;
-  display:inline-flex;align-items:center;justify-content:center;
-  box-shadow:var(--c-shad);cursor:pointer;transition:all 0.15s;
+/* Header */
+.ch-hdr {
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: var(--brd); height: 64px; padding: 0 28px;
+  position: sticky; top: 0; background: var(--c-bg); z-index: 10;
 }
-.ch-btn:hover:not(:disabled){transform:translate(-2px,-2px);box-shadow:var(--c-shad-h)}
-.ch-btn:disabled{background:#e0e0e0;box-shadow:none;transform:none;color:var(--c-mut);cursor:not-allowed}
-.ch-btn-g{background:transparent;box-shadow:none}
-.ch-btn-g:hover:not(:disabled){background:var(--c-txt);color:var(--c-bg);box-shadow:var(--c-shad)}
+.ch-hdr-l { font-weight: 900; font-size: 20px; letter-spacing: 0.05em; font-family: "Arial Black", Impact, sans-serif; }
+.ch-hdr-r { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; cursor:pointer;}
+.ch-hdr-r .sq { width: 14px; height: 14px; background: var(--c-acc); border: 2px solid var(--c-txt); }
+
+/* Body padding */
+.ch-body { padding: 48px 28px 80px; }
+@media(max-width: 768px) { .ch-body { padding: 24px 14px 60px; } .ch-grid-bg::before, .ch-grid-bg::after { display: none; } .ch-hdr { padding: 0 14px; } }
+
+/* Shared typographic utilities */
+.h-black { font-family: "Arial Black", Impact, sans-serif; font-weight: 900; letter-spacing: -0.04em; line-height: 0.9; text-transform: uppercase; margin: 0; }
+.lbl-small { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* Steps */
+.ch-step-view { display: none; }
+.ch-step-view.is-active { display: block; animation: chFadeIn 0.25s ease-out forwards; }
+@keyframes chFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Hero / Split layout */
+.ch-split { display: flex; gap: 64px; align-items: flex-start; }
+@media(max-width: 860px) { .ch-split { flex-direction: column; gap: 32px; } }
+.ch-split-l { flex: 0 0 45%; max-width: 500px; position: relative; }
+@media(max-width: 860px) { .ch-split-l { flex: none; width: 100%; max-width: none; } }
+.ch-split-r { flex: 1; min-width: 0; }
+
+/* Left Side - Step 01 */
+.ch-exc-lbl { background: var(--c-txt); color: var(--c-bg); padding: 6px 10px; display: inline-block; margin-bottom: 24px; }
+.ch-hero-num { font-size: clamp(60px, 8vw, 100px); position: absolute; right: 0; top: -20px; opacity: 0.1; z-index: -1; line-height: 0.8; }
+.ch-hero-h { font-size: clamp(48px, 7vw, 104px); margin-bottom: 32px; }
+.ch-vert-lbl { position: absolute; left: -24px; top: 180px; transform: rotate(-90deg); transform-origin: top left; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; white-space: nowrap; color: var(--c-txt); }
+@media(max-width: 1000px) { .ch-vert-lbl { display: none; } }
+
+/* Step Indicator */
+.ch-ind { font-size: 18px; font-weight: 900; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; font-family: "Arial Black", Impact, sans-serif; }
+.ch-ind span { color: rgba(17,17,17,0.3); }
+.ch-ind .active { color: var(--c-txt); background: var(--c-acc); padding: 4px 8px; border: var(--brd); }
+.ch-ind-lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-top: 2px solid var(--c-txt); padding-top: 8px; max-width: 200px; }
+
+/* Right Side - Question */
+.ch-q-lbl { margin: 0 0 8px; }
+.ch-q-h { font-size: clamp(32px, 4.5vw, 56px); margin: 0 0 8px; }
+.ch-q-sub { font-size: 14px; font-weight: 700; text-transform: uppercase; margin: 0 0 40px; border-bottom: 2px solid var(--c-txt); display: inline-block; padding-bottom: 4px; }
+
+/* Space Options (Step 1) */
+.ch-opt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+@media(max-width: 600px) { .ch-opt-grid { grid-template-columns: 1fr; gap: 16px; } }
+.ch-opt {
+  height: 64px; border: var(--brd); background: transparent; box-shadow: var(--shd);
+  display: flex; align-items: center; padding: 0 16px; cursor: pointer; transition: all 150ms ease;
+  user-select: none;
+}
+.ch-opt:nth-child(1) { transform: rotate(-0.6deg); }
+.ch-opt:nth-child(3) { transform: rotate(0.5deg); }
+.ch-opt:nth-child(5) { grid-column: 1 / -1; transform: rotate(-0.4deg); }
+
+.ch-opt-n { font-size: 24px; width: 44px; flex-shrink: 0; font-family: "Arial Black", Impact, sans-serif; }
+.ch-opt-t { font-size: 14px; font-weight: 700; text-transform: uppercase; flex: 1; letter-spacing: 0.05em; }
+.ch-opt-arr { font-weight: 900; font-size: 18px; transition: transform 150ms ease; }
+.ch-opt-sel-lbl { display: none; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; }
+
+.ch-opt:hover {
+  background: var(--c-acc); transform: translate(-4px, -4px) !important; box-shadow: var(--shd-h);
+}
+.ch-opt:hover .ch-opt-arr { transform: translateX(6px); }
+.ch-opt.is-selected {
+  background: var(--c-txt); color: var(--c-bg); box-shadow: var(--shd-acc); transform: translate(0,0) !important;
+}
+.ch-opt.is-selected .ch-opt-arr { display: none; }
+.ch-opt.is-selected .ch-opt-sel-lbl { display: block; color: var(--c-acc); }
+
+/* CTA Button */
+.ch-btn {
+  background: var(--c-acc); color: var(--c-txt); border: var(--brd); box-shadow: var(--shd);
+  height: 52px; padding: 0 24px; font-family: "Arial Black", Impact, sans-serif; font-size: 14px; font-weight: 900;
+  letter-spacing: 0.05em; text-transform: uppercase; display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 150ms ease; width: 100%; max-width: 320px;
+}
+.ch-btn:hover:not(:disabled) { transform: translate(-3px, -3px); box-shadow: var(--shd-h); }
+.ch-btn:disabled { opacity: 0.4; box-shadow: none; transform: none; cursor: not-allowed; background: transparent; border-color: var(--c-txt); color: var(--c-txt); }
+.ch-btn.sec { background: transparent; box-shadow: none; border: 2px solid var(--c-txt); color: var(--c-txt); width: auto; max-width: none; }
+.ch-btn.sec:hover { background: var(--c-txt); color: var(--c-bg); box-shadow: var(--shd); transform: translate(-2px, -2px); }
 
 /* Step 2 Rules */
-.ch-rules{display:flex;flex-direction:column;gap:16px;margin-bottom:32px}
-.ch-rule{border:var(--c-brd);background:#fff;padding:20px;display:flex;gap:16px;align-items:flex-start;box-shadow:3px 3px 0 rgba(0,0,0,0.05)}
-.ch-rule-n{font-size:24px;font-weight:900;color:var(--c-acc);-webkit-text-stroke:1px var(--c-txt)}
-.ch-rule-b{flex:1}
-.ch-rule-t{font-size:18px;font-weight:900;margin:0 0 4px;text-transform:uppercase}
-.ch-rule-d{font-size:14px;font-weight:600;margin:0;color:var(--c-mut)}
-.ch-rule-a{font-size:16px;font-weight:900;margin:8px 0 0;background:var(--c-acc);display:inline-block;padding:2px 6px;border:2px solid var(--c-txt)}
-.ch-rule-a s{font-size:12px;font-weight:600;background:none;border:none}
+.ch-rule-list { display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px; }
+.ch-rule { border: var(--brd); background: #fff; padding: 24px; box-shadow: var(--shd); display: flex; gap: 20px; align-items: flex-start; }
+.ch-rule-n { font-family: "Arial Black", Impact, sans-serif; font-size: 32px; color: var(--c-acc); -webkit-text-stroke: 1.5px var(--c-txt); line-height: 1; }
+.ch-rule-b { flex: 1; }
+.ch-rule-t { font-size: 20px; margin: 0 0 8px; }
+.ch-rule-d { font-size: 14px; font-weight: 700; margin: 0 0 12px; }
+.ch-rule-amt { font-size: 16px; font-family: "Arial Black", Impact, sans-serif; background: var(--c-acc); display: inline-block; padding: 4px 8px; border: var(--brd); }
+.ch-rule-amt s { font-size: 12px; font-family: Arial, sans-serif; font-weight: 700; background: none; border: none; padding: 0; margin-right: 8px; color: rgba(17,17,17,0.6); }
 
 /* Step 3 Commit */
-.ch-rev{border:var(--c-brd);background:#fff;padding:24px;margin-bottom:24px;box-shadow:var(--c-shad)}
-.ch-rev-lbl{font-size:12px;font-weight:900;background:var(--c-txt);color:var(--c-bg);padding:4px 8px;display:inline-block;margin-bottom:16px}
-.ch-rev-r{display:flex;justify-content:space-between;border-bottom:2px solid #ddd;padding:12px 0;font-size:16px;font-weight:900;text-transform:uppercase}
-.ch-rev-r:last-child{border-bottom:none;padding-bottom:0}
-.ch-rev-r span:first-child{color:var(--c-mut)}
+.ch-sum { border: var(--brd); background: #fff; padding: 32px; box-shadow: var(--shd); margin-bottom: 32px; }
+.ch-sum-r { display: flex; justify-content: space-between; border-bottom: 2px solid var(--c-txt); padding: 16px 0; font-size: 16px; font-weight: 900; text-transform: uppercase; font-family: "Arial Black", Impact, sans-serif; }
+.ch-sum-r:last-child { border-bottom: none; padding-bottom: 0; }
+.ch-sum-r span:first-child { color: rgba(17,17,17,0.5); }
+.ch-sum-r.hl span { color: var(--c-sec); }
 
-.ch-cb{display:flex;align-items:flex-start;gap:12px;cursor:pointer;margin-bottom:32px;font-weight:700}
-.ch-cb input{display:none}
-.ch-cb-box{width:24px;height:24px;border:var(--c-brd);background:#fff;display:flex;align-items:center;justify-content:center;color:transparent;font-weight:900;transition:all 0.15s;flex-shrink:0}
-.ch-cb:hover .ch-cb-box{transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--c-txt)}
-.ch-cb input:checked + .ch-cb-box{background:var(--c-txt);color:var(--c-acc)}
+.ch-cb-row { border-bottom: 2px solid var(--c-txt); padding: 16px 0; margin-bottom: 40px; cursor: pointer; display: flex; align-items: center; gap: 16px; font-weight: 700; font-size: 14px; text-transform: uppercase; }
+.ch-cb-row input { display: none; }
+.ch-cb-sq { width: 24px; height: 24px; border: var(--brd); background: #fff; display: flex; align-items: center; justify-content: center; color: transparent; font-weight: 900; flex-shrink: 0; transition: all 150ms; }
+.ch-cb-row input:checked + .ch-cb-sq { background: var(--c-txt); color: var(--c-acc); }
+.ch-cb-row:hover .ch-cb-sq { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--c-txt); }
 
 /* Step 4 Form */
-.ch-f-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px 32px;margin-bottom:32px}
-@media(max-width:600px){.ch-f-grid{grid-template-columns:1fr;gap:24px}}
-.ch-field{display:flex;flex-direction:column-reverse;gap:8px}
-.ch-lbl{font-size:12px;font-weight:900;text-transform:uppercase;color:var(--c-txt)}
-.ch-inp{
-  border:none;border-bottom:2px solid var(--c-txt);background:transparent;
-  padding:8px 0;font-family:inherit;font-size:18px;font-weight:700;
-  outline:none;transition:all 0.15s;border-radius:0;
+.ch-f-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 32px; margin-bottom: 32px; }
+@media(max-width: 600px) { .ch-f-grid { grid-template-columns: 1fr; } }
+.ch-f-item { display: flex; flex-direction: column-reverse; gap: 4px; }
+.ch-f-lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-txt); transition: color 150ms; }
+.ch-f-inp {
+  background: transparent; border: none; border-bottom: 2px solid var(--c-txt);
+  height: 44px; font-family: inherit; font-size: 16px; font-weight: 700; color: var(--c-txt);
+  border-radius: 0; outline: none; padding: 0; transition: border-bottom-width 150ms, border-color 150ms;
 }
-.ch-inp:focus{border-bottom:4px solid var(--c-acc);padding-bottom:6px}
-.ch-inp:focus + .ch-lbl{color:var(--c-acc);-webkit-text-stroke:1px var(--c-txt)}
+.ch-f-inp:focus { border-bottom: 4px solid var(--c-acc); }
+.ch-f-inp:focus + .ch-f-lbl { color: var(--c-acc); }
+
+.ch-chips-lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; display: block; }
+.ch-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+.ch-chip {
+  border: var(--brd); background: transparent; font-size: 12px; font-weight: 700; text-transform: uppercase;
+  padding: 8px 16px; cursor: pointer; transition: all 150ms; user-select: none;
+}
+.ch-chip:hover { background: var(--c-acc); color: var(--c-txt); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--c-txt); }
+.ch-chip.is-active { background: var(--c-txt); color: #fff; }
 
 /* Success */
-.ch-win{text-align:center;padding:40px 0}
-.ch-win-h{font-size:clamp(64px, 10vw, 120px);font-weight:900;line-height:0.85;margin:0 0 24px;text-transform:uppercase}
-.ch-stamp{display:inline-block;border:4px solid var(--c-txt);padding:8px 16px;font-size:20px;font-weight:900;text-transform:uppercase;transform:rotate(-4deg);background:var(--c-acc);box-shadow:8px 8px 0 var(--c-txt);margin-bottom:32px}
-.ch-win-sub{font-size:18px;font-weight:800;text-transform:uppercase;margin:0 0 8px}
-.ch-win-p{font-size:14px;font-weight:600;max-width:400px;margin:0 auto 32px}
+.ch-succ { padding: 40px 0; max-width: 600px; margin: 0 auto; text-align: left; }
+.ch-succ-h { font-size: clamp(80px, 12vw, 160px); margin: 0 0 32px; line-height: 0.8; }
+.ch-stamp {
+  display: inline-block; border: 4px solid var(--c-txt); padding: 12px 24px;
+  font-family: "Arial Black", Impact, sans-serif; font-size: 24px; text-transform: uppercase;
+  background: var(--c-acc); box-shadow: 10px 10px 0 var(--c-txt); transform: rotate(-3deg); margin-bottom: 40px;
+}
+.ch-ref { font-size: 14px; font-weight: 700; margin-bottom: 40px; font-family: monospace; letter-spacing: 0.1em; }
+.ch-succ-sub { font-size: 24px; margin: 0 0 16px; }
+
 </style></head><body>
 <div class="wrap">
 <div class="top"><span class="logo">TAAS®</span><span class="pill">First 5 clients: <b>Zero booking fee</b></span><button class="tg" id="tg" type="button" aria-label="Switch between light and dark mode" aria-pressed="false"></button></div>
@@ -424,281 +448,294 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
      CHALLENGE OVERLAY HTML
      ============================================================ -->
 <div class="ch-overlay" id="chOverlay">
-  <div class="ch-top">
-    <div class="ch-top-l">
-      <div class="ch-logo">TAAS�</div>
-      <div class="ch-mode">LIVE CHALLENGE</div>
-    </div>
-    <button class="ch-close" onclick="closeChallenge()">CLOSE ?</button>
-  </div>
-
-  <div class="ch-body">
-    <!-- STEP 1 -->
-    <div class="ch-step active" id="ch-s1">
-      <div class="ch-split">
-        <div class="ch-split-l">
-          <div class="ch-offer-lbl">EXCLUSIVE OFFER</div>
-          <h2 class="ch-hero-h">TRANSFORM<br>YOUR SPACE<br><em>UNDER ?1.45L</em></h2>
-          <div class="ch-ind">
-            <div class="ch-ind-top">01 <span>/04</span></div>
-            <div class="ch-ind-boxes">
-              <div class="ch-box active"></div><div class="ch-box"></div><div class="ch-box"></div><div class="ch-box"></div>
-            </div>
-          </div>
-        </div>
-        <div class="ch-split-r">
-          <p class="ch-q-lbl">STEP 01</p>
-          <p class="ch-q">WHAT ARE WE<br>TRANSFORMING?</p>
-          
-          <div class="ch-grid">
-            <div class="ch-opt" onclick="chPickSpace(this,'Studio Apartment')">
-              <span class="ch-opt-n">01</span><span class="ch-opt-t">Studio Apartment</span><span class="ch-opt-arr">?</span>
-            </div>
-            <div class="ch-opt" onclick="chPickSpace(this,'1BHK / 2BHK Room')">
-              <span class="ch-opt-n">02</span><span class="ch-opt-t">1BHK / 2BHK Room</span><span class="ch-opt-arr">?</span>
-            </div>
-            <div class="ch-opt" onclick="chPickSpace(this,'Rental Space')">
-              <span class="ch-opt-n">03</span><span class="ch-opt-t">Rental Space</span><span class="ch-opt-arr">?</span>
-            </div>
-            <div class="ch-opt" onclick="chPickSpace(this,'Caf� / Commercial')">
-              <span class="ch-opt-n">04</span><span class="ch-opt-t">Caf� / Commercial</span><span class="ch-opt-arr">?</span>
-            </div>
-            <div class="ch-opt" onclick="chPickSpace(this,'Other Space')">
-              <span class="ch-opt-n">05</span><span class="ch-opt-t">Other Space</span><span class="ch-opt-arr">?</span>
-            </div>
-          </div>
-          
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:24px">
-            <div style="font-weight:900;font-size:12px;letter-spacing:0.1em;text-transform:uppercase">YOUR MOVE ?</div>
-            <button class="ch-btn" id="ch-btn-s1" onclick="chGoStep(2)" disabled>CONTINUE ?</button>
-          </div>
-        </div>
+  <div class="ch-grid-bg">
+    <div class="ch-hdr">
+      <div class="ch-hdr-l">TAAS�</div>
+      <div class="ch-hdr-r" onclick="chClose()">
+        CHALLENGE 01/04 <div class="sq"></div>
       </div>
     </div>
 
-    <!-- STEP 2 -->
-    <div class="ch-step" id="ch-s2">
-      <div class="ch-split">
-        <div class="ch-split-l">
-          <div class="ch-ind">
-            <div class="ch-ind-top">02 <span>/04</span></div>
-            <div class="ch-ind-boxes">
-              <div class="ch-box"></div><div class="ch-box active"></div><div class="ch-box"></div><div class="ch-box"></div>
+    <div class="ch-body">
+      <!-- STEP 1 -->
+      <div class="ch-step-view is-active" id="step-01">
+        <div class="ch-split">
+          <div class="ch-split-l">
+            <div class="ch-vert-lbl">TAAS DESIGN CHALLENGE</div>
+            <div class="lbl-small ch-exc-lbl">EXCLUSIVE OFFER</div>
+            <h2 class="h-black ch-hero-h">TRANSFORM<br>YOUR SPACE<br>UNDER<br>?1.45 LAKH.</h2>
+            <div class="ch-hero-num h-black">
+              <div style="border:4px solid var(--c-txt);display:inline-block;padding:0 8px;background:var(--c-bg)">01</div><br>
+              <span style="font-size:0.5em">/04</span>
             </div>
+            
+            <div class="ch-ind">
+              <span class="active">01</span> ? <span>02</span> ? <span>03</span> ? <span>04</span>
+            </div>
+            <div class="ch-ind-lbl">DEFINE THE SPACE</div>
           </div>
-          <p class="ch-q-lbl">STEP 02</p>
-          <p class="ch-q">THE RULEBOOK.</p>
-        </div>
-        <div class="ch-split-r">
-          <div class="ch-rules">
-            <div class="ch-rule">
-              <div class="ch-rule-n">01</div>
-              <div class="ch-rule-b">
-                <p class="ch-rule-t">STRICT BUDGET</p>
-                <p class="ch-rule-d">Hard capped at ?1,45,000. Every rupee is maximised.</p>
-                <div class="ch-rule-a">?1,45,000</div>
+          <div class="ch-split-r">
+            <p class="lbl-small ch-q-lbl">STEP 01</p>
+            <h3 class="h-black ch-q-h">WHAT ARE WE<br>TRANSFORMING?</h3>
+            <p class="ch-q-sub">PICK YOUR SPACE.</p>
+
+            <div class="ch-opt-grid">
+              <div class="ch-opt" onclick="chPick(this, 'Studio Apartment')">
+                <div class="ch-opt-n">01</div>
+                <div class="ch-opt-t">STUDIO APARTMENT</div>
+                <div class="ch-opt-arr">?</div>
+                <div class="ch-opt-sel-lbl">? SELECTED</div>
+              </div>
+              <div class="ch-opt" onclick="chPick(this, '1BHK / 2BHK Room')">
+                <div class="ch-opt-n">02</div>
+                <div class="ch-opt-t">1BHK / 2BHK ROOM</div>
+                <div class="ch-opt-arr">?</div>
+                <div class="ch-opt-sel-lbl">? SELECTED</div>
+              </div>
+              <div class="ch-opt" onclick="chPick(this, 'Room')">
+                <div class="ch-opt-n">03</div>
+                <div class="ch-opt-t">ROOM</div>
+                <div class="ch-opt-arr">?</div>
+                <div class="ch-opt-sel-lbl">? SELECTED</div>
+              </div>
+              <div class="ch-opt" onclick="chPick(this, 'Rental Space')">
+                <div class="ch-opt-n">04</div>
+                <div class="ch-opt-t">RENTAL SPACE</div>
+                <div class="ch-opt-arr">?</div>
+                <div class="ch-opt-sel-lbl">? SELECTED</div>
+              </div>
+              <div class="ch-opt" onclick="chPick(this, 'Caf� / Commercial')">
+                <div class="ch-opt-n">05</div>
+                <div class="ch-opt-t">CAF� / COMMERCIAL</div>
+                <div class="ch-opt-arr">?</div>
+                <div class="ch-opt-sel-lbl">? SELECTED</div>
               </div>
             </div>
-            <div class="ch-rule">
-              <div class="ch-rule-n">02</div>
-              <div class="ch-rule-b">
-                <p class="ch-rule-t">HIGH IMPACT ONLY</p>
-                <p class="ch-rule-d">Smart changes. No unnecessary demolition or civil work.</p>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;max-width:320px;margin-bottom:12px">
+              <div class="lbl-small">YOUR MOVE ?</div>
+            </div>
+            <button class="ch-btn" id="btn-s1" onclick="chGo(2)" disabled>CONTINUE ?</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="ch-step-view" id="step-02">
+        <div class="ch-split">
+          <div class="ch-split-l">
+            <div class="ch-ind">
+              <span>01</span> ? <span class="active">02</span> ? <span>03</span> ? <span>04</span>
+            </div>
+            <p class="lbl-small ch-q-lbl">STEP 02</p>
+            <h3 class="h-black ch-q-h">THE<br>RULES.</h3>
+            <p class="ch-q-sub">NO SURPRISES.</p>
+          </div>
+          <div class="ch-split-r">
+            <div class="ch-rule-list">
+              <div class="ch-rule">
+                <div class="ch-rule-n">01</div>
+                <div class="ch-rule-b">
+                  <h4 class="h-black ch-rule-t">STRICT BUDGET</h4>
+                  <p class="ch-rule-d">Hard capped at ?1,45,000. Every rupee is maximised.</p>
+                  <div class="ch-rule-amt">?1,45,000</div>
+                </div>
+              </div>
+              <div class="ch-rule">
+                <div class="ch-rule-n">02</div>
+                <div class="ch-rule-b">
+                  <h4 class="h-black ch-rule-t">HIGH IMPACT</h4>
+                  <p class="ch-rule-d">Smart changes only. No unnecessary demolition or civil work.</p>
+                </div>
+              </div>
+              <div class="ch-rule">
+                <div class="ch-rule-n">03</div>
+                <div class="ch-rule-b">
+                  <h4 class="h-black ch-rule-t">DESIGN + DIRECTION</h4>
+                  <p class="ch-rule-d">First 5 clients get complete design direction at no cost.</p>
+                  <div class="ch-rule-amt"><s>?25,000 STANDARD</s> ?0 LAUNCH</div>
+                </div>
               </div>
             </div>
-            <div class="ch-rule">
-              <div class="ch-rule-n">03</div>
-              <div class="ch-rule-b">
-                <p class="ch-rule-t">DESIGN + DIRECTION</p>
-                <p class="ch-rule-d">First 5 clients get complete design direction at no cost.</p>
-                <div class="ch-rule-a"><s>?25,000 STANDARD</s> ?0 LAUNCH</div>
-              </div>
+            <div style="display:flex;gap:16px">
+              <button class="ch-btn sec" onclick="chGo(1)">? BACK</button>
+              <button class="ch-btn" onclick="chGo(3)" style="max-width:none;flex:1">ACCEPT RULES ?</button>
             </div>
-          </div>
-          <div style="display:flex;gap:16px;margin-top:24px">
-            <button class="ch-btn ch-btn-g" onclick="chGoStep(1)">? BACK</button>
-            <button class="ch-btn" onclick="chGoStep(3)">ACCEPT RULES ?</button>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- STEP 3 -->
-    <div class="ch-step" id="ch-s3">
-      <div class="ch-split">
-        <div class="ch-split-l">
-          <div class="ch-ind">
-            <div class="ch-ind-top">03 <span>/04</span></div>
-            <div class="ch-ind-boxes">
-              <div class="ch-box"></div><div class="ch-box"></div><div class="ch-box active"></div><div class="ch-box"></div>
+      <!-- STEP 3 -->
+      <div class="ch-step-view" id="step-03">
+        <div class="ch-split">
+          <div class="ch-split-l">
+            <div class="ch-ind">
+              <span>01</span> ? <span>02</span> ? <span class="active">03</span> ? <span>04</span>
+            </div>
+            <p class="lbl-small ch-q-lbl">STEP 03</p>
+            <h3 class="h-black ch-q-h" style="font-size:clamp(42px, 6vw, 72px)">READY<br>TO TAKE<br>THE<br>CHALLENGE?</h3>
+          </div>
+          <div class="ch-split-r">
+            <div class="ch-sum">
+              <div class="ch-sum-r"><span>SPACE</span> <span id="ch-v-space">�</span></div>
+              <div class="ch-sum-r"><span>EXECUTION</span> <span>?1,45,000</span></div>
+              <div class="ch-sum-r hl"><span>DESIGN + DIRECTION</span> <span>?0 (LAUNCH)</span></div>
+            </div>
+            
+            <label class="ch-cb-row">
+              <input type="checkbox" id="ch-agree" onchange="document.getElementById('btn-s3').disabled = !this.checked">
+              <div class="ch-cb-sq">?</div>
+              <span>I ACCEPT THE TAAS CHALLENGE RULES AND WANT TO SECURE MY SPOT.</span>
+            </label>
+
+            <div style="display:flex;gap:16px">
+              <button class="ch-btn sec" onclick="chGo(2)">? BACK</button>
+              <button class="ch-btn" id="btn-s3" onclick="chGo(4)" style="max-width:none;flex:1" disabled>COMMIT ?</button>
             </div>
           </div>
-          <p class="ch-q-lbl">STEP 03</p>
-          <p class="ch-q">TAKE THE<br>CHALLENGE.</p>
         </div>
-        <div class="ch-split-r">
-          <div class="ch-rev">
-            <div class="ch-rev-lbl">YOUR CHALLENGE</div>
-            <div class="ch-rev-r"><span>SPACE</span> <span id="ch-prm-space">�</span></div>
-            <div class="ch-rev-r"><span>EXECUTION</span> <span>?1,45,000</span></div>
-            <div class="ch-rev-r" style="color:var(--c-acc);-webkit-text-stroke:1px var(--c-txt);font-size:18px"><span>DESIGN</span> <span>?0 (FIRST 5)</span></div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="ch-step-view" id="step-04">
+        <div class="ch-split">
+          <div class="ch-split-l">
+            <div class="ch-ind">
+              <span>01</span> ? <span>02</span> ? <span>03</span> ? <span class="active">04</span>
+            </div>
+            <p class="lbl-small ch-q-lbl">STEP 04</p>
+            <h3 class="h-black ch-q-h">LOCK<br>IT IN.</h3>
+            <p class="ch-q-sub">TELL US ABOUT THE PROJECT.</p>
           </div>
+          <div class="ch-split-r">
+            
+            <div class="ch-f-grid">
+              <div class="ch-f-item"><input type="text" class="ch-f-inp" id="f-name"><label class="ch-f-lbl">FULL NAME *</label></div>
+              <div class="ch-f-item"><input type="tel" class="ch-f-inp" id="f-wa"><label class="ch-f-lbl">WHATSAPP *</label></div>
+              <div class="ch-f-item"><input type="email" class="ch-f-inp" id="f-email"><label class="ch-f-lbl">EMAIL</label></div>
+              <div class="ch-f-item"><input type="text" class="ch-f-inp" id="f-unit"><label class="ch-f-lbl">UNIT / FLAT *</label></div>
+              <div class="ch-f-item"><input type="text" class="ch-f-inp" id="f-bldg"><label class="ch-f-lbl">BUILDING *</label></div>
+              <div class="ch-f-item"><input type="text" class="ch-f-inp" id="f-street"><label class="ch-f-lbl">STREET</label></div>
+              <div class="ch-f-item"><input type="text" class="ch-f-inp" id="f-area"><label class="ch-f-lbl">AREA *</label></div>
+              <div class="ch-f-item"><input type="text" class="ch-f-inp" id="f-city"><label class="ch-f-lbl">CITY *</label></div>
+              <div class="ch-f-item"><input type="text" class="ch-f-inp" id="f-state"><label class="ch-f-lbl">STATE</label></div>
+              <div class="ch-f-item"><input type="text" class="ch-f-inp" id="f-pin"><label class="ch-f-lbl">PIN CODE *</label></div>
+            </div>
+
+            <span class="ch-chips-lbl">WHAT NEEDS WORK? (SELECT MULTIPLE)</span>
+            <div class="ch-chips" id="ch-chip-list">
+              <div class="ch-chip" onclick="this.classList.toggle('is-active')">LIGHTING</div>
+              <div class="ch-chip" onclick="this.classList.toggle('is-active')">PAINT</div>
+              <div class="ch-chip" onclick="this.classList.toggle('is-active')">FURNITURE</div>
+              <div class="ch-chip" onclick="this.classList.toggle('is-active')">D�COR</div>
+              <div class="ch-chip" onclick="this.classList.toggle('is-active')">TV WALL</div>
+              <div class="ch-chip" onclick="this.classList.toggle('is-active')">BEDROOM</div>
+              <div class="ch-chip" onclick="this.classList.toggle('is-active')">LIVING</div>
+              <div class="ch-chip" onclick="this.classList.toggle('is-active')">KITCHEN</div>
+              <div class="ch-chip" onclick="this.classList.toggle('is-active')">STORAGE</div>
+            </div>
+
+            <div style="display:flex;gap:16px;margin-top:40px">
+              <button class="ch-btn sec" onclick="chGo(3)">? BACK</button>
+              <button class="ch-btn" id="btn-submit" onclick="chSubmit()" style="max-width:none;flex:1">CONFIRM CHALLENGE ?</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5 / SUCCESS -->
+      <div class="ch-step-view" id="step-05">
+        <div class="ch-succ">
+          <h2 class="h-black ch-succ-h">YOU'RE<br>IN.</h2>
+          <div class="ch-stamp">CHALLENGE ACCEPTED ?</div>
+          <div class="ch-ref">REF: <span id="ch-v-ref">TAAS-XXX</span></div>
           
-          <label class="ch-cb">
-            <input type="checkbox" id="ch-f-agree" onchange="document.getElementById('ch-proceedBtn').disabled = !this.checked">
-            <div class="ch-cb-box">?</div>
-            <div>I accept the TAAS Challenge Rules and want to secure my spot.</div>
-          </label>
+          <h3 class="h-black ch-succ-sub">NOW SHOW US<br>THE SPACE.</h3>
+          <p class="ch-rule-d" style="max-width:400px;margin-bottom:32px">Send a few real photos on WhatsApp so we can assess the starting point and confirm your slot.</p>
           
-          <div style="display:flex;gap:16px;margin-top:24px">
-            <button class="ch-btn ch-btn-g" onclick="chGoStep(2)">? BACK</button>
-            <button class="ch-btn" id="ch-proceedBtn" onclick="chGoStep(4)" disabled>COMMIT ?</button>
-          </div>
+          <a id="ch-wa-link" href="#" target="_blank" rel="noopener noreferrer" class="ch-btn" style="max-width:none;margin-bottom:16px">SEND PHOTOS ON WHATSAPP ?</a>
+          <button class="ch-btn sec" style="border:none;max-width:none;width:100%" onclick="chClose()">? RETURN TO HOME</button>
         </div>
       </div>
-    </div>
 
-    <!-- STEP 4 -->
-    <div class="ch-step" id="ch-s4">
-      <div class="ch-split">
-        <div class="ch-split-l">
-          <div class="ch-ind">
-            <div class="ch-ind-top">04 <span>/04</span></div>
-            <div class="ch-ind-boxes">
-              <div class="ch-box"></div><div class="ch-box"></div><div class="ch-box"></div><div class="ch-box active"></div>
-            </div>
-          </div>
-          <p class="ch-q-lbl">STEP 04</p>
-          <p class="ch-q">LOCK IT IN.</p>
-        </div>
-        <div class="ch-split-r">
-          <div class="ch-f-grid">
-            <div class="ch-field">
-              <input type="text" class="ch-inp" id="ch-f-name" placeholder="John Doe">
-              <label class="ch-lbl">FULL NAME</label>
-            </div>
-            <div class="ch-field">
-              <input type="tel" class="ch-inp" id="ch-f-wa" placeholder="+91 98765 43210">
-              <label class="ch-lbl">WHATSAPP</label>
-            </div>
-            <div class="ch-field">
-              <input type="text" class="ch-inp" id="ch-f-loc" placeholder="Mumbai, Pune�">
-              <label class="ch-lbl">CITY</label>
-            </div>
-            <div class="ch-field">
-              <input type="text" class="ch-inp" id="ch-f-addr" placeholder="Flat, Building">
-              <label class="ch-lbl">ADDRESS</label>
-            </div>
-          </div>
-          <div style="display:flex;gap:16px;margin-top:24px">
-            <button class="ch-btn ch-btn-g" onclick="chGoStep(3)">? BACK</button>
-            <button class="ch-btn" id="ch-confirmBtn" onclick="chConfirm()">CONFIRM CHALLENGE ?</button>
-          </div>
-        </div>
-      </div>
     </div>
-
-    <!-- STEP 5 -->
-    <div class="ch-step" id="ch-s5">
-      <div class="ch-win">
-        <h2 class="ch-win-h">YOU'RE<br>IN.</h2>
-        <div class="ch-stamp">CHALLENGE ACCEPTED ?</div>
-        <div style="font-size:12px;font-weight:900;margin-bottom:32px">REF: <span id="ch-sv-ref" style="background:#fff;border:2px solid #111;padding:4px 8px;margin-left:4px">TAAS-XXX</span></div>
-        
-        <p class="ch-win-sub">NOW SHOW US THE SPACE.</p>
-        <p class="ch-win-p">Send a few real photos on WhatsApp so we can assess the starting point and confirm your slot.</p>
-        
-        <a id="ch-wa-link" href="#" target="_blank" rel="noopener noreferrer" class="ch-btn" style="width:100%;max-width:400px;margin-bottom:16px">SEND PHOTOS ON WHATSAPP ?</a>
-        <button class="ch-btn ch-btn-g" style="width:100%;max-width:400px;border:none" onclick="closeChallenge()">? RETURN TO HOME</button>
-      </div>
-    </div>
-
   </div>
 </div>
 
 <script>
 const chOverlay = document.getElementById('chOverlay');
-const chState = { spaceType:'', name:'', whatsapp:'', location:'', address:'' };
-let chStep = 1;
+let cState = { space:'', needs:[] };
 
 function openChallenge(e) {
   if (e) e.preventDefault();
-  chOverlay.classList.add('open');
+  chOverlay.classList.add('is-active');
   document.body.style.overflow = 'hidden';
-  chGoStep(1);
+  chGo(1);
 }
-
-function closeChallenge() {
-  chOverlay.classList.remove('open');
+function chClose() {
+  chOverlay.classList.remove('is-active');
   document.body.style.overflow = '';
 }
 
-function chGoStep(n) {
-  var current = document.getElementById('ch-s' + chStep);
-  if (current) current.classList.remove('active');
-  chStep = n;
-  var next = document.getElementById('ch-s' + n);
-  if (next) next.classList.add('active');
+function chGo(n) {
+  document.querySelectorAll('.ch-step-view').forEach(function(el){ el.classList.remove('is-active'); });
+  var nxt = document.getElementById('step-0' + n);
+  if(nxt) nxt.classList.add('is-active');
   chOverlay.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function chPickSpace(btn, type) {
-  document.querySelectorAll('.ch-opt').forEach(function(el) {
-    el.classList.remove('selected');
-    el.querySelector('.ch-opt-n').textContent = el.getAttribute('data-n');
-  });
-  btn.classList.add('selected');
-  btn.querySelector('.ch-opt-n').textContent = '?';
-  
-  chState.spaceType = type;
-  var prm = document.getElementById('ch-prm-space');
-  if (prm) prm.textContent = type;
-  var s1btn = document.getElementById('ch-btn-s1');
-  if (s1btn) s1btn.disabled = false;
-  setTimeout(function(){ chGoStep(2); }, 200);
+function chPick(el, space) {
+  document.querySelectorAll('.ch-opt').forEach(function(o){ o.classList.remove('is-selected'); });
+  el.classList.add('is-selected');
+  cState.space = space;
+  var prm = document.getElementById('ch-v-space');
+  if(prm) prm.textContent = space;
+  var btn1 = document.getElementById('btn-s1');
+  if(btn1) btn1.disabled = false;
+  setTimeout(function(){ chGo(2); }, 250);
 }
 
-document.querySelectorAll('.ch-opt').forEach(function(el) {
-  var nEl = el.querySelector('.ch-opt-n');
-  if (nEl) el.setAttribute('data-n', nEl.textContent);
-});
+function chSubmit() {
+  var fields = ['f-name', 'f-wa', 'f-unit', 'f-bldg', 'f-area', 'f-city', 'f-pin'];
+  var missing = false;
+  fields.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el && !el.value.trim()) { missing = true; el.style.borderBottomColor = '#FF5C35'; }
+    else if(el) { el.style.borderBottomColor = ''; }
+  });
 
-function chConfirm() {
-  var n = document.getElementById('ch-f-name');
-  var w = document.getElementById('ch-f-wa');
-  var l = document.getElementById('ch-f-loc');
-  var a = document.getElementById('ch-f-addr');
-  if (n) chState.name = n.value.trim();
-  if (w) chState.whatsapp = w.value.trim();
-  if (l) chState.location = l.value.trim();
-  if (a) chState.address = a.value.trim();
-
-  if (!chState.name || !chState.whatsapp || !chState.location || !chState.address) {
-    var btn = document.getElementById('ch-confirmBtn');
-    if (btn) {
-      btn.textContent = 'FILL ALL FIELDS FIRST ?';
-      btn.style.background = '#111';
-      btn.style.color = '#fff';
-      setTimeout(function(){ 
-        btn.textContent = 'CONFIRM CHALLENGE ?'; 
-        btn.style.background = '';
-        btn.style.color = '';
-      }, 2000);
+  var btn = document.getElementById('btn-submit');
+  if(missing) {
+    if(btn) {
+      btn.textContent = "FILL REQUIRED FIELDS ?";
+      btn.style.background = "#FF5C35";
+      btn.style.color = "#FFF";
+      setTimeout(function(){ btn.textContent = "CONFIRM CHALLENGE ?"; btn.style.background = ""; btn.style.color = ""; }, 2000);
     }
     return;
   }
 
-  var d = new Date();
-  var dateStr = ('0'+d.getDate()).slice(-2) + ('0'+(d.getMonth()+1)).slice(-2) + d.getFullYear().toString().slice(-2);
-  var refCode = 'TAAS-' + dateStr + '-' + Math.floor(1000 + 9000 * Math.random());
-  var refEl = document.getElementById('ch-sv-ref');
-  if (refEl) refEl.textContent = refCode;
+  var activeChips = document.querySelectorAll('#ch-chip-list .is-active');
+  cState.needs = [];
+  activeChips.forEach(function(c){ cState.needs.push(c.textContent.trim()); });
 
-  var msg = 'Hi TAAS! I just confirmed the ₹1.45 Lakh Interior Challenge.\n\nMy Reference: ' + refCode + '\nName: ' + chState.name + '\nSpace: ' + chState.spaceType + '\nLocation: ' + chState.location + '\n\nI am claiming the Early Bird Gift! Please confirm if I made it into the first 5 slots.\n\nDetailed address:\n' + chState.address + '\n\nI am ready to share my space photos!';
+  var d = new Date();
+  var dStr = ('0'+d.getDate()).slice(-2) + ('0'+(d.getMonth()+1)).slice(-2) + d.getFullYear().toString().slice(-2);
+  var ref = 'TAAS-' + dStr + '-' + Math.floor(1000 + 9000 * Math.random());
+  var refEl = document.getElementById('ch-v-ref');
+  if(refEl) refEl.textContent = ref;
+
+  var name = document.getElementById('f-name').value.trim();
+  var bldg = document.getElementById('f-bldg').value.trim();
+  var area = document.getElementById('f-area').value.trim();
+  var city = document.getElementById('f-city').value.trim();
+
+  var msg = 'Hi TAAS! I just confirmed the ₹1.45 Lakh Interior Challenge.\n\nMy Reference: ' + ref + '\nName: ' + name + '\nSpace: ' + cState.space + '\nNeeds: ' + (cState.needs.join(', ') || 'Not specified') + '\n\nI am claiming the Early Bird Gift! Please confirm if I made it into the first 5 slots.\n\nLocation: ' + bldg + ', ' + area + ', ' + city + '\n\nI am ready to share my space photos!';
 
   var waLink = document.getElementById('ch-wa-link');
-  if (waLink) waLink.href = 'https://wa.me/917400162509?text=' + encodeURIComponent(msg);
-  chGoStep(5);
+  if(waLink) waLink.href = 'https://wa.me/917400162509?text=' + encodeURIComponent(msg);
+
+  chGo(5);
 }
 </script>
 
