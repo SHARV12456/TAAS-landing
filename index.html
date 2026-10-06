@@ -278,15 +278,7 @@ h1{font-size:30px}h2{font-size:24px}
 textarea.ch-f-inp { height: 80px; resize: none; padding-top: 8px; border: 1px solid var(--txt); padding: 8px; }
 textarea.ch-f-inp:focus { border: 1px solid var(--acc); border-bottom: 1px solid var(--acc); }
 
-/* Chips */
-.ch-chips-wrap { margin-bottom: 32px; }
-.ch-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-.ch-chip {
-  border: 1px solid var(--txt); font-size: 11px; font-weight: 600; text-transform: uppercase; padding: 8px 16px;
-  cursor: pointer; transition: all 150ms; user-select: none;
-}
-.ch-chip:hover { background: rgba(17,17,17,0.05); }
-.ch-chip.is-active { background: var(--txt); color: var(--bg); }
+
 
 
 /* Deal Hero Block */
@@ -561,47 +553,12 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
               <div class="ch-f-row"><input type="text" class="ch-f-inp" id="f-state"><label class="ch-f-lbl">STATE</label></div>
             </div>
 
-            <div class="ch-chips-wrap">
-              <div class="lbl">SPACE SIZE (SQ FT)</div>
-              <div class="ch-chips" id="ch-size">
-                <div class="ch-chip" onclick="chTogOne(this)">UNDER 300</div>
-                <div class="ch-chip" onclick="chTogOne(this)">300–500</div>
-                <div class="ch-chip" onclick="chTogOne(this)">500–800</div>
-                <div class="ch-chip" onclick="chTogOne(this)">800–1200</div>
-                <div class="ch-chip" onclick="chTogOne(this)">1200+</div>
-              </div>
-            </div>
+            
 
-            <div class="ch-chips-wrap">
-              <div class="lbl">CURRENT STATUS</div>
-              <div class="ch-chips" id="ch-stat">
-                <div class="ch-chip" onclick="chTogOne(this)">LIVING</div>
-                <div class="ch-chip" onclick="chTogOne(this)">MOVING</div>
-                <div class="ch-chip" onclick="chTogOne(this)">RENOVATING</div>
-                <div class="ch-chip" onclick="chTogOne(this)">OPENING</div>
-              </div>
-            </div>
+            
 
-            <div class="ch-chips-wrap">
-              <div class="lbl">DESIRED CHANGES</div>
-              <div class="ch-chips" id="ch-need">
-                <div class="ch-chip" onclick="this.classList.toggle('is-active')">LIGHTING</div>
-                <div class="ch-chip" onclick="this.classList.toggle('is-active')">PAINT</div>
-                <div class="ch-chip" onclick="this.classList.toggle('is-active')">FURNITURE</div>
-                <div class="ch-chip" onclick="this.classList.toggle('is-active')">D�COR</div>
-                <div class="ch-chip" onclick="this.classList.toggle('is-active')">TV WALL</div>
-                <div class="ch-chip" onclick="this.classList.toggle('is-active')">BEDROOM</div>
-                <div class="ch-chip" onclick="this.classList.toggle('is-active')">LIVING</div>
-                <div class="ch-chip" onclick="this.classList.toggle('is-active')">KITCHEN</div>
-                <div class="ch-chip" onclick="this.classList.toggle('is-active')">STORAGE</div>
-                <div class="ch-chip" onclick="this.classList.toggle('is-active')">ELECTRICAL</div>
-                <div class="ch-chip" onclick="this.classList.toggle('is-active')">OVERALL LOOK</div>
-              </div>
-            </div>
+            
 
-            <div class="ch-f-row" style="margin-bottom:40px">
-              <textarea class="ch-f-inp" id="f-prob"></textarea>
-              <label class="ch-f-lbl">WHAT'S THE BIGGEST PROBLEM RIGHT NOW?</label>
             </div>
 
             <div style="display:flex;gap:12px">
