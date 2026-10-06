@@ -21,1206 +21,910 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TAAS® — Before You Spend, Ask TAAS</title>
-  <meta name="description" content="TAAS is a premium space-decision platform in Mumbai. Decide what to keep, change, invest and skip. Book from ₹35,000 / room. 30% advance.">
+  <title>TAAS&#174; &#8212; Before You Spend, Ask TAAS</title>
+  <meta name="description" content="TAAS is a premium space-decision platform in Mumbai. Decide what to keep, change, invest and skip. Book from &#8377;35,000 / room. 30% advance.">
   <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16">
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+<style>
+/* ============================================================
+   RESET
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-  <style>
-    /* ── Base reset ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root {
+  --void:  #0a0a0a;
+  --pearl: #F7F4EF;
+  --ink:   #0d0d0d;
+  --paper: #F7F4EF;
+  --lime:  #BBFF33;
+  --blood: #FF2A2A;
+}
 
-    /* ── Design tokens matching the live site ── */
-    :root {
-      --void:   #0a0a0a;
-      --pearl:  #F7F4EF;
-      --ink:    #0d0d0d;
-      --paper:  #F7F4EF;
-      --lime:   #BBFF33;
-      --blood:  #FF2A2A;
-    }
+/* ============================================================
+   BODY
+   ============================================================ */
+body {
+  background: var(--void);
+  color: var(--pearl);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
 
-    html { scroll-behavior: smooth; }
+/* ============================================================
+   HEADER
+   ============================================================ */
+.hdr {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10,10,10,.96);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(247,244,239,.06);
+}
+.hdr-inner {
+  max-width: 1600px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  height: 56px; padding: 0 16px;
+}
+@media(min-width:640px){ .hdr-inner{ padding:0 24px; } }
+@media(min-width:768px){ .hdr-inner{ padding:0 40px; } }
+@media(min-width:1024px){ .hdr-inner{ padding:0 48px; } }
 
-    body {
-      background: var(--void);
-      color: var(--pearl);
-      font-family: 'DM Sans', system-ui, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      padding-bottom: 5rem;
-      position: relative;
-      -webkit-font-smoothing: antialiased;
-    }
+.logo {
+  font-family: 'Syne', sans-serif; font-weight: 900;
+  font-size: 14px; letter-spacing: -.04em;
+  color: var(--pearl); transition: color .2s; z-index: 10;
+}
+@media(min-width:640px){ .logo{ font-size:16px; } }
+.logo:hover { color: var(--blood); }
 
-    /* ── Global link reset ── */
-    a { color: inherit; text-decoration: none; }
+.hdr-nav { display: none; align-items: center; gap: 32px; }
+@media(min-width:768px){ .hdr-nav{ display:flex; } }
+@media(min-width:1024px){ .hdr-nav{ gap:40px; } }
+.hdr-nav a {
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(247,244,239,.4); font-weight: 700; transition: color .2s;
+}
+.hdr-nav a:hover { color: var(--pearl); }
 
-    /* ── Utility ── */
-    .font-syne  { font-family: 'Syne', sans-serif; }
-    .font-dm    { font-family: 'DM Sans', sans-serif; }
-    .micro      { font-family: 'DM Sans', sans-serif; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; font-weight: 700; }
+.hdr-cta { display: none; }
+@media(min-width:768px){ .hdr-cta{ display:flex; align-items:center; gap:12px; } }
+.hdr-cta a {
+  display: inline-flex;
+  background: var(--blood); color: var(--void);
+  font-weight: 700; font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  padding: 10px 20px; transition: background .3s;
+}
+.hdr-cta a:hover { background: var(--pearl); }
 
-    /* ── Noise overlay ── */
-    .suspense-noise {
-      pointer-events: none;
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      opacity: .04;
-      mix-blend-mode: overlay;
-    }
+/* hamburger */
+.burger {
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  width: 36px; height: 36px; gap: 5px;
+  background: none; border: none; cursor: pointer; z-index: 10; position: relative;
+}
+@media(min-width:768px){ .burger{ display:none; } }
+.burger span {
+  display: block; width: 20px; height: 1.5px;
+  background: var(--pearl); transition: all .3s; transform-origin: center;
+}
+.burger.open span:nth-child(1){ transform: translateY(6.5px) rotate(45deg); }
+.burger.open span:nth-child(2){ opacity: 0; }
+.burger.open span:nth-child(3){ transform: translateY(-6.5px) rotate(-45deg); }
 
-    /* ───────────── HEADER ───────────── */
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 50;
-      background: rgba(10,10,10,.95);
-      backdrop-filter: blur(4px);
-      border-bottom: 1px solid rgba(247,244,239,.06);
-    }
-    .header-inner {
-      max-width: 1600px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      height: 56px;
-      padding: 0 1rem;
-    }
-    @media(min-width:640px)  { .header-inner { padding: 0 1.5rem; } }
-    @media(min-width:768px)  { .header-inner { padding: 0 2.5rem; } }
-    @media(min-width:1024px) { .header-inner { padding: 0 3rem;   } }
+/* mobile overlay */
+.mob-menu {
+  display: none; position: fixed; inset: 0; z-index: 40;
+  background: var(--void); flex-direction: column;
+  opacity: 0; pointer-events: none;
+  transition: opacity .4s ease;
+}
+@media(max-width:767px){ .mob-menu{ display:flex; } }
+.mob-menu.open { opacity: 1; pointer-events: all; }
+.mob-menu .mh { height: 56px; }
+.mob-nav {
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: center; padding: 0 24px; gap: 4px;
+}
+.mob-nav a {
+  font-family: 'Syne', sans-serif; font-weight: 900;
+  font-size: 11vw; line-height: 1.1;
+  letter-spacing: -.03em; text-transform: uppercase;
+  color: rgba(247,244,239,.2); transition: color .2s;
+}
+.mob-nav a:hover { color: var(--pearl); }
+.mob-foot { padding: 0 24px 40px; display: flex; flex-direction: column; gap: 16px; }
+.mob-foot a.mob-cta {
+  display: block; width: 100%; text-align: center;
+  background: var(--blood); color: var(--void);
+  font-weight: 700; font-size: 11px; letter-spacing: .25em; text-transform: uppercase;
+  padding: 16px; transition: background .3s;
+}
+.mob-foot a.mob-cta:hover { background: var(--pearl); }
+.mob-brand {
+  font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(247,244,239,.2); text-align: center; font-weight: 700;
+}
 
-    .logo-link {
-      font-family: 'Syne', sans-serif;
-      font-weight: 900;
-      font-size: .875rem;
-      letter-spacing: -.04em;
-      color: var(--pearl);
-      transition: color .2s;
-      z-index: 10;
-    }
-    .logo-link:hover { color: var(--blood); }
-    @media(min-width:640px) { .logo-link { font-size: 1rem; } }
+/* ============================================================
+   CHALLENGE WRAPPER
+   ============================================================ */
+.challenge {
+  min-height: 100vh;
+  background: var(--ink);
+  color: var(--paper);
+  overflow-x: hidden;
+}
+.challenge ::selection { background: var(--lime); color: var(--ink); }
 
-    .header-nav {
-      display: none;
-      align-items: center;
-      gap: 2rem;
-    }
-    @media(min-width:768px) { .header-nav { display: flex; } }
-    @media(min-width:1024px) { .header-nav { gap: 2.5rem; } }
+/* progress bar */
+.prog-wrap {
+  position: fixed; top: 0; left: 0; width: 100%; height: 4px;
+  background: rgba(13,13,13,.5); z-index: 200;
+}
+.prog-bar {
+  height: 100%; background: var(--lime);
+  transition: width .7s ease-out; width: 0%;
+}
 
-    .nav-link {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: rgba(247,244,239,.4);
-      transition: color .2s;
-    }
-    .nav-link:hover { color: var(--pearl); }
+/* top labels */
+.top-labels {
+  position: fixed; top: 32px; left: 16px; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  width: calc(100% - 32px);
+}
+@media(min-width:640px){ .top-labels{ left:24px; width:calc(100% - 48px); } }
+@media(min-width:768px){ .top-labels{ left:48px; width:calc(100% - 96px); } }
+.top-labels .back-link {
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  font-weight: 700; color: rgba(247,244,239,.4); transition: color .2s;
+}
+.top-labels .back-link:hover { color: var(--lime); }
+.top-labels .tag {
+  font-size: 10px; letter-spacing: .15em; text-transform: uppercase;
+  font-weight: 700; color: var(--lime);
+}
+@media(min-width:768px){ .top-labels .tag{ letter-spacing:.2em; } }
 
-    .header-cta { display: none; align-items: center; gap: .75rem; }
-    @media(min-width:768px) { .header-cta { display: flex; } }
+/* ============================================================
+   TWO-COLUMN
+   ============================================================ */
+.two-col {
+  display: flex; flex-direction: column; min-height: 100vh;
+}
+@media(min-width:1024px){ .two-col{ flex-direction:row; } }
 
-    .cta-btn {
-      display: inline-flex;
-      background: var(--blood);
-      color: var(--void);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 700;
-      font-size: 10px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      padding: .625rem 1.25rem;
-      transition: background .3s;
-    }
-    .cta-btn:hover { background: var(--pearl); }
+/* LEFT */
+.left {
+  display: none;
+  position: relative;
+  flex-direction: column; justify-content: space-between;
+  padding: 48px; border-right: 1px solid rgba(247,244,239,.1);
+}
+@media(min-width:1024px){ .left{ display:flex; width:50%; } }
 
-    /* ── Hamburger ── */
-    .hamburger {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 36px; height: 36px;
-      gap: 5px;
-      background: none; border: none;
-      cursor: pointer;
-      z-index: 10;
-      position: relative;
-    }
-    @media(min-width:768px) { .hamburger { display: none; } }
+.left-bg { position: absolute; inset: 0; z-index: 0; }
+.left-bg img { width:100%; height:100%; object-fit:cover; opacity:.2; filter:grayscale(1); }
+.left-bg-grad {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, var(--ink), rgba(13,13,13,.75), var(--ink));
+}
 
-    .hamburger span {
-      display: block;
-      width: 20px; height: 1.5px;
-      background: var(--pearl);
-      transition: all .3s;
-      transform-origin: center;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.left-body { position:relative; z-index:10; margin-top:80px; }
 
-    /* ── Mobile menu ── */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 40;
-      background: var(--void);
-      flex-direction: column;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .5s ease-in-out;
-    }
-    .mobile-menu.open { opacity: 1; pointer-events: all; }
-    @media(max-width:767px) { .mobile-menu { display: flex; } }
+.live-badge {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(187,255,51,.1); border: 1px solid rgba(187,255,51,.2);
+  border-radius: 9999px; padding: 10px 20px; width: max-content; margin-bottom: 32px;
+}
+.ping { position:relative; display:flex; width:8px; height:8px; }
+.ping .ring {
+  position:absolute; inset:0; border-radius:9999px;
+  background:var(--lime); opacity:.75;
+  animation: ping 1.5s cubic-bezier(0,0,.2,1) infinite;
+}
+.ping .dot {
+  position:relative; width:8px; height:8px;
+  border-radius:9999px; background:var(--lime);
+}
+@keyframes ping { 75%,100%{ transform:scale(2); opacity:0; } }
+.live-badge span.badge-text {
+  font-size:10px; font-weight:700; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--lime);
+}
 
-    .mobile-menu .spacer { height: 56px; }
-    .mobile-nav {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 1.5rem;
-      gap: .25rem;
-    }
-    .mobile-nav a {
-      font-family: 'Syne', sans-serif;
-      font-weight: 900;
-      font-size: 11vw;
-      line-height: 1.1;
-      letter-spacing: -.03em;
-      text-transform: uppercase;
-      color: rgba(247,244,239,.2);
-      transition: color .2s;
-    }
-    .mobile-nav a:hover { color: var(--pearl); }
-    .mobile-bottom {
-      padding: 0 1.5rem 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .mobile-cta-btn {
-      display: block;
-      width: 100%;
-      background: var(--blood);
-      color: var(--void);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 700;
-      font-size: 11px;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      padding: 1rem;
-      text-align: center;
-      transition: background .3s;
-    }
-    .mobile-cta-btn:hover { background: var(--pearl); }
-    .mobile-brand {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 9px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: rgba(247,244,239,.2);
-      text-align: center;
-    }
+.left-h1 {
+  font-family:'Syne',sans-serif; font-weight:900;
+  font-size:clamp(3rem,5.5vw,4.5rem); line-height:.85;
+  letter-spacing:-.04em; text-transform:uppercase;
+  color:var(--paper); margin-bottom:24px;
+}
+.left-h1 .outline { display:block; color:transparent; -webkit-text-stroke:1px #F7F4EF; }
+.left-h1 .solid  { display:block; }
+.left-h1 .lime   { display:block; color:var(--lime); }
 
-    /* ── Mobile sticky bar ── */
-    .mobile-sticky {
-      display: flex;
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      z-index: 30;
-    }
-    @media(min-width:768px) { .mobile-sticky { display: none; } }
-    .mobile-sticky-inner {
-      flex: 1;
-      background: var(--void);
-      border-top: 1px solid rgba(247,244,239,.06);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: .875rem 1.25rem;
-    }
-    .sticky-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 9px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: rgba(247,244,239,.5);
-    }
-    .sticky-book {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 9px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--pearl);
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-    }
-    .sticky-book span { color: var(--blood); font-size: 1rem; line-height: 1; }
+.left-sub {
+  font-size:1.25rem; font-weight:500;
+  color:rgba(247,244,239,.6); max-width:28rem; line-height:1.5;
+}
 
-    /* ─────────────── MAIN / CHALLENGE SHELL ─────────────── */
-    main { flex: 1; }
+.left-foot { position:relative; z-index:10; }
+.left-foot p {
+  font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  color:rgba(247,244,239,.3); font-weight:700;
+}
 
-    .challenge-shell {
-      min-height: 100vh;
-      background: var(--ink);
-      color: var(--paper);
-      overflow-x: hidden;
-    }
-    /* lime text selection */
-    .challenge-shell ::selection { background: var(--lime); color: var(--ink); }
+/* RIGHT */
+.right {
+  width:100%; display:flex; flex-direction:column;
+  justify-content:center; padding:96px 16px 64px;
+}
+@media(min-width:640px){ .right{ padding:96px 24px 64px; } }
+@media(min-width:768px){ .right{ padding:96px 64px 64px; } }
+@media(min-width:1024px){ .right{ width:50%; padding:96px 64px 64px; } }
+@media(min-width:1280px){ .right{ padding:96px 96px 64px; } }
 
-    /* ── Progress bar ── */
-    .progress-bar-wrap {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 4px;
-      background: rgba(13,13,13,.5);
-      z-index: 50;
-    }
-    .progress-bar {
-      height: 100%;
-      background: var(--lime);
-      transition: width .7s ease-out;
-      width: 0%;
-    }
+.form-inner { width:100%; max-width:36rem; margin:0 auto; }
+@media(min-width:1024px){ .form-inner{ margin:0; } }
 
-    /* ── Top labels ── */
-    .top-labels {
-      position: fixed;
-      top: 2rem; left: 1rem;
-      z-index: 40;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: calc(100% - 2rem);
-    }
-    @media(min-width:640px)  { .top-labels { left: 1.5rem; width: calc(100% - 3rem); } }
-    @media(min-width:768px)  { .top-labels { left: 3rem;   width: calc(100% - 6rem); } }
+/* ============================================================
+   STEP SYSTEM
+   ============================================================ */
+.step { display:none; }
+.step.active {
+  display:block;
+  animation: fadeUp .45s ease both;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
 
-    .home-link {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: rgba(247,244,239,.4);
-      transition: color .2s;
-    }
-    .home-link:hover { color: var(--lime); }
+.step-num {
+  font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  font-weight:700; color:var(--lime); margin-bottom:24px;
+}
+.step-h {
+  font-family:'Syne',sans-serif; font-weight:700;
+  font-size:clamp(2rem,5vw,3.75rem); line-height:.85;
+  letter-spacing:-.035em; text-transform:uppercase;
+  color:var(--paper); margin-bottom:40px;
+}
+@media(min-width:768px){ .step-h{ margin-bottom:48px; } }
 
-    .challenge-tag {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--lime);
-    }
-    @media(min-width:768px) { .challenge-tag { letter-spacing: .2em; } }
+/* ============================================================
+   STEP 1 — OPTION BUTTONS
+   ============================================================ */
+.opts { display:flex; flex-direction:column; gap:16px; }
+.opt {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 24px; border-radius:16px;
+  border:2px solid rgba(247,244,239,.1);
+  background:rgba(247,244,239,.05);
+  color:rgba(247,244,239,.8);
+  transition:border-color .3s, background .3s, transform .2s;
+  width:100%; text-align:left;
+}
+.opt:hover {
+  border-color:rgba(187,255,51,.5);
+  background:rgba(187,255,51,.05);
+  transform:translateX(6px);
+}
+.opt-txt {
+  font-family:'Syne',sans-serif; font-weight:700;
+  font-size:clamp(1.1rem,2.5vw,1.5rem);
+  letter-spacing:-.02em; text-transform:uppercase;
+}
+.opt-arr {
+  font-size:1.5rem; opacity:0; transform:scale(0);
+  transition:opacity .3s, transform .3s;
+}
+.opt:hover .opt-arr { opacity:.5; transform:scale(1); }
 
-    /* ── Two-column layout ── */
-    .two-col {
-      display: flex;
-      min-height: 100vh;
-      flex-direction: column;
-    }
-    @media(min-width:1024px) { .two-col { flex-direction: row; } }
+/* ============================================================
+   STEP 2 — RULES
+   ============================================================ */
+.rules-box {
+  background:rgba(187,255,51,.05); border:1px solid rgba(187,255,51,.15);
+  border-radius:24px; padding:24px; margin-bottom:20px;
+}
+@media(min-width:768px){ .rules-box{ padding:32px; } }
+.box-label {
+  font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  font-weight:700; color:rgba(247,244,239,.4); margin-bottom:16px;
+}
+.rules-list { list-style:none; display:flex; flex-direction:column; gap:12px; }
+.rules-list li {
+  display:flex; align-items:flex-start; gap:12px;
+  font-size:1rem; color:rgba(247,244,239,.8); line-height:1.55;
+}
+.rules-list li .icon { color:var(--lime); flex-shrink:0; margin-top:2px; font-size:.875rem; }
 
-    /* LEFT panel */
-    .left-panel {
-      display: none;
-      position: relative;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 3rem;
-      border-right: 1px solid rgba(247,244,239,.1);
-    }
-    @media(min-width:1024px) { .left-panel { display: flex; width: 50%; } }
+.adv-box {
+  background:rgba(247,244,239,.03); border:1px solid rgba(247,244,239,.08);
+  border-radius:24px; padding:24px; margin-bottom:24px;
+}
+@media(min-width:768px){ .adv-box{ padding:32px; } }
+.adv-list { list-style:none; display:flex; flex-direction:column; gap:12px; margin-top:12px; }
+.adv-list li {
+  font-size:.9rem; color:rgba(247,244,239,.6);
+  padding-left:20px; position:relative; line-height:1.5;
+}
+.adv-list li::before { content:"—"; position:absolute; left:0; color:rgba(247,244,239,.3); }
 
-    .left-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-    .left-bg img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      opacity: .2;
-      filter: grayscale(1);
-    }
-    .left-bg-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, var(--ink), rgba(13,13,13,.8), var(--ink));
-    }
+/* ============================================================
+   LIME BUTTON (shared)
+   ============================================================ */
+.lime-btn {
+  display:flex; align-items:center; justify-content:center; width:100%;
+  background:var(--lime); color:var(--ink);
+  font-family:'DM Sans',sans-serif; font-weight:700;
+  font-size:.875rem; text-transform:uppercase; letter-spacing:.06em;
+  padding:20px 32px; border-radius:9999px; border:none;
+  transition:background .3s;
+  box-shadow:0 0 24px rgba(187,255,51,.3);
+}
+@media(min-width:768px){ .lime-btn{ font-size:1rem; } }
+.lime-btn:hover { background:#fff; }
+.lime-btn:disabled { opacity:.45; cursor:not-allowed; }
+.lime-btn:disabled:hover { background:var(--lime); }
 
-    .left-content {
-      position: relative;
-      z-index: 10;
-      margin-top: 5rem;
-    }
-    .live-badge {
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      background: rgba(187,255,51,.1);
-      border: 1px solid rgba(187,255,51,.2);
-      border-radius: 9999px;
-      padding: .625rem 1.25rem;
-      width: max-content;
-      margin-bottom: 2rem;
-    }
-    .ping-dot { position: relative; display: flex; width: 8px; height: 8px; }
-    .ping-dot .ping {
-      position: absolute; inset: 0;
-      border-radius: 9999px;
-      background: var(--lime);
-      opacity: .75;
-      animation: ping 1.5s cubic-bezier(0,0,.2,1) infinite;
-    }
-    .ping-dot .dot {
-      position: relative;
-      width: 8px; height: 8px;
-      border-radius: 9999px;
-      background: var(--lime);
-      display: inline-flex;
-    }
-    @keyframes ping {
-      75%, 100% { transform: scale(2); opacity: 0; }
-    }
-    .live-badge span {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--lime);
-    }
+/* ============================================================
+   STEP 3 — CONTACT FORM
+   ============================================================ */
+.fields { display:flex; flex-direction:column; gap:32px; }
+.field input {
+  width:100%; background:transparent;
+  border:none; border-bottom:2px solid rgba(247,244,239,.2);
+  padding:16px 0;
+  font-family:'Syne',sans-serif; font-weight:700;
+  font-size:clamp(1.25rem,3vw,1.875rem);
+  color:var(--paper); text-transform:uppercase;
+  letter-spacing:-.01em; outline:none;
+  transition:border-color .3s;
+  -webkit-appearance:none; appearance:none;
+}
+.field input::placeholder { color:rgba(247,244,239,.2); }
+.field input:focus { border-color:var(--lime); }
 
-    .left-h1 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 900;
-      font-size: clamp(3rem, 5.5vw, 4.5rem);
-      line-height: .85;
-      letter-spacing: -.04em;
-      text-transform: uppercase;
-      color: var(--paper);
-      margin-bottom: 1.5rem;
-    }
-    .left-h1 .outline { -webkit-text-stroke: 1px #F7F4EF; color: transparent; display: block; }
-    .left-h1 .solid   { display: block; }
-    .left-h1 .lime    { display: block; color: var(--lime); }
+.check-row {
+  display:flex; align-items:flex-start; gap:12px; margin-top:32px;
+}
+.check-row input[type=checkbox] {
+  width:16px; height:16px; margin-top:3px;
+  accent-color:var(--lime); cursor:pointer; flex-shrink:0;
+}
+.check-row label {
+  font-size:.875rem; color:rgba(247,244,239,.7); line-height:1.55; cursor:pointer;
+}
+.proceed-wrap { margin-top:32px; }
+.help-micro {
+  margin-top:16px; text-align:center;
+  font-size:.75rem; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(247,244,239,.4); font-weight:700;
+}
 
-    .left-sub {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: rgba(247,244,239,.6);
-      max-width: 28rem;
-    }
+/* ============================================================
+   STEP 4 — REVIEW
+   ============================================================ */
+.review-card {
+  background:rgba(247,244,239,.05); border:1px solid rgba(247,244,239,.1);
+  border-radius:24px; padding:24px; margin-bottom:32px;
+}
+@media(min-width:768px){ .review-card{ padding:32px; } }
+.rev-grid {
+  display:grid; grid-template-columns:1fr;
+  gap:24px; margin-bottom:32px;
+}
+@media(min-width:640px){ .rev-grid{ grid-template-columns:1fr 1fr; } }
+.rev-item .rl {
+  font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  font-weight:700; color:rgba(247,244,239,.4); margin-bottom:8px;
+}
+.rev-item .rv {
+  font-family:'Syne',sans-serif; font-weight:700;
+  font-size:1.25rem; text-transform:uppercase; color:var(--paper);
+  word-break:break-word;
+}
+.span2 { grid-column:1/-1; }
+hr.rev-divider { border:none; border-top:1px solid rgba(247,244,239,.1); margin-bottom:32px; }
+.fee-block .fl {
+  font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  font-weight:700; color:var(--lime); margin-bottom:8px;
+}
+.fee-block .fa {
+  font-family:'Syne',sans-serif; font-weight:700;
+  font-size:2.5rem; letter-spacing:-.03em; color:var(--paper);
+}
+.slots-note {
+  text-align:center; margin-top:20px;
+  font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  color:rgba(247,244,239,.3); font-weight:700;
+}
+.wa-note {
+  margin-top:16px; text-align:center;
+  font-size:.75rem; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(247,244,239,.4); font-weight:700;
+}
+.wa-note a { color:var(--lime); }
 
-    .left-footer {
-      position: relative;
-      z-index: 10;
-    }
-    .left-footer p {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: rgba(247,244,239,.3);
-    }
+/* ============================================================
+   STEP 5 — SUCCESS
+   ============================================================ */
+.success { text-align:center; display:flex; flex-direction:column; align-items:center; }
+.s-icon {
+  width:80px; height:80px;
+  background:rgba(187,255,51,.1); border:1px solid rgba(187,255,51,.2);
+  border-radius:9999px; display:flex; align-items:center; justify-content:center;
+  margin-bottom:32px; font-size:2rem; color:var(--lime);
+}
+.s-h {
+  font-family:'Syne',sans-serif; font-weight:700;
+  font-size:clamp(2.5rem,6vw,3.75rem); line-height:.85;
+  letter-spacing:-.035em; text-transform:uppercase;
+  color:var(--paper); margin-bottom:24px;
+}
+.s-sub {
+  font-size:1.2rem; font-weight:500; line-height:1.6;
+  color:rgba(247,244,239,.6); max-width:28rem; margin-bottom:40px;
+}
+.s-sub strong { color:#fff; }
+.wa-big {
+  display:inline-flex; justify-content:center; width:100%;
+  background:var(--lime); color:var(--ink);
+  font-family:'DM Sans',sans-serif; font-weight:700;
+  font-size:.875rem; text-transform:uppercase; letter-spacing:.06em;
+  padding:20px 32px; border-radius:9999px; margin-bottom:24px;
+  transition:background .3s; box-shadow:0 0 24px rgba(187,255,51,.3);
+}
+@media(min-width:768px){ .wa-big{ font-size:1rem; } }
+.wa-big:hover { background:#fff; }
+.ret-link {
+  font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  font-weight:700; color:rgba(247,244,239,.4); transition:color .2s;
+}
+.ret-link:hover { color:#fff; }
 
-    /* RIGHT panel */
-    .right-panel {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 6rem 1rem;
-    }
-    @media(min-width:640px)  { .right-panel { padding: 6rem 1.5rem; } }
-    @media(min-width:768px)  { .right-panel { padding: 6rem 4rem; } }
-    @media(min-width:1024px) { .right-panel { width: 50%; } }
-    @media(min-width:1280px) { .right-panel { padding: 6rem 6rem; } }
+/* ============================================================
+   MOBILE STICKY BAR
+   ============================================================ */
+.mob-sticky {
+  position:fixed; bottom:0; left:0; right:0; z-index:30;
+  display:flex;
+}
+@media(min-width:768px){ .mob-sticky{ display:none; } }
+.mob-sticky-in {
+  flex:1; background:var(--void);
+  border-top:1px solid rgba(247,244,239,.06);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 20px;
+}
+.mob-sticky-in span {
+  font-size:9px; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(247,244,239,.5); font-weight:700;
+}
+@media(min-width:640px){ .mob-sticky-in span{ font-size:10px; } }
+.mob-sticky-in a {
+  font-size:9px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--pearl); font-weight:700;
+  display:flex; align-items:center; gap:8px;
+}
+@media(min-width:640px){ .mob-sticky-in a{ font-size:10px; } }
+.mob-sticky-in a .arr { color:var(--blood); font-size:1rem; line-height:1; }
 
-    .form-inner {
-      width: 100%;
-      max-width: 36rem;
-      margin: 0 auto;
-    }
-    @media(min-width:1024px) { .form-inner { margin: 0; } }
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  border-top:1px solid rgba(247,244,239,.06);
+  background:rgba(10,10,10,.96);
+  padding:24px 20px;
+}
+@media(min-width:768px){ footer{ padding:24px 48px; } }
+.foot-in {
+  max-width:1600px; margin:0 auto;
+  display:flex; flex-direction:column; gap:12px; text-align:center;
+}
+@media(min-width:768px){
+  .foot-in{ flex-direction:row; align-items:center; justify-content:space-between; text-align:left; }
+}
+.foot-credit {
+  font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(247,244,239,.4); font-weight:700;
+}
+.foot-phone {
+  font-family:'Syne',sans-serif; font-size:.875rem; font-weight:700;
+  letter-spacing:-.03em; color:var(--pearl); transition:color .2s;
+}
+.foot-phone:hover { color:var(--blood); }
 
-    /* ── Step animation ── */
-    .step-pane { display: none; animation: fadeInUp .45s ease both; }
-    .step-pane.active { display: block; }
+/* ============================================================
+   WHATSAPP FAB
+   ============================================================ */
+.wa-fab {
+  position:fixed; bottom:80px; right:16px; z-index:40;
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:9999px; background:var(--blood);
+  padding:12px 16px;
+  font-family:'DM Sans',sans-serif; font-size:10px; font-weight:700;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--void);
+  box-shadow:0 10px 30px rgba(255,42,42,.35); transition:background .2s;
+}
+.wa-fab:hover { background:var(--pearl); color:var(--void); }
+@media(min-width:768px){ .wa-fab{ bottom:24px; right:24px; } }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+/* ============================================================
+   NOISE OVERLAY
+   ============================================================ */
+.noise {
+  pointer-events:none; position:fixed; inset:0; z-index:999;
+  opacity:.04; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
-    .step-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--lime);
-      margin-bottom: 1.5rem;
-    }
-
-    .step-h2 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: clamp(2.25rem, 5vw, 3.75rem);
-      line-height: .85;
-      letter-spacing: -.035em;
-      text-transform: uppercase;
-      color: var(--paper);
-      margin-bottom: 2.5rem;
-    }
-    @media(min-width:768px) { .step-h2 { margin-bottom: 3rem; } }
-
-    /* ── Option buttons (step 1) ── */
-    .options-list { display: flex; flex-direction: column; gap: 1rem; }
-
-    .option-btn {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 1.5rem;
-      border-radius: 1rem;
-      border: 2px solid rgba(247,244,239,.1);
-      background: rgba(247,244,239,.05);
-      color: rgba(247,244,239,.8);
-      cursor: pointer;
-      transition: border-color .3s, background .3s, transform .15s;
-      width: 100%;
-    }
-    .option-btn:hover {
-      border-color: rgba(187,255,51,.5);
-      background: rgba(187,255,51,.05);
-      transform: translateX(4px);
-    }
-    .option-btn .opt-label {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-      letter-spacing: -.02em;
-      text-transform: uppercase;
-    }
-    .option-btn .opt-arrow {
-      font-size: 1.5rem;
-      opacity: 0;
-      transition: opacity .3s, transform .3s;
-      transform: scale(0);
-    }
-    .option-btn:hover .opt-arrow { opacity: .5; transform: scale(1); }
-
-    /* ── Rules (step 2) ── */
-    .rules-box {
-      background: rgba(187,255,51,.05);
-      border: 1px solid rgba(187,255,51,.15);
-      border-radius: 1.5rem;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    @media(min-width:768px) { .rules-box { padding: 2rem; } }
-
-    .rules-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: rgba(247,244,239,.4);
-      margin-bottom: 1rem;
-    }
-
-    .rules-list { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
-    .rules-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: .75rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 1rem;
-      color: rgba(247,244,239,.8);
-      line-height: 1.5;
-    }
-    .rules-list li .rule-icon {
-      color: var(--lime);
-      font-size: .875rem;
-      margin-top: .15rem;
-      flex-shrink: 0;
-    }
-
-    .advance-box {
-      background: rgba(247,244,239,.03);
-      border: 1px solid rgba(247,244,239,.08);
-      border-radius: 1.5rem;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    @media(min-width:768px) { .advance-box { padding: 2rem; } }
-
-    .advance-list { list-style: none; display: flex; flex-direction: column; gap: .75rem; margin-top: 1rem; }
-    .advance-list li {
-      font-family: 'DM Sans', sans-serif;
-      font-size: .9rem;
-      color: rgba(247,244,239,.6);
-      padding-left: 1.25rem;
-      position: relative;
-    }
-    .advance-list li::before { content: "—"; position: absolute; left: 0; color: rgba(247,244,239,.3); }
-
-    .lime-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      background: var(--lime);
-      color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 700;
-      font-size: .875rem;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      padding: 1.25rem 2rem;
-      border-radius: 9999px;
-      border: none;
-      cursor: pointer;
-      transition: background .3s;
-      box-shadow: 0 0 20px rgba(187,255,51,.3);
-    }
-    .lime-btn:hover { background: #fff; }
-    .lime-btn:disabled { opacity: .5; cursor: not-allowed; background: var(--lime) !important; }
-    @media(min-width:768px) { .lime-btn { font-size: 1rem; } }
-
-    /* ── Contact form (step 3) ── */
-    .fields-list { display: flex; flex-direction: column; gap: 2rem; }
-
-    .field-wrap { position: relative; }
-    .field-wrap input {
-      width: 100%;
-      background: transparent;
-      border: none;
-      border-bottom: 2px solid rgba(247,244,239,.2);
-      padding: 1rem 0;
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: clamp(1.25rem, 3vw, 1.875rem);
-      color: var(--paper);
-      text-transform: uppercase;
-      letter-spacing: -.01em;
-      outline: none;
-      transition: border-color .3s;
-    }
-    .field-wrap input::placeholder { color: rgba(247,244,239,.2); }
-    .field-wrap input:focus { border-color: var(--lime); }
-
-    .checkbox-wrap {
-      display: flex;
-      align-items: flex-start;
-      gap: .75rem;
-      margin-top: 2rem;
-    }
-    .checkbox-wrap input[type="checkbox"] {
-      width: 1rem; height: 1rem;
-      margin-top: .25rem;
-      accent-color: var(--lime);
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-    .checkbox-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: .875rem;
-      color: rgba(247,244,239,.7);
-      line-height: 1.5;
-    }
-
-    .proceed-row { margin-top: 2rem; }
-    .help-text {
-      margin-top: 1rem;
-      text-align: center;
-      font-family: 'DM Sans', sans-serif;
-      font-size: .75rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: rgba(247,244,239,.4);
-    }
-
-    /* ── Review card (step 4) ── */
-    .review-card {
-      background: rgba(247,244,239,.05);
-      border: 1px solid rgba(247,244,239,.1);
-      border-radius: 1.5rem;
-      padding: 1.5rem;
-      margin-bottom: 2.5rem;
-    }
-    @media(min-width:768px) { .review-card { padding: 2rem; } }
-
-    .review-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    @media(min-width:640px) { .review-grid { grid-template-columns: 1fr 1fr; } }
-
-    .review-item .rev-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: rgba(247,244,239,.4);
-      margin-bottom: .5rem;
-    }
-    .review-item .rev-value {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1.25rem;
-      text-transform: uppercase;
-      color: var(--paper);
-    }
-    .span-2 { grid-column: 1 / -1; }
-
-    .review-divider { border: none; border-top: 1px solid rgba(247,244,239,.1); margin-bottom: 2rem; }
-
-    .fee-row { display: flex; align-items: flex-end; justify-content: space-between; }
-    .fee-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--lime);
-      margin-bottom: .5rem;
-    }
-    .fee-amount {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 2.25rem;
-      letter-spacing: -.02em;
-      color: var(--paper);
-    }
-
-    .slots-text {
-      text-align: center;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: rgba(247,244,239,.3);
-      margin-top: 1.5rem;
-    }
-
-    .wa-link-text {
-      margin-top: 1rem;
-      text-align: center;
-      font-family: 'DM Sans', sans-serif;
-      font-size: .75rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: rgba(247,244,239,.4);
-    }
-    .wa-link-text a { color: var(--lime); }
-
-    /* ── Success (step 5) ── */
-    .success-pane {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .success-icon {
-      width: 5rem; height: 5rem;
-      background: rgba(187,255,51,.1);
-      border: 1px solid rgba(187,255,51,.2);
-      border-radius: 9999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 2rem;
-      font-size: 1.875rem;
-    }
-    .success-h2 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: clamp(2.5rem, 6vw, 3.75rem);
-      line-height: .85;
-      letter-spacing: -.035em;
-      text-transform: uppercase;
-      color: var(--paper);
-      margin-bottom: 1.5rem;
-    }
-    .success-sub {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: rgba(247,244,239,.6);
-      margin-bottom: 2.5rem;
-      max-width: 28rem;
-      line-height: 1.6;
-    }
-    .success-sub strong { color: #fff; }
-
-    .wa-big-btn {
-      display: inline-flex;
-      justify-content: center;
-      width: 100%;
-      background: var(--lime);
-      color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 700;
-      font-size: .875rem;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      padding: 1.25rem 2rem;
-      border-radius: 9999px;
-      margin-bottom: 2rem;
-      transition: background .3s;
-      box-shadow: 0 0 20px rgba(187,255,51,.3);
-    }
-    .wa-big-btn:hover { background: #fff; }
-    @media(min-width:768px) { .wa-big-btn { font-size: 1rem; } }
-
-    .return-link {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: rgba(247,244,239,.4);
-      transition: color .2s;
-    }
-    .return-link:hover { color: #fff; }
-
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid rgba(247,244,239,.06);
-      background: rgba(10,10,10,.95);
-      padding: 1.5rem 1.25rem;
-    }
-    @media(min-width:768px) { footer { padding: 1.5rem 3rem; } }
-    .footer-inner {
-      max-width: 1600px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: .75rem;
-      text-align: center;
-    }
-    @media(min-width:768px) {
-      .footer-inner { flex-direction: row; align-items: center; justify-content: space-between; text-align: left; }
-    }
-    .footer-designed {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: rgba(247,244,239,.4);
-    }
-    .footer-phone {
-      font-family: 'Syne', sans-serif;
-      font-size: .875rem;
-      font-weight: 700;
-      letter-spacing: -.03em;
-      color: var(--pearl);
-      transition: color .2s;
-    }
-    .footer-phone:hover { color: var(--blood); }
-
-    /* ── WhatsApp FAB ── */
-    .wa-fab {
-      position: fixed;
-      bottom: 5rem; right: 1rem;
-      z-index: 40;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 9999px;
-      background: var(--blood);
-      padding: .75rem 1rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--void);
-      box-shadow: 0 10px 30px rgba(255,42,42,.35);
-      transition: background .2s;
-    }
-    .wa-fab:hover { background: var(--pearl); }
-    @media(min-width:768px) { .wa-fab { bottom: 1.5rem; right: 1.5rem; } }
-  </style>
+/* body padding so footer clears mobile sticky */
+body { padding-bottom: 60px; }
+@media(min-width:768px){ body{ padding-bottom:0; } }
+</style>
 </head>
 <body>
-  <div class="suspense-noise"></div>
 
-  <!-- ═══════════ HEADER ═══════════ -->
-  <header>
-    <div class="header-inner">
-      <a class="logo-link font-syne" href="/">TAAS®</a>
+<div class="noise"></div>
 
-      <nav class="header-nav">
-        <a class="nav-link font-dm" href="/#what">SPACE</a>
-        <a class="nav-link font-dm" href="/#cost">COST</a>
-        <a class="nav-link font-dm" href="/work">WORK</a>
-        <a class="nav-link font-dm" href="/about">ABOUT</a>
-      </nav>
+<!-- ═══════════════════════════ HEADER ═══════════════════════════ -->
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="logo" href="/">TAAS&#174;</a>
 
-      <div class="header-cta">
-        <a class="cta-btn font-dm" href="/challenge">TAKE CHALLENGE →</a>
-      </div>
-
-      <button class="hamburger" id="hamburger" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- ═══════════ MOBILE MENU ═══════════ -->
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="spacer"></div>
-    <nav class="mobile-nav">
-      <a href="/#what" style="transition-delay:0ms">SPACE</a>
-      <a href="/#cost" style="transition-delay:0ms">COST</a>
-      <a href="/work"  style="transition-delay:0ms">WORK</a>
-      <a href="/about" style="transition-delay:0ms">ABOUT</a>
+    <nav class="hdr-nav">
+      <a href="/#what">SPACE</a>
+      <a href="/#cost">COST</a>
+      <a href="/work">WORK</a>
+      <a href="/about">ABOUT</a>
     </nav>
-    <div class="mobile-bottom">
-      <a class="mobile-cta-btn font-dm" href="/challenge">TAKE CHALLENGE →</a>
-      <p class="mobile-brand font-dm">TAAS® · Mumbai</p>
+
+    <div class="hdr-cta">
+      <a href="/challenge">TAKE CHALLENGE &#8594;</a>
     </div>
+
+    <button class="burger" id="burger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- mobile overlay -->
+<div class="mob-menu" id="mobMenu">
+  <div class="mh"></div>
+  <nav class="mob-nav">
+    <a href="/#what">SPACE</a>
+    <a href="/#cost">COST</a>
+    <a href="/work">WORK</a>
+    <a href="/about">ABOUT</a>
+  </nav>
+  <div class="mob-foot">
+    <a class="mob-cta" href="/challenge">TAKE CHALLENGE &#8594;</a>
+    <p class="mob-brand">TAAS&#174; &middot; Mumbai</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ CHALLENGE ═══════════════════════════ -->
+<div class="challenge">
+
+  <!-- progress bar -->
+  <div class="prog-wrap">
+    <div class="prog-bar" id="progBar"></div>
   </div>
 
-  <!-- ═══════════ MAIN ═══════════ -->
-  <main>
-    <div class="challenge-shell">
+  <!-- top labels -->
+  <div class="top-labels">
+    <a class="back-link" href="/">&#8592; Home</a>
+    <span class="tag">&#8377;1 LAKH CHALLENGE</span>
+  </div>
 
-      <!-- Progress bar -->
-      <div class="progress-bar-wrap">
-        <div class="progress-bar" id="progressBar"></div>
+  <div class="two-col">
+
+    <!-- ── LEFT PANEL (desktop only) ── -->
+    <div class="left">
+      <div class="left-bg">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200" alt="Interior space">
+        <div class="left-bg-grad"></div>
       </div>
 
-      <!-- Top labels -->
-      <div class="top-labels">
-        <a class="home-link micro" href="/">← Home</a>
-        <span class="challenge-tag micro">₹1 LAKH CHALLENGE</span>
+      <div class="left-body">
+        <div class="live-badge">
+          <span class="ping"><span class="ring"></span><span class="dot"></span></span>
+          <span class="badge-text">Exclusive Offer</span>
+        </div>
+        <h1 class="left-h1">
+          <span class="outline">TRANSFORM</span>
+          <span class="solid">YOUR SPACE</span>
+          <span class="lime">UNDER &#8377;1 LAKH.</span>
+        </h1>
+        <p class="left-sub">We challenge the industry standard. Let us show you exactly what smart design and strict budgeting can achieve.</p>
       </div>
 
-      <!-- Two-column layout -->
-      <div class="two-col">
+      <div class="left-foot">
+        <p>TAAS PLATFORM &mdash; MUMBAI</p>
+      </div>
+    </div>
 
-        <!-- ── LEFT PANEL ── -->
-        <div class="left-panel">
-          <div class="left-bg">
-            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200" alt="Interior">
-            <div class="left-bg-overlay"></div>
-          </div>
+    <!-- ── RIGHT PANEL ── -->
+    <div class="right">
+      <div class="form-inner">
 
-          <div class="left-content">
-            <div class="live-badge">
-              <span class="ping-dot">
-                <span class="ping"></span>
-                <span class="dot"></span>
-              </span>
-              <span>Exclusive Offer</span>
-            </div>
-            <h1 class="left-h1">
-              <span class="outline">TRANSFORM</span>
-              <span class="solid">YOUR SPACE</span>
-              <span class="lime">UNDER ₹1 LAKH.</span>
-            </h1>
-            <p class="left-sub">We challenge the industry standard. Let us show you exactly what smart design and strict budgeting can achieve.</p>
-          </div>
+        <!-- ════ STEP 1 — SPACE TYPE ════ -->
+        <div class="step active" id="s1">
+          <p class="step-num">STEP 01 / 04</p>
+          <h2 class="step-h">WHAT ARE WE<br>WORKING WITH?</h2>
 
-          <div class="left-footer">
-            <p class="micro">TAAS PLATFORM — MUMBAI</p>
+          <div class="opts">
+            <button class="opt" onclick="pickSpace('Studio Apartment')">
+              <span class="opt-txt">Studio Apartment</span>
+              <span class="opt-arr">&#8594;</span>
+            </button>
+            <button class="opt" onclick="pickSpace('1BHK / 2BHK Room')">
+              <span class="opt-txt">1BHK / 2BHK Room</span>
+              <span class="opt-arr">&#8594;</span>
+            </button>
+            <button class="opt" onclick="pickSpace('Rental Space')">
+              <span class="opt-txt">Rental Space</span>
+              <span class="opt-arr">&#8594;</span>
+            </button>
+            <button class="opt" onclick="pickSpace('Caf&eacute; / Commercial')">
+              <span class="opt-txt">Caf&eacute; / Commercial</span>
+              <span class="opt-arr">&#8594;</span>
+            </button>
           </div>
         </div>
 
-        <!-- ── RIGHT PANEL ── -->
-        <div class="right-panel">
-          <div class="form-inner">
+        <!-- ════ STEP 2 — RULES ════ -->
+        <div class="step" id="s2">
+          <p class="step-num">STEP 02 / 04</p>
+          <h2 class="step-h">HERE ARE<br>THE RULES.</h2>
 
-            <!-- ══════ STEP 1 — Space type ══════ -->
-            <div class="step-pane active" id="step1">
-              <p class="step-label micro">STEP 01 / 04</p>
-              <h2 class="step-h2">WHAT ARE WE<br>WORKING WITH?</h2>
+          <div class="rules-box">
+            <p class="box-label">THE &#8377;1 LAKH CHALLENGE</p>
+            <ul class="rules-list">
+              <li><span class="icon">&#10022;</span> We design your entire space for under &#8377;1,00,000 in material and labour.</li>
+              <li><span class="icon">&#10022;</span> We do a paid on-site visit first &mdash; this is the Design Fee, not part of the &#8377;1L budget.</li>
+              <li><span class="icon">&#10022;</span> You share honest photos of your current space before the visit.</li>
+              <li><span class="icon">&#10022;</span> We show you a full breakdown of where every rupee goes.</li>
+              <li><span class="icon">&#10022;</span> If we can&rsquo;t do it under &#8377;1L, we tell you upfront &mdash; no surprises.</li>
+            </ul>
+          </div>
 
-              <div class="options-list">
-                <button class="option-btn" onclick="pickSpace('Studio Apartment')">
-                  <span class="opt-label">Studio Apartment</span>
-                  <span class="opt-arrow">→</span>
-                </button>
-                <button class="option-btn" onclick="pickSpace('1BHK / 2BHK Room')">
-                  <span class="opt-label">1BHK / 2BHK Room</span>
-                  <span class="opt-arrow">→</span>
-                </button>
-                <button class="option-btn" onclick="pickSpace('Rental Space')">
-                  <span class="opt-label">Rental Space</span>
-                  <span class="opt-arrow">→</span>
-                </button>
-                <button class="option-btn" onclick="pickSpace('Café / Commercial')">
-                  <span class="opt-label">Café / Commercial</span>
-                  <span class="opt-arrow">→</span>
-                </button>
+          <div class="adv-box">
+            <p class="box-label">ADVANCE TERMS</p>
+            <ul class="adv-list">
+              <li>&#8377;25,000 upfront confirms your slot.</li>
+              <li>The &#8377;25,000 fee is for the &#8377;1L Interior Challenge only.</li>
+              <li>This advance is separate from the final project budget and scope.</li>
+            </ul>
+          </div>
+
+          <button class="lime-btn" onclick="goStep(3)">I ACCEPT THE RULES &#8594;</button>
+        </div>
+
+        <!-- ════ STEP 3 — CONTACT ════ -->
+        <div class="step" id="s3">
+          <p class="step-num">STEP 03 / 04</p>
+          <h2 class="step-h">TELL US<br>ABOUT YOU.</h2>
+
+          <div class="fields">
+            <div class="field">
+              <input type="text"   id="f-name" placeholder="FULL NAME"                        autocomplete="name">
+            </div>
+            <div class="field">
+              <input type="tel"    id="f-wa"   placeholder="WHATSAPP NUMBER"                  autocomplete="tel">
+            </div>
+            <div class="field">
+              <input type="text"   id="f-loc"  placeholder="LOCATION (IN MUMBAI)">
+            </div>
+            <div class="field">
+              <input type="text"   id="f-addr" placeholder="DETAILED ADDRESS FOR SITE VISIT">
+            </div>
+          </div>
+
+          <div class="check-row">
+            <input type="checkbox" id="f-agree">
+            <label for="f-agree">I agree to the advance terms.</label>
+          </div>
+
+          <div class="proceed-wrap">
+            <button class="lime-btn" id="proceedBtn" onclick="handleProceed()" disabled>
+              REVIEW &amp; PROCEED &#8594;
+            </button>
+          </div>
+          <p class="help-micro">Questions? WhatsApp us.</p>
+        </div>
+
+        <!-- ════ STEP 4 — REVIEW ════ -->
+        <div class="step" id="s4">
+          <p class="step-num">STEP 04 / 04</p>
+          <h2 class="step-h">LOCK IT IN.</h2>
+
+          <div class="review-card">
+            <div class="rev-grid">
+              <div class="rev-item">
+                <p class="rl">NAME</p>
+                <p class="rv" id="rv-name">&mdash;</p>
+              </div>
+              <div class="rev-item">
+                <p class="rl">WHATSAPP</p>
+                <p class="rv" id="rv-wa">&mdash;</p>
+              </div>
+              <div class="rev-item">
+                <p class="rl">LOCATION</p>
+                <p class="rv" id="rv-loc">&mdash;</p>
+              </div>
+              <div class="rev-item">
+                <p class="rl">SPACE TYPE</p>
+                <p class="rv" id="rv-space">&mdash;</p>
+              </div>
+              <div class="rev-item span2">
+                <p class="rl">DETAILED ADDRESS</p>
+                <p class="rv" id="rv-addr">&mdash;</p>
               </div>
             </div>
 
-            <!-- ══════ STEP 2 — Rules ══════ -->
-            <div class="step-pane" id="step2">
-              <p class="step-label micro">STEP 02 / 04</p>
-              <h2 class="step-h2">HERE ARE<br>THE RULES.</h2>
+            <hr class="rev-divider">
 
-              <div class="rules-box">
-                <p class="rules-label micro">THE ₹1 LAKH CHALLENGE</p>
-                <ul class="rules-list">
-                  <li><span class="rule-icon">✦</span> We design your entire space for under ₹1,00,000 in material and labour.</li>
-                  <li><span class="rule-icon">✦</span> We do a paid on-site visit first — this is the Design Fee, not part of the ₹1L budget.</li>
-                  <li><span class="rule-icon">✦</span> You share honest photos of your current space before the visit.</li>
-                  <li><span class="rule-icon">✦</span> We show you a full breakdown of where every rupee goes.</li>
-                  <li><span class="rule-icon">✦</span> If we can't do it under ₹1L, we tell you upfront — no surprises.</li>
-                </ul>
-              </div>
-
-              <div class="advance-box">
-                <p class="rules-label micro">ADVANCE TERMS</p>
-                <ul class="advance-list">
-                  <li>₹25,000 upfront confirms your slot.</li>
-                  <li>The ₹25,000 fee is for the ₹1L Interior Challenge only.</li>
-                  <li>This advance is separate from the final project budget and scope.</li>
-                </ul>
-              </div>
-
-              <button class="lime-btn" onclick="goStep(3)">I ACCEPT THE RULES →</button>
+            <div class="fee-block">
+              <p class="fl">CHALLENGE DESIGN FEE</p>
+              <p class="fa">&#8377;25,000</p>
             </div>
+          </div>
 
-            <!-- ══════ STEP 3 — Contact ══════ -->
-            <div class="step-pane" id="step3">
-              <p class="step-label micro">STEP 03 / 04</p>
-              <h2 class="step-h2">TELL US<br>ABOUT YOU.</h2>
+          <button class="lime-btn" onclick="confirmChallenge()">CONFIRM CHALLENGE &#8594;</button>
+          <p class="slots-note">LIMITED SLOTS AVAILABLE THIS MONTH.</p>
+          <p class="wa-note">
+            Questions?
+            <a href="https://wa.me/917400162509?text=Hi%20TAAS%2C%20I%20have%20a%20question%20about%20my%20space%2Fproject.%20Please%20let%20me%20know%20the%20next%20step."
+               target="_blank" rel="noopener noreferrer">+91 74001 62509</a>
+          </p>
+        </div>
 
-              <div class="fields-list">
-                <div class="field-wrap">
-                  <input type="text" id="f-name" placeholder="FULL NAME" autocomplete="name">
-                </div>
-                <div class="field-wrap">
-                  <input type="tel" id="f-wa" placeholder="WHATSAPP NUMBER" autocomplete="tel">
-                </div>
-                <div class="field-wrap">
-                  <input type="text" id="f-loc" placeholder="LOCATION (IN MUMBAI)">
-                </div>
-                <div class="field-wrap">
-                  <input type="text" id="f-addr" placeholder="DETAILED ADDRESS FOR SITE VISIT">
-                </div>
-              </div>
+        <!-- ════ STEP 5 — SUCCESS ════ -->
+        <div class="step" id="s5">
+          <div class="success">
+            <div class="s-icon">&#10003;</div>
+            <h2 class="s-h">CHALLENGE<br>ACCEPTED.</h2>
+            <p class="s-sub">
+              Your reference is <strong id="sv-ref"></strong>.
+              The final step is to send us a quick hello on WhatsApp so we can coordinate your space photos.
+            </p>
+            <a id="wa-link" href="#" target="_blank" rel="noopener noreferrer" class="wa-big">
+              SEND WHATSAPP &#8594;
+            </a>
+            <a href="/" class="ret-link">&#8592; RETURN TO HOME</a>
+          </div>
+        </div>
 
-              <label class="checkbox-wrap">
-                <input type="checkbox" id="f-agree">
-                <span class="checkbox-label">I agree to the advance terms.</span>
-              </label>
+      </div><!-- /.form-inner -->
+    </div><!-- /.right -->
 
-              <div class="proceed-row">
-                <button class="lime-btn" id="proceedBtn" onclick="handleProceed()" disabled>REVIEW &amp; PROCEED →</button>
-              </div>
-              <p class="help-text">Questions? WhatsApp us.</p>
-            </div>
+  </div><!-- /.two-col -->
+</div><!-- /.challenge -->
 
-            <!-- ══════ STEP 4 — Review ══════ -->
-            <div class="step-pane" id="step4">
-              <p class="step-label micro">STEP 04 / 04</p>
-              <h2 class="step-h2">LOCK IT IN.</h2>
-
-              <div class="review-card">
-                <div class="review-grid">
-                  <div class="review-item">
-                    <p class="rev-label micro">NAME</p>
-                    <p class="rev-value" id="rv-name">—</p>
-                  </div>
-                  <div class="review-item">
-                    <p class="rev-label micro">WHATSAPP</p>
-                    <p class="rev-value" id="rv-wa">—</p>
-                  </div>
-                  <div class="review-item">
-                    <p class="rev-label micro">LOCATION</p>
-                    <p class="rev-value" id="rv-loc">—</p>
-                  </div>
-                  <div class="review-item">
-                    <p class="rev-label micro">SPACE TYPE</p>
-                    <p class="rev-value" id="rv-space">—</p>
-                  </div>
-                  <div class="review-item span-2">
-                    <p class="rev-label micro">DETAILED ADDRESS</p>
-                    <p class="rev-value" id="rv-addr">—</p>
-                  </div>
-                </div>
-
-                <hr class="review-divider">
-
-                <div class="fee-row">
-                  <div>
-                    <p class="fee-label micro">CHALLENGE DESIGN FEE</p>
-                    <p class="fee-amount">₹25,000</p>
-                  </div>
-                </div>
-              </div>
-
-              <button class="lime-btn" onclick="confirmChallenge()">CONFIRM CHALLENGE →</button>
-              <p class="slots-text micro">LIMITED SLOTS AVAILABLE THIS MONTH.</p>
-              <p class="wa-link-text">Questions? <a href="https://wa.me/917400162509?text=Hi%20TAAS%2C%20I%20have%20a%20question%20about%20my%20space%2Fproject.%20Please%20let%20me%20know%20the%20next%20step." target="_blank" rel="noopener noreferrer">+91 74001 62509</a></p>
-            </div>
-
-            <!-- ══════ STEP 5 — Success ══════ -->
-            <div class="step-pane" id="step5">
-              <div class="success-pane">
-                <div class="success-icon">✓</div>
-                <h2 class="success-h2">CHALLENGE<br>ACCEPTED.</h2>
-                <p class="success-sub">
-                  Your reference is <strong id="sv-ref">—</strong>. The final step is to send us a quick hello on WhatsApp so we can coordinate your space photos.
-                </p>
-                <a id="wa-confirm-link" href="#" target="_blank" rel="noopener noreferrer" class="wa-big-btn">SEND WHATSAPP →</a>
-                <a href="/" class="return-link micro">RETURN TO HOME</a>
-              </div>
-            </div>
-
-          </div><!-- /.form-inner -->
-        </div><!-- /.right-panel -->
-
-      </div><!-- /.two-col -->
-    </div><!-- /.challenge-shell -->
-  </main>
-
-  <!-- ═══════════ MOBILE STICKY ═══════════ -->
-  <div class="mobile-sticky">
-    <div class="mobile-sticky-inner">
-      <span class="sticky-label font-dm">30% ADVANCE</span>
-      <a href="/challenge" class="sticky-book font-dm">BOOK NOW <span>↗</span></a>
-    </div>
+<!-- ═══════════════════════════ MOBILE STICKY ═══════════════════════════ -->
+<div class="mob-sticky">
+  <div class="mob-sticky-in">
+    <span>30% ADVANCE</span>
+    <a href="/challenge">BOOK NOW <span class="arr">&#8599;</span></a>
   </div>
+</div>
 
-  <!-- ═══════════ FOOTER ═══════════ -->
-  <footer>
-    <div class="footer-inner">
-      <p class="footer-designed font-dm">Designed by Sharvayu Sawant</p>
-      <a href="https://wa.me/917400162509?text=Hi%20TAAS%2C%20I%20have%20a%20question%20about%20my%20space%2Fproject.%20Please%20let%20me%20know%20the%20next%20step."
-         target="_blank" rel="noopener noreferrer" class="footer-phone font-syne">+91 74001 62509</a>
-    </div>
-  </footer>
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer>
+  <div class="foot-in">
+    <p class="foot-credit">Designed by Sharvayu Sawant</p>
+    <a class="foot-phone"
+       href="https://wa.me/917400162509?text=Hi%20TAAS%2C%20I%20have%20a%20question%20about%20my%20space%2Fproject.%20Please%20let%20me%20know%20the%20next%20step."
+       target="_blank" rel="noopener noreferrer">+91 74001 62509</a>
+  </div>
+</footer>
 
-  <!-- ═══════════ WHATSAPP FAB ═══════════ -->
-  <a href="https://wa.me/917400162509?text=Hi%20TAAS%2C%20I%20have%20a%20question%20about%20my%20space%2Fproject.%20Please%20let%20me%20know%20the%20next%20step."
-     target="_blank" rel="noopener noreferrer" class="wa-fab font-dm">WhatsApp us</a>
+<!-- ═══════════════════════════ WA FAB ═══════════════════════════ -->
+<a class="wa-fab"
+   href="https://wa.me/917400162509?text=Hi%20TAAS%2C%20I%20have%20a%20question%20about%20my%20space%2Fproject.%20Please%20let%20me%20know%20the%20next%20step."
+   target="_blank" rel="noopener noreferrer">WhatsApp us</a>
 
-  <!-- ═══════════ SCRIPT ═══════════ -->
-  <script>
-    /* ── State ── */
-    const state = { spaceType: '', name: '', whatsapp: '', location: '', address: '' };
-    let currentStep = 1;
-    let referenceCode = '';
+<!-- ═══════════════════════════ SCRIPT ═══════════════════════════ -->
+<script>
+/* ── State ── */
+const S = { spaceType:'', name:'', whatsapp:'', location:'', address:'' };
+let step = 1;
+let refCode = '';
+const WA = 'https://wa.me/917400162509?text=';
+const PROG = {1:0, 2:25, 3:50, 4:75, 5:100};
 
-    const WA_NUMBER = '917400162509';
-    const WA_BASE   = `https://wa.me/${WA_NUMBER}?text=`;
+function setProgress(n){
+  document.getElementById('progBar').style.width = PROG[n] + '%';
+}
 
-    /* ── Progress widths per step ── */
-    const progressMap = { 1: 0, 2: 25, 3: 50, 4: 75, 5: 100 };
+function goStep(n){
+  document.getElementById('s'+step).classList.remove('active');
+  step = n;
+  document.getElementById('s'+n).classList.add('active');
+  setProgress(n);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
 
-    function setProgress(step) {
-      document.getElementById('progressBar').style.width = progressMap[step] + '%';
-    }
+/* step 1 */
+function pickSpace(type){
+  S.spaceType = type;
+  goStep(2);
+}
 
-    /* ── Navigate to step ── */
-    function goStep(n) {
-      document.getElementById('step' + currentStep).classList.remove('active');
-      currentStep = n;
-      document.getElementById('step' + n).classList.add('active');
-      setProgress(n);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+/* step 3 live validation */
+function validate(){
+  const ok = S.name && S.whatsapp && S.location && S.address
+             && document.getElementById('f-agree').checked;
+  document.getElementById('proceedBtn').disabled = !ok;
+}
+['f-name','f-wa','f-loc','f-addr'].forEach(function(id){
+  document.getElementById(id).addEventListener('input', function(){
+    var map = {'f-name':'name','f-wa':'whatsapp','f-loc':'location','f-addr':'address'};
+    S[map[id]] = this.value.trim();
+    validate();
+  });
+});
+document.getElementById('f-agree').addEventListener('change', validate);
 
-    /* ── Step 1: pick space type ── */
-    function pickSpace(type) {
-      state.spaceType = type;
-      goStep(2);
-    }
+/* step 3 → 4 */
+function handleProceed(){
+  document.getElementById('rv-name').textContent  = S.name    || '—';
+  document.getElementById('rv-wa').textContent    = S.whatsapp|| '—';
+  document.getElementById('rv-loc').textContent   = S.location|| '—';
+  document.getElementById('rv-space').textContent = S.spaceType|| '—';
+  document.getElementById('rv-addr').textContent  = S.address  || '—';
+  goStep(4);
+}
 
-    /* ── Step 3: live validation ── */
-    function validateStep3() {
-      const ok = state.name && state.whatsapp && state.location && state.address
-                 && document.getElementById('f-agree').checked;
-      document.getElementById('proceedBtn').disabled = !ok;
-    }
+/* step 4 → 5 */
+function confirmChallenge(){
+  refCode = '1LAKH-' + Math.floor(1000 + 9000 * Math.random());
+  document.getElementById('sv-ref').textContent = refCode;
 
-    ['f-name','f-wa','f-loc','f-addr'].forEach(id => {
-      document.getElementById(id).addEventListener('input', function() {
-        const key = { 'f-name':'name','f-wa':'whatsapp','f-loc':'location','f-addr':'address' }[id];
-        state[key] = this.value;
-        validateStep3();
-      });
-    });
-    document.getElementById('f-agree').addEventListener('change', validateStep3);
+  var msg = 'Hi TAAS! I just booked the \u20B91 Lakh Interior Challenge.'
+    + '\n\nMy Reference: ' + refCode
+    + '\nName: ' + S.name
+    + '\nSpace: ' + S.spaceType
+    + '\nLocation: ' + S.location
+    + '\n\nI am ready to pay the \u20B925,000 design fee. Please send me the payment link.'
+    + '\n\nHere is my detailed address for the on-site visit:\n' + S.address
+    + '\n\nI am ready to share my space photos!';
 
-    /* ── Step 3 → 4: populate review card ── */
-    function handleProceed() {
-      document.getElementById('rv-name').textContent  = state.name    || '—';
-      document.getElementById('rv-wa').textContent    = state.whatsapp|| '—';
-      document.getElementById('rv-loc').textContent   = state.location|| '—';
-      document.getElementById('rv-space').textContent = state.spaceType|| '—';
-      document.getElementById('rv-addr').textContent  = state.address  || '—';
-      goStep(4);
-    }
+  document.getElementById('wa-link').href = WA + encodeURIComponent(msg);
+  goStep(5);
+}
 
-    /* ── Step 4 → 5: confirm ── */
-    function confirmChallenge() {
-      referenceCode = '1LAKH-' + Math.floor(1000 + 9000 * Math.random());
-      document.getElementById('sv-ref').textContent = referenceCode;
+/* hamburger */
+var burger  = document.getElementById('burger');
+var mobMenu = document.getElementById('mobMenu');
+burger.addEventListener('click', function(){
+  burger.classList.toggle('open');
+  mobMenu.classList.toggle('open');
+});
+mobMenu.querySelectorAll('a').forEach(function(a){
+  a.addEventListener('click', function(){
+    burger.classList.remove('open');
+    mobMenu.classList.remove('open');
+  });
+});
 
-      const msg = `Hi TAAS! I just booked the ₹1 Lakh Interior Challenge.\n\nMy Reference: ${referenceCode}\nName: ${state.name}\nSpace: ${state.spaceType}\nLocation: ${state.location}\n\nI am ready to pay the ₹25,000 design fee. Please send me the payment link.\n\nHere is my detailed address for the on-site visit:\n${state.address}\n\nI am ready to share my space photos!`;
-      document.getElementById('wa-confirm-link').href = WA_BASE + encodeURIComponent(msg);
-
-      goStep(5);
-    }
-
-    /* ── Hamburger toggle ── */
-    const hamburger  = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-    });
-
-    /* Close mobile menu on link click */
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-      });
-    });
-
-    /* ── Init progress ── */
-    setProgress(1);
-  </script>
+/* init */
+setProgress(1);
+</script>
 </body>
 </html>
