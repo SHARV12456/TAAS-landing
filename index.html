@@ -441,12 +441,11 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       </div>
 
       <div class="ch-box" style="background:rgba(242,169,59,0.05);border-color:var(--acc)">
-        <p class="ch-box-label" style="color:var(--acc)">BOOKING TERMS</p>
+        <p class="ch-box-label" style="color:var(--acc)">ADVANCE TERMS</p>
         <ul class="ch-adv">
-          <li><strong>₹0 booking fee for the first 5 clients.</strong> (Standard ₹25,000 upfront fee applies once these spots are filled).</li>
-          <li><strong>We will confirm your ₹0 slot eligibility on WhatsApp</strong> right after you submit this form.</li>
-          <li>The booking fee secures your on-site visit for the ₹1.45L Challenge.</li>
-          <li>This fee is separate from the final project budget.</li>
+          <li>₹25,000 upfront confirms your slot <strong>(₹0 for first 5 clients)</strong>.</li>
+          <li>The ₹25,000 fee is for the ₹1.45L Interior Challenge only.</li>
+          <li>This advance is separate from the final project budget and scope.</li>
         </ul>
       </div>
 
@@ -467,7 +466,7 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
 
       <div class="ch-check">
         <input type="checkbox" id="ch-f-agree">
-        <label for="ch-f-agree">I agree to the booking terms.</label>
+        <label for="ch-f-agree">I agree to the advance terms.</label>
       </div>
 
       <button class="ch-btn" id="ch-proceedBtn" onclick="chHandleProceed()" disabled>REVIEW &amp; PROCEED →</button>
@@ -489,8 +488,8 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
         </div>
         <hr class="ch-divider">
         <div>
-          <p class="ch-fee-label" style="color:var(--acc)">BOOKING FEE</p>
-          <p class="ch-fee-amt"><span style="text-decoration:line-through;opacity:0.4;font-size:0.6em">₹25,000</span> ₹0 <span style="font-size:14px;color:var(--acc);vertical-align:middle;text-transform:uppercase">(Pending Confirmation)</span></p>
+          <p class="ch-fee-label" style="color:var(--acc)">CHALLENGE DESIGN FEE</p>
+          <p class="ch-fee-amt">₹25,000 <span style="font-size:14px;color:var(--acc);vertical-align:middle;text-transform:uppercase">(₹0 for first 5 clients)</span></p>
         </div>
       </div>
 
@@ -593,7 +592,7 @@ function chConfirm() {
     + '\nName: ' + chState.name
     + '\nSpace: ' + chState.spaceType
     + '\nLocation: ' + chState.location
-    + '\n\nI am claiming one of the first 5 slots with the ₹0 booking fee! Please let me know if a free slot is still available.'
+    + '\n\nI am ready to pay the ₹25,000 design fee (Free if I am in the first 5!). Please send me the payment link if applicable.'
     + '\n\nHere is my detailed address for the on-site visit:\n' + chState.address
     + '\n\nI am ready to share my space photos!';
 
