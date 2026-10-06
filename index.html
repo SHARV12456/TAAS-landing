@@ -195,7 +195,7 @@ h1{font-size:30px}h2{font-size:24px}
 .ch-info-line {
   display: flex; gap: 32px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--txt); margin-bottom: 40px;
 }
-.ch-info-item { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.ch-info-item { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--txt); }
 .ch-info-item.active { color: var(--acc); }
 
 @media(max-width: 600px) {
@@ -209,7 +209,8 @@ h1{font-size:30px}h2{font-size:24px}
 @keyframes fadeIn { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
 
 /* Hero & Split */
-.ch-split { display: grid; grid-template-columns: 7fr 5fr; gap: 40px; align-items: flex-start; }
+.ch-split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: flex-start; }
+.ch-split > * { min-width: 0; overflow: visible; }
 @media(max-width: 860px) { .ch-split { grid-template-columns: 1fr; gap: 32px; } }
 
 /* Options List */
@@ -250,7 +251,7 @@ h1{font-size:30px}h2{font-size:24px}
 .ch-rule-n { font-size: 11px; font-weight: 600; width: 32px; }
 .ch-rule-b { flex: 1; }
 .ch-rule-t { font-size: 16px; font-weight: 700; margin: 0 0 4px; text-transform: uppercase; }
-.ch-rule-d { font-size: 14px; margin: 0; color: var(--gry); }
+.ch-rule-d { font-size: 14px; margin: 0; color: #3a3a3a; }
 
 /* Summary Table */
 .ch-sum { border-top: 1px solid var(--txt); border-bottom: 1px solid var(--txt); margin-bottom: 32px; }
@@ -267,7 +268,7 @@ h1{font-size:30px}h2{font-size:24px}
 .ch-f-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px; }
 @media(max-width: 600px) { .ch-f-grid { grid-template-columns: 1fr; } }
 .ch-f-row { display: flex; flex-direction: column-reverse; }
-.ch-f-lbl { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gry); margin-bottom: 4px; transition: color 150ms; }
+.ch-f-lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--txt); margin-bottom: 6px; transition: color 150ms; }
 .ch-f-inp {
   border: none; border-bottom: 1px solid var(--txt); background: transparent; border-radius: 0;
   height: 40px; font-family: inherit; font-size: 16px; padding: 0; outline: none; transition: border-bottom 150ms;
@@ -287,6 +288,25 @@ textarea.ch-f-inp:focus { border: 1px solid var(--acc); border-bottom: 1px solid
 .ch-chip:hover { background: rgba(17,17,17,0.05); }
 .ch-chip.is-active { background: var(--txt); color: var(--bg); }
 
+
+/* Deal Hero Block */
+.ch-deal-hero {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--acc); padding: 16px 20px; margin-top: 28px;
+  border: 2px solid var(--txt);
+}
+.ch-deal-bdg {
+  font-size: 32px; font-weight: 800; letter-spacing: -0.04em;
+  color: var(--txt); line-height: 1; flex-shrink: 0;
+}
+.ch-deal-val {
+  font-size: 16px; font-weight: 800; color: var(--txt);
+  text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.2;
+}
+.ch-deal-sub {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--txt); opacity: 0.8; margin-top: 2px;
+}
 /* Success */
 .ch-succ { padding: 60px 0; max-width: 600px; }
 .ch-succ-h { font-size: clamp(64px, 10vw, 120px); font-weight: 700; letter-spacing: -0.04em; margin: 0 0 16px; line-height: 0.9; }
@@ -430,7 +450,8 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       <div class="ch-step-v is-active" id="s1">
         <div class="ch-split">
           <div class="ch-split-l">
-            <h2 class="h-disp">TRANSFORM<br>YOUR SPACE<br>UNDER ?1.45 LAKH.</h2>
+            <h2 class="h-disp">TRANSFORM<br>YOUR SPACE<br>UNDER ₹1.45 LAKH.</h2>
+          <div class="ch-deal-hero"><div class="ch-deal-bdg">FREE</div><div class="ch-deal-info"><div class="ch-deal-val">₹25,000 Design Service</div><div class="ch-deal-sub">Complimentary for First 5 Spots</div></div></div>
           </div>
           <div class="ch-split-r">
             <div class="lbl" style="margin-bottom:8px">STEP 01</div>
@@ -455,7 +476,7 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
               </div>
             </div>
 
-            <div class="lbl" style="margin-bottom:12px">YOUR MOVE</div>
+            <div class="lbl" style="margin-top:40px;margin-bottom:12px;padding-top:16px;border-top:1px solid var(--txt)">YOUR MOVE</div>
             <button class="ch-btn" id="btn-s1" onclick="chGo(2)" disabled>CONTINUE ?</button>
           </div>
         </div>
@@ -472,7 +493,7 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
             <div style="margin-bottom: 40px">
               <div class="ch-rule-row">
                 <div class="ch-rule-n">01</div>
-                <div class="ch-rule-b"><div class="ch-rule-t">STRICT BUDGET</div><div class="ch-rule-d">Hard capped at ?1,45,000. Every rupee is maximised.</div></div>
+                <div class="ch-rule-b"><div class="ch-rule-t">STRICT BUDGET</div><div class="ch-rule-d">Hard capped at ₹1,45,000. Every rupee is maximised.</div></div>
               </div>
               <div class="ch-rule-row">
                 <div class="ch-rule-n">02</div>
@@ -480,7 +501,7 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
               </div>
               <div class="ch-rule-row" style="border-bottom:1px solid #111">
                 <div class="ch-rule-n">03</div>
-                <div class="ch-rule-b"><div class="ch-rule-t">DESIGN + DIRECTION</div><div class="ch-rule-d">First 5 clients get complete design direction at no cost.</div></div>
+                <div class="ch-rule-b"><div class="ch-rule-t" style="color:var(--acc)">DESIGN + DIRECTION—FREE</div><div style="font-size:26px;font-weight:800;letter-spacing:-0.04em;margin:6px 0 4px">₹25,000 VALUE</div><div class="ch-rule-d">Worth ₹25,000. Complimentary for the first 5 spots. Zero cost to you.</div></div>
               </div>
             </div>
             <div style="display:flex;gap:12px">
@@ -501,8 +522,8 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
           <div class="ch-split-r">
             <div class="ch-sum">
               <div class="ch-sum-row"><span>SPACE</span><span id="sum-space">�</span></div>
-              <div class="ch-sum-row"><span>EXECUTION</span><span>?1,45,000</span></div>
-              <div class="ch-sum-row"><span>DESIGN + DIRECTION</span><span>?0</span></div>
+              <div class="ch-sum-row"><span>EXECUTION</span><span>₹1,45,000</span></div>
+              <div class="ch-sum-row" style="background:var(--acc);margin:0 -24px;padding:12px 24px"><span style="font-weight:800">DESIGN + DIRECTION</span><span style="font-weight:800">?0</span></div>
             </div>
 
             <label class="ch-cb">
@@ -544,9 +565,9 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
               <div class="lbl">SPACE SIZE (SQ FT)</div>
               <div class="ch-chips" id="ch-size">
                 <div class="ch-chip" onclick="chTogOne(this)">UNDER 300</div>
-                <div class="ch-chip" onclick="chTogOne(this)">300�500</div>
-                <div class="ch-chip" onclick="chTogOne(this)">500�800</div>
-                <div class="ch-chip" onclick="chTogOne(this)">800�1200</div>
+                <div class="ch-chip" onclick="chTogOne(this)">300–500</div>
+                <div class="ch-chip" onclick="chTogOne(this)">500–800</div>
+                <div class="ch-chip" onclick="chTogOne(this)">800–1200</div>
                 <div class="ch-chip" onclick="chTogOne(this)">1200+</div>
               </div>
             </div>
@@ -599,7 +620,7 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
           <div class="ch-ref" id="ref-id">TAAS-XXX</div>
 
           <div class="h-step" style="font-size:24px;margin:32px 0 16px">NOW SHOW US THE SPACE.</div>
-          <button class="ch-btn" id="wa-btn" style="width:auto">SEND PHOTOS ON WHATSAPP ?</button>
+          <button class="ch-btn" id="wa-btn" style="width:auto">OPEN WHATSAPP TO CLAIM ?</button>
         </div>
       </div>
 
