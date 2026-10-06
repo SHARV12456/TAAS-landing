@@ -638,6 +638,7 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       <div class="ch-nav-item" data-step="2"><span class="ni">2</span> RULES</div>
       <div class="ch-nav-item" data-step="3"><span class="ni">3</span> COMMIT</div>
       <div class="ch-nav-item" data-step="4"><span class="ni">4</span> DETAILS</div>
+      <div class="ch-nav-item" data-step="5"><span class="ni">5</span> ACTION</div>
     </nav>
 
     <!-- ── STEP 1 — SPACE ─────────────────────── -->
@@ -868,12 +869,46 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
 
       <div class="ch-foot">
         <button class="ch-btn ch-btn-ghost" onclick="CH.go(3)">← Back</button>
-        <button class="ch-btn ch-btn-lg" onclick="CH.submit()">Confirm Challenge →</button>
+        <button class="ch-btn ch-btn-lg" onclick="if(CH.validate()) CH.go(5)">Next: Action →</button>
       </div>
     </section>
 
     <!-- ── STEP 5 — SUCCESS ───────────────────── -->
+        <!-- ── STEP 5 — ACTION ────────────────────── -->
     <section class="ch-step" id="chS5">
+      <div class="ch-sec-hdr">
+        <h3>How Do You Want To Go Ahead?</h3>
+        <span>We only take immediate action takers.</span>
+      </div>
+
+      <div class="ch-opts" role="radiogroup" aria-label="Timeline">
+        <div class="ch-opt" role="radio" aria-checked="false" tabindex="0" data-action="I'm ready to start immediately" onclick="CH.pickAction(this)" onkeydown="if(event.key==='Enter'||event.key===' ')CH.pickAction(this)">
+          <div class="ch-opt-n">01</div>
+          <div class="ch-opt-t">I'M READY TO START IMMEDIATELY</div>
+          <div class="ch-opt-sel">Selected</div>
+          <div class="ch-opt-arr">→</div>
+        </div>
+        <div class="ch-opt" role="radio" aria-checked="false" tabindex="0" data-action="Within 1-2 weeks" onclick="CH.pickAction(this)" onkeydown="if(event.key==='Enter'||event.key===' ')CH.pickAction(this)">
+          <div class="ch-opt-n">02</div>
+          <div class="ch-opt-t">WITHIN 1-2 WEEKS</div>
+          <div class="ch-opt-sel">Selected</div>
+          <div class="ch-opt-arr">→</div>
+        </div>
+        <div class="ch-opt" role="radio" aria-checked="false" tabindex="0" data-action="Just exploring for later" onclick="CH.pickAction(this)" onkeydown="if(event.key==='Enter'||event.key===' ')CH.pickAction(this)">
+          <div class="ch-opt-n">03</div>
+          <div class="ch-opt-t">JUST EXPLORING FOR LATER</div>
+          <div class="ch-opt-sel">Selected</div>
+          <div class="ch-opt-arr">→</div>
+        </div>
+      </div>
+
+      <div class="ch-foot">
+        <button class="ch-btn ch-btn-ghost" onclick="CH.go(4)">← Back</button>
+        <button class="ch-btn ch-btn-lg" id="chBtn5" onclick="CH.submit()" disabled>Confirm Challenge →</button>
+      </div>
+    </section>
+
+<section class="ch-step" id="chS6">
       <div class="ch-success">
         <div class="ch-success-eyebrow">Challenge Accepted</div>
         <h2 class="ch-success-h">You're<br><em>In.</em></h2>
@@ -910,7 +945,7 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
     step: 1,
     space: '',
     agreements: { agree1:false, agree2:false, agree3:false, agree4:false },
-    form: {}
+    form: {}, action: ''
   };
 
   function genRef(){
@@ -981,6 +1016,17 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       var b=document.getElementById('chBtn3');
       if(b) b.disabled=!allChecked;
     },
+    pickAction: function(el){
+      document.querySelectorAll('#chS5 .ch-opt').forEach(function(o){
+        o.classList.remove('sel');
+        o.setAttribute('aria-checked','false');
+      });
+      el.classList.add('sel');
+      el.setAttribute('aria-checked','true');
+      state.action = el.dataset.action;
+      var b=document.getElementById('chBtn5');
+      if(b) b.disabled=false;
+    },
     validate: function(){
       var ok=true;
       var checks=[
@@ -1024,12 +1070,13 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
 
       var fee=fmtCurrency(cfg.launchFee);
 
-      var msg='TAAS DESIGN CHALLENGE — NEW SUBMISSION\n'+'================================\n\n'+'REF: '+ref+'\n'+'NAME: '+name+'\n'+'WHATSAPP: '+wa+'\n'+'EMAIL: '+em+'\n\n'+'SPACE TYPE: '+state.space+'\n'+'LOCATION: '+addr+'\n'+(maps?'MAPS: '+maps+'\n':'')+'\n'+'EXECUTION BUDGET: ₹1,45,000\n'+'DESIGN + DIRECTION: '+fee+' — Launch Offer\n\n'+'================================\n'+'NEXT STEPS\n'+'================================\n'+'1. I will now share photos / a short video of the space in this chat.\n'+'2. Please review and confirm whether my slot is secured.\n'+'3. Once confirmed, I am ready to proceed with the site visit.\n\n'+'Looking forward to working with the TAAS team.';
+      var msg='TAAS DESIGN CHALLENGE — NEW SUBMISSION\n'+'================================\n\n'+'REF: '+ref+'\n'+'NAME: '+name+'\n'+'WHATSAPP: '+wa+'\n'+'EMAIL: '+em+'\n\n'+'SPACE TYPE: '+state.space+'\n'+'LOCATION: '+addr+'\n'
+  +'TIMELINE: '+state.action+'\n\n'+(maps?'MAPS: '+maps+'\n':'')+'\n'+'EXECUTION BUDGET: ₹1,45,000\n'+'DESIGN + DIRECTION: '+fee+' — Launch Offer\n\n'+'================================\n'+'NEXT STEPS\n'+'================================\n'+'1. I will now share photos / a short video of the space in this chat.\n'+'2. Please review and confirm whether my slot is secured.\n'+'3. Once confirmed, I am ready to proceed with the site visit.\n\n'+'Looking forward to working with the TAAS team.';
       var waUrl='https://wa.me/'+cfg.waNumber+'?text='+encodeURIComponent(msg);
       var waBtn=document.getElementById('chWaBtn');
       if(waBtn) waBtn.href=waUrl;
 
-      this.go(5);
+      this.go(6);
     }
   };
 
