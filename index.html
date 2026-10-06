@@ -158,296 +158,240 @@ h1{font-size:30px}h2{font-size:24px}
 @media(min-width:2200px){.wrap{max-width:1640px}body{font-size:22px}h1{font-size:92px}h2{font-size:56px}.btn{font-size:21px}}
 
 /* ============================================================
-   CHALLENGE OVERLAY — PLAYFUL PREMIUM DARK THEME
+   CHALLENGE OVERLAY — COMPACT EDITORIAL DESIGN
+   TAAS × CREATIVE STUDIO × DESIGN CHALLENGE
+   Accent: Electric Blue #003DFF
    ============================================================ */
 
-/* overlay shell — dark, full bleed */
 .ch-overlay{
+  --ch-bg:#F5F4F0;
+  --ch-ink:#0A0A0A;
+  --ch-acc:#003DFF;
+  --ch-on-acc:#FFFFFF;
+  --ch-mute:rgba(10,10,10,0.38);
+  --ch-line:rgba(10,10,10,0.10);
+  --ch-card:#FFFFFF;
   position:fixed;inset:0;z-index:100;
-  background:#13100A;
+  background:var(--ch-bg);
   overflow-y:auto;
-  display:none;
-  opacity:0;
-  transform:translateY(40px) scale(0.95) rotate(-0.5deg);
-  transition:opacity .5s cubic-bezier(0.34,1.56,0.64,1), transform .5s cubic-bezier(0.34,1.56,0.64,1);
+  display:none;opacity:0;
+  transform:translateY(16px);
+  transition:opacity .25s ease, transform .28s cubic-bezier(0.16,1,0.3,1);
+  color:var(--ch-ink);
+  font-family:inherit;
 }
+.ch-overlay *{box-sizing:border-box}
 .ch-overlay.open{display:block}
-.ch-overlay.visible{opacity:1;transform:translateY(0) scale(1) rotate(0deg)}
+.ch-overlay.visible{opacity:1;transform:translateY(0)}
 
 /* top bar */
 .ch-bar{
   display:flex;align-items:center;justify-content:space-between;
-  padding:16px 24px;
-  position:sticky;top:0;
-  background:rgba(15,18,9,0.85);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(242,169,59,0.12);
-  z-index:10;
+  padding:14px 32px;
+  position:sticky;top:0;background:var(--ch-bg);
+  border-bottom:1px solid var(--ch-line);z-index:20;
 }
-.ch-bar .logo{font-weight:800;font-size:20px;letter-spacing:.14em;color:#F2A93B}
+@media(max-width:768px){.ch-bar{padding:12px 16px}}
+.ch-bar .logo{font-weight:800;font-size:15px;letter-spacing:.12em;color:var(--ch-ink)}
 .ch-close{
-  background:rgba(255,255,255,0.06);
-  border:1.5px solid rgba(255,255,255,0.12);
-  border-radius:999px;
-  font:inherit;font-size:12px;font-weight:800;
-  padding:8px 16px;cursor:pointer;
-  color:rgba(255,255,255,0.6);
-  letter-spacing:.1em;text-transform:uppercase;
-  min-height:40px;touch-action:manipulation;
-  transition:all .25s cubic-bezier(0.16,1,0.3,1);
+  background:none;border:1px solid rgba(10,10,10,0.25);border-radius:3px;
+  font-family:inherit;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 14px;cursor:pointer;color:var(--ch-ink);
+  transition:all .18s;
 }
-.ch-close:hover{
-  background:rgba(242,169,59,0.15);
-  border-color:rgba(242,169,59,0.4);
-  color:#F2A93B;
-  transform:scale(1.04);
-}
+.ch-close:hover{background:var(--ch-ink);color:var(--ch-bg);border-color:var(--ch-ink)}
 
-/* progress bar — glowing amber */
-.ch-prog-wrap{height:3px;background:rgba(255,255,255,0.06);width:100%}
-.ch-prog-bar{
-  height:100%;
-  background:linear-gradient(90deg,#e8971e,#F2A93B,#ffd080);
-  width:0%;
-  transition:width .9s cubic-bezier(0.2,0.8,0.2,1);
-  box-shadow:0 0 16px #F2A93B, 0 0 32px rgba(242,169,59,0.4);
+/* step progress track */
+.ch-prog-wrap{
+  padding:14px 32px;
+  border-bottom:1px solid var(--ch-line);
+  max-width:1180px;margin:0 auto;
 }
+@media(max-width:768px){.ch-prog-wrap{padding:12px 16px}}
+.ch-prog-dots{display:flex;align-items:center;margin-bottom:5px}
+.ch-dot{
+  font-size:10px;font-weight:800;letter-spacing:.1em;
+  color:var(--ch-mute);transition:color .2s;
+}
+.ch-dot.active{color:var(--ch-acc)}
+.ch-prog-line{flex:1;height:1px;background:var(--ch-line);margin:0 10px;transition:background .3s}
+.ch-prog-line.done{background:var(--ch-acc)}
+.ch-step-title{font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--ch-ink)}
 
-/* body */
-.ch-body{max-width:520px;margin:0 auto;padding:36px 24px 80px}
+/* main body container */
+.ch-body{max-width:1180px;margin:0 auto;padding:32px;min-height:calc(100vh - 120px)}
+@media(max-width:768px){.ch-body{padding:20px 16px}}
+
+/* step transitions */
 .ch-step{display:none}
-.ch-step.active{display:block;animation:chUp .5s cubic-bezier(0.16,1,0.3,1) both}
-@keyframes chUp{
-  from{opacity:0;transform:translateY(28px) scale(0.97)}
-  to{opacity:1;transform:translateY(0) scale(1)}
-}
+.ch-step.active{display:block;animation:chFadeIn .22s cubic-bezier(0.16,1,0.3,1) both}
+@keyframes chFadeIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
 
-/* step counter pill */
-.ch-num{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
-  color:#F2A93B;
-  background:rgba(242,169,59,0.1);
-  border:1px solid rgba(242,169,59,0.2);
-  padding:5px 12px;border-radius:999px;
-  margin-bottom:20px;
-}
-
-/* headings */
+/* ── HEADINGS ── */
 .ch-h{
-  font-size:clamp(36px,8vw,60px);
-  font-weight:800;letter-spacing:-.05em;line-height:.98;
-  margin:0 0 32px;
-  text-transform:uppercase;
-  color:#F6F4EE;
+  font-size:clamp(36px,5.5vw,58px);
+  font-weight:800;letter-spacing:-.04em;line-height:0.93;
+  margin:0 0 8px;text-transform:uppercase;color:var(--ch-ink);
 }
-.ch-h em{font-style:normal;color:#F2A93B}
+.ch-h em{font-style:normal;color:var(--ch-acc)}
+.ch-subh{font-size:14px;color:var(--ch-mute);margin:0 0 20px;line-height:1.4;font-weight:500}
 
-/* space option cards */
-.ch-opts{display:flex;flex-direction:column;gap:14px}
+/* ── STEP 1: SPLIT LAYOUT ── */
+.ch-split{display:flex;gap:56px;align-items:flex-start}
+@media(max-width:860px){.ch-split{flex-direction:column;gap:20px}}
+.ch-split-l{flex:0 0 300px}
+@media(max-width:860px){.ch-split-l{flex:none;width:100%}}
+.ch-split-r{flex:1;min-width:0}
+
+.ch-badge{
+  display:inline-block;
+  border:1px solid var(--ch-ink);
+  padding:3px 8px;
+  font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+  margin-bottom:14px;border-radius:2px;
+}
+.ch-your-move{
+  display:flex;align-items:center;gap:6px;margin-top:18px;
+  font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ch-acc);
+}
+.ch-your-move::before{content:'';width:5px;height:5px;background:var(--ch-acc);border-radius:50%;display:inline-block}
+
+/* question header */
+.ch-q{font-size:clamp(20px,3vw,26px);font-weight:800;text-transform:uppercase;letter-spacing:-.03em;margin:0 0 5px}
+.ch-q-sub{font-size:13px;color:var(--ch-mute);margin:0 0 16px}
+
+/* ── OPTION ROWS ── */
+.ch-opts{border-top:1.5px solid var(--ch-ink);margin-bottom:20px}
 .ch-opt{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:20px 24px;border-radius:20px;
-  border:2px solid rgba(255,255,255,0.07);
-  background:rgba(255,255,255,0.05);
-  font:inherit;font-weight:800;font-size:18px;
-  color:rgba(246,244,238,0.8);
-  cursor:pointer;text-align:left;
-  transition:all .35s cubic-bezier(0.34,1.56,0.64,1);
-  min-height:72px;touch-action:manipulation;
-  letter-spacing:-.01em;
-  position:relative;overflow:hidden;
-  animation:chOptIn .5s cubic-bezier(0.34,1.56,0.64,1) both;
+  display:flex;align-items:center;
+  min-height:54px;padding:0 12px;
+  border-bottom:1px solid var(--ch-line);
+  cursor:pointer;background:transparent;
+  transition:background .18s, transform .18s;
+  user-select:none;-webkit-tap-highlight-color:transparent;
 }
-.ch-opts .ch-opt:nth-child(1){animation-delay:0.08s}
-.ch-opts .ch-opt:nth-child(2){animation-delay:0.16s}
-.ch-opts .ch-opt:nth-child(3){animation-delay:0.24s}
-.ch-opts .ch-opt:nth-child(4){animation-delay:0.32s}
-
-@keyframes chOptIn{
-  from{opacity:0;transform:translateX(-24px) scale(0.92)}
-  to{opacity:1;transform:translateX(0) scale(1)}
+.ch-opt-num{
+  font-size:10px;font-weight:800;letter-spacing:.1em;
+  color:var(--ch-mute);width:28px;flex-shrink:0;
+  transition:color .18s;
 }
-
-.ch-opt:hover{
-  transform:scale(1.04) translateY(-4px) rotate(0.6deg);
-  color:#fff;
+.ch-opt-name{
+  font-size:14px;font-weight:800;text-transform:uppercase;
+  letter-spacing:-.01em;flex:1;
+  transition:transform .18s;
 }
-.ch-opt:active{transform:scale(0.97) rotate(0deg)!important;transition-duration:.1s}
-
-/* each card gets its own flavour */
-.ch-opt:nth-child(1):hover{background:rgba(255,180,50,0.18);border-color:#F2A93B;box-shadow:0 12px 32px -8px rgba(242,169,59,0.5)}
-.ch-opt:nth-child(2):hover{background:rgba(100,210,180,0.12);border-color:#56d4b0;box-shadow:0 12px 32px -8px rgba(86,212,176,0.4)}
-.ch-opt:nth-child(3):hover{background:rgba(200,120,255,0.12);border-color:#c878ff;box-shadow:0 12px 32px -8px rgba(200,120,255,0.4)}
-.ch-opt:nth-child(4):hover{background:rgba(255,100,100,0.12);border-color:#ff6464;box-shadow:0 12px 32px -8px rgba(255,100,100,0.4)}
-
-.ch-opt:nth-child(1):hover .arr{color:#F2A93B}
-.ch-opt:nth-child(2):hover .arr{color:#56d4b0}
-.ch-opt:nth-child(3):hover .arr{color:#c878ff}
-.ch-opt:nth-child(4):hover .arr{color:#ff6464}
-
-.ch-opt .text{position:relative;z-index:1;display:flex;align-items:center;gap:14px}
-.ch-opt .emoji{font-size:28px;line-height:1;flex-shrink:0;transition:transform .35s cubic-bezier(0.34,1.56,0.64,1)}
-.ch-opt:hover .emoji{transform:scale(1.3) rotate(-8deg)}
-
-.ch-opt .arr{
-  opacity:0;font-size:22px;
-  transform:translateX(-16px);
-  transition:all .35s cubic-bezier(0.34,1.56,0.64,1);
-  flex-shrink:0;position:relative;z-index:1;
+.ch-opt-arr{
+  font-size:14px;color:var(--ch-mute);
+  opacity:0;transform:translateX(-6px);
+  transition:all .18s;
 }
-.ch-opt:hover .arr{opacity:1;transform:translateX(0)}
+.ch-opt:hover,.ch-opt.selected{
+  background:var(--ch-acc);
+  color:var(--ch-on-acc);
+  transform:rotate(0.4deg);
+}
+.ch-opt:hover .ch-opt-num,.ch-opt.selected .ch-opt-num{color:rgba(255,255,255,0.65)}
+.ch-opt:hover .ch-opt-name,.ch-opt.selected .ch-opt-name{transform:translateX(3px)}
+.ch-opt:hover .ch-opt-arr,.ch-opt.selected .ch-opt-arr{opacity:1;transform:translateX(0);color:var(--ch-on-acc)}
 
-/* rule / terms boxes */
-.ch-box{
-  border-radius:20px;padding:24px;margin-bottom:14px;
-  border:1.5px solid rgba(255,255,255,0.07);
-  background:rgba(255,255,255,0.03);
-  transition:all .3s;
+/* ── RULE ROWS ── */
+.ch-rules{border-top:1.5px solid var(--ch-ink);margin-bottom:24px}
+.ch-rule{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:18px 12px;
+  border-bottom:1px solid var(--ch-line);
 }
-.ch-box:hover{
-  border-color:rgba(255,255,255,0.12);
-  background:rgba(255,255,255,0.05);
-}
-.ch-box-label{
-  font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(246,244,238,0.35);margin-bottom:14px;
-}
-.ch-rules{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px}
-.ch-rules li{font-size:15px;line-height:1.6;color:rgba(246,244,238,0.75)}
-.ch-rules li .ck{color:#F2A93B;font-weight:800;flex-shrink:0;margin-top:2px}
-.ch-adv{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
-.ch-adv li{font-size:14.5px;color:rgba(246,244,238,0.5);padding-left:18px;position:relative;line-height:1.5}
-.ch-adv li::before{content:"—";position:absolute;left:0;color:rgba(242,169,59,0.5)}
+.ch-rule-n{font-size:10px;font-weight:800;color:var(--ch-mute);width:22px;flex-shrink:0;padding-top:2px}
+.ch-rule-body{flex:1}
+.ch-rule-t{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;margin:0 0 3px}
+.ch-rule-d{font-size:13px;color:var(--ch-mute);margin:0;line-height:1.4}
+.ch-rule-amt{font-size:13px;font-weight:800;color:var(--ch-acc);margin:4px 0 0}
+.ch-rule-amt s{color:var(--ch-mute);font-weight:500;margin-right:4px}
 
-/* primary CTA button */
+/* ── COMPACT REVIEW ── */
+.ch-rev-block{border:1px solid var(--ch-ink);border-radius:3px;overflow:hidden;margin-bottom:20px}
+.ch-rev-head{background:var(--ch-ink);color:var(--ch-bg);padding:9px 14px;font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.ch-rev-row{display:flex;align-items:baseline;padding:10px 14px;border-bottom:1px solid var(--ch-line)}
+.ch-rev-row:last-child{border-bottom:none}
+.ch-rev-k{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ch-mute);width:110px;flex-shrink:0;padding-top:1px}
+.ch-rev-v{font-size:13px;font-weight:700;flex:1}
+.ch-rev-row.hl{background:rgba(0,61,255,0.05)}
+.ch-rev-row.hl .ch-rev-k{color:var(--ch-acc)}
+.ch-rev-row.hl .ch-rev-v{color:var(--ch-acc);font-weight:800}
+
+/* ── CHECKBOX ── */
+.ch-cb-wrap{display:flex;align-items:flex-start;gap:10px;padding:10px 0;cursor:pointer}
+.ch-cb-wrap input[type="checkbox"]{display:none}
+.ch-cb-box{
+  width:18px;height:18px;flex-shrink:0;margin-top:2px;
+  border:1px solid rgba(10,10,10,0.3);border-radius:2px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;color:transparent;
+  transition:all .15s;
+}
+.ch-cb-wrap:hover .ch-cb-box{border-color:var(--ch-acc)}
+.ch-cb-wrap input:checked + .ch-cb-box{
+  background:var(--ch-acc);border-color:var(--ch-acc);color:var(--ch-on-acc);
+  transform:scale(1.1);
+}
+.ch-cb-text{font-size:13px;font-weight:600;color:var(--ch-ink);line-height:1.45}
+
+/* ── FORM GRID ── */
+.ch-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 32px;margin-bottom:28px}
+@media(max-width:600px){.ch-form-grid{grid-template-columns:1fr;gap:20px}}
+.ch-field{display:flex;flex-direction:column-reverse;gap:4px}
+.ch-label-txt{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ch-mute);transition:color .18s}
+.ch-input{
+  border:none;border-bottom:1.5px solid var(--ch-line);
+  background:transparent;padding:8px 0;
+  font-family:inherit;font-size:15px;font-weight:600;color:var(--ch-ink);
+  outline:none;border-radius:0;
+  transition:border-color .18s;
+}
+.ch-input::placeholder{color:rgba(10,10,10,0.2)}
+.ch-input:focus{border-bottom-color:var(--ch-acc)}
+.ch-input:focus + .ch-label-txt{color:var(--ch-acc)}
+
+/* ── BUTTONS ── */
+.ch-actions{display:flex;gap:10px;margin-top:20px}
 .ch-btn{
-  display:block;width:100%;text-align:center;
-  background:linear-gradient(135deg,#e8971e 0%,#F2A93B 50%,#f7c060 100%);
-  color:#0f1209;
-  font-weight:800;font-size:16px;text-decoration:none;
-  padding:20px 26px;border-radius:18px;border:none;
-  font:inherit;font-size:16px;font-weight:800;
-  box-shadow:0 16px 32px -10px rgba(242,169,59,0.6), inset 0 1px 0 rgba(255,255,255,0.3);
-  transition:all .3s cubic-bezier(0.16,1,0.3,1);
-  cursor:pointer;min-height:56px;touch-action:manipulation;
-  text-transform:uppercase;letter-spacing:.1em;
+  background:var(--ch-ink);color:var(--ch-bg);
+  border:1.5px solid var(--ch-ink);border-radius:3px;
+  height:46px;padding:0 22px;
+  font-family:inherit;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  cursor:pointer;transition:all .18s;text-decoration:none;
+  white-space:nowrap;
 }
 .ch-btn:hover:not(:disabled){
-  transform:translateY(-4px) scale(1.02);
-  box-shadow:0 20px 40px -10px rgba(242,169,59,0.75), inset 0 1px 0 rgba(255,255,255,0.4);
+  background:var(--ch-acc);border-color:var(--ch-acc);color:var(--ch-on-acc);
+  transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,61,255,0.25);
 }
-.ch-btn:active:not(:disabled){transform:translateY(-1px) scale(1)}
-.ch-btn:disabled{opacity:.35;cursor:not-allowed;transform:none;box-shadow:none}
+.ch-btn:disabled{opacity:0.35;cursor:not-allowed;transform:none;box-shadow:none}
+.ch-btn-ghost{background:transparent;color:var(--ch-ink)}
+.ch-btn-ghost:hover:not(:disabled){background:rgba(10,10,10,0.06);color:var(--ch-ink);border-color:var(--ch-ink);box-shadow:none;transform:none}
 
-/* inputs */
-.ch-fields{display:flex;flex-direction:column;gap:14px;margin-bottom:20px}
-.ch-field{position:relative}
-.ch-field input{
-  width:100%;
-  background:rgba(255,255,255,0.04);
-  border:1.5px solid rgba(255,255,255,0.1);
-  border-radius:16px;
-  padding:18px 20px;
-  font:inherit;font-size:15px;font-weight:600;
-  color:#F6F4EE;
-  outline:none;
-  transition:all .3s cubic-bezier(0.16,1,0.3,1);
-  min-height:56px;letter-spacing:.02em;
-}
-.ch-field input::placeholder{
-  color:rgba(246,244,238,0.3);
-  font-weight:500;letter-spacing:.1em;
-  font-size:11px;text-transform:uppercase;
-}
-.ch-field input:focus{
-  border-color:#F2A93B;
-  background:rgba(242,169,59,0.05);
-  box-shadow:0 0 0 4px rgba(242,169,59,0.1);
-  transform:translateY(-2px);
-}
-
-/* checkbox */
-.ch-check{
-  display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;
-  padding:18px 20px;border-radius:16px;
-  border:1.5px solid rgba(255,255,255,0.08);
-  background:rgba(255,255,255,0.03);
-  transition:all .25s;
-}
-.ch-check:has(input:checked){
-  border-color:rgba(242,169,59,0.4);
-  background:rgba(242,169,59,0.06);
-}
-.ch-check input{width:20px;height:20px;margin-top:2px;accent-color:#F2A93B;flex-shrink:0;cursor:pointer}
-.ch-check label{font-size:14px;color:rgba(246,244,238,0.55);line-height:1.6;cursor:pointer;font-weight:600}
-
-/* review card */
-.ch-review{
-  border-radius:22px;
-  padding:0;
-  border:1.5px solid rgba(255,255,255,0.08);
-  background:rgba(255,255,255,0.03);
-  margin-bottom:20px;
-  overflow:hidden;
-}
-.ch-rev-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:0;
-  margin-bottom:0;
-}
-@media(max-width:480px){.ch-rev-grid{grid-template-columns:1fr}}
-.ch-rev-item{
-  padding:18px 20px;
-  border-bottom:1px solid rgba(255,255,255,0.06);
-  border-right:1px solid rgba(255,255,255,0.06);
-}
-.ch-rev-item:nth-child(even){border-right:none}
-.ch-rev-item.span2{grid-column:1/-1;border-right:none}
-.ch-rev-item .rl{
-  font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
-  color:rgba(246,244,238,0.3);margin-bottom:5px;
-}
-.ch-rev-item .rv{font-size:15px;font-weight:700;color:#F6F4EE;word-break:break-word}
-.ch-divider{border:none;border-top:1px solid rgba(255,255,255,0.06);margin:0}
-.ch-fee-wrap{padding:20px 22px}
-.ch-fee-label{
-  font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
-  color:#F2A93B;margin-bottom:8px;
-}
-.ch-fee-amt{
-  font-size:clamp(28px,6vw,40px);font-weight:800;
-  letter-spacing:-.04em;color:#F6F4EE;margin:0;
-}
-
-/* success */
-.ch-success{text-align:center;padding-top:12px}
+/* ── SUCCESS ── */
+.ch-success{padding:32px 0;text-align:center}
 .ch-tick{
-  width:96px;height:96px;border-radius:50%;
-  background:rgba(242,169,59,0.1);
-  border:2px solid rgba(242,169,59,0.4);
+  font-size:28px;color:var(--ch-acc);
   display:flex;align-items:center;justify-content:center;
-  font-size:2.4rem;margin:0 auto 28px;
-  color:#F2A93B;
-  animation:tickPop .7s cubic-bezier(0.16,1,0.3,1) both;
-  box-shadow:0 0 0 14px rgba(242,169,59,0.05), 0 0 60px rgba(242,169,59,0.3);
+  width:56px;height:56px;border:1.5px solid var(--ch-acc);border-radius:50%;
+  margin:0 auto 20px;
+  animation:tickPop .4s cubic-bezier(0.34,1.56,0.64,1) both;
 }
-@keyframes tickPop{from{opacity:0;transform:scale(0.4) rotate(-20deg)}to{opacity:1;transform:scale(1) rotate(0deg)}}
-.ch-success .ch-h{animation:chUp .55s .15s cubic-bezier(0.16,1,.3,1) both}
-.ch-success p{color:rgba(246,244,238,0.55);font-size:16px;line-height:1.7;margin:0 0 28px;animation:chUp .55s .25s cubic-bezier(0.16,1,.3,1) both}
-.ch-success p strong{color:#F6F4EE}
+@keyframes tickPop{from{opacity:0;transform:scale(0.4)}to{opacity:1;transform:scale(1)}}
 .ch-ref-badge{
-  display:inline-block;
-  background:rgba(242,169,59,0.1);
-  color:#F2A93B;
-  font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
-  padding:10px 20px;border-radius:10px;margin-bottom:32px;
-  border:1px solid rgba(242,169,59,0.25);
-  animation:chUp .55s .2s cubic-bezier(0.16,1,.3,1) both;
+  display:inline-block;padding:5px 12px;
+  border:1px solid var(--ch-line);border-radius:2px;
+  font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ch-ink);margin-bottom:20px;
 }
-.ch-micro{font-size:13px;color:rgba(246,244,238,0.35);text-align:center;margin-top:14px;letter-spacing:.04em}
-.ch-wa-note{font-size:13px;color:rgba(246,244,238,0.35);text-align:center;margin-top:8px}
-.ch-wa-note a{color:#F2A93B;font-weight:700}
+.ch-success-msg{font-size:14px;color:var(--ch-mute);line-height:1.55;margin:0 auto 24px;max-width:380px}
+.ch-success-msg strong{color:var(--ch-ink)}
+.ch-wa-note{font-size:12px;color:var(--ch-mute);margin-top:12px}
+.ch-wa-note a{color:var(--ch-ink);font-weight:700}
 </style></head><body>
 <div class="wrap">
 <div class="top"><span class="logo">TAAS®</span><span class="pill">First 5 clients: <b>Zero booking fee</b></span><button class="tg" id="tg" type="button" aria-label="Switch between light and dark mode" aria-pressed="false"></button></div>
@@ -568,212 +512,285 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
 <div class="ch-overlay" id="chOverlay">
   <div class="ch-bar">
     <span class="logo">TAAS®</span>
-    <button class="ch-close" onclick="closeChallenge()">Close</button>
+    <button class="ch-close" onclick="closeChallenge()">CLOSE ✕</button>
   </div>
-  
+
   <div class="ch-prog-wrap">
-    <div class="ch-prog-bar" id="chProgBar"></div>
+    <div class="ch-prog-dots">
+      <span class="ch-dot active" id="chD1">01</span>
+      <div class="ch-prog-line" id="chL1"></div>
+      <span class="ch-dot" id="chD2">02</span>
+      <div class="ch-prog-line" id="chL2"></div>
+      <span class="ch-dot" id="chD3">03</span>
+      <div class="ch-prog-line" id="chL3"></div>
+      <span class="ch-dot" id="chD4">04</span>
+    </div>
+    <div class="ch-step-title" id="chStepLabel">DEFINE THE SPACE</div>
   </div>
 
   <div class="ch-body">
+
     <!-- STEP 1 -->
     <div class="ch-step active" id="ch-s1">
-      <p class="ch-num">STEP 01 / 04</p>
-      <h2 class="ch-h">WHAT ARE WE<br><em>WORKING WITH?</em></h2>
-      <p style="font-size:15px;color:rgba(246,244,238,0.45);margin:-18px 0 24px;font-weight:600">Pick your space and let's see what we can do 🔥</p>
-      <div class="ch-opts">
-        <button class="ch-opt" onclick="chPickSpace('Studio Apartment')"><span class="text"><span class="emoji">🛋️</span> Studio Apartment</span> <span class="arr">→</span></button>
-        <button class="ch-opt" onclick="chPickSpace('1BHK / 2BHK Room')"><span class="text"><span class="emoji">🏠</span> 1BHK / 2BHK Room</span> <span class="arr">→</span></button>
-        <button class="ch-opt" onclick="chPickSpace('Rental Space')"><span class="text"><span class="emoji">🔑</span> Rental Space</span> <span class="arr">→</span></button>
-        <button class="ch-opt" onclick="chPickSpace('Café / Commercial')"><span class="text"><span class="emoji">☕</span> Café / Commercial</span> <span class="arr">→</span></button>
+      <div class="ch-split">
+        <div class="ch-split-l">
+          <span class="ch-badge">EXCLUSIVE OFFER</span>
+          <h2 class="ch-h">TRANSFORM<br>YOUR SPACE<br><em>UNDER ₹1.45 LAKH.</em></h2>
+          <p class="ch-subh">Top-tier design. Strict budget.<br>First 5 clients get the design fee waived.</p>
+          <div class="ch-your-move">YOUR MOVE →</div>
+        </div>
+        <div class="ch-split-r">
+          <p class="ch-q">WHAT ARE WE TRANSFORMING?</p>
+          <p class="ch-q-sub">Choose your space for the challenge.</p>
+          <div class="ch-opts">
+            <div class="ch-opt" onclick="chPickSpace(this,'Studio Apartment')">
+              <span class="ch-opt-num">01</span>
+              <span class="ch-opt-name">Studio Apartment</span>
+              <span class="ch-opt-arr">→</span>
+            </div>
+            <div class="ch-opt" onclick="chPickSpace(this,'1BHK / 2BHK Room')">
+              <span class="ch-opt-num">02</span>
+              <span class="ch-opt-name">1BHK / 2BHK Room</span>
+              <span class="ch-opt-arr">→</span>
+            </div>
+            <div class="ch-opt" onclick="chPickSpace(this,'Rental Space')">
+              <span class="ch-opt-num">03</span>
+              <span class="ch-opt-name">Rental Space</span>
+              <span class="ch-opt-arr">→</span>
+            </div>
+            <div class="ch-opt" onclick="chPickSpace(this,'Café / Commercial')">
+              <span class="ch-opt-num">04</span>
+              <span class="ch-opt-name">Café / Commercial</span>
+              <span class="ch-opt-arr">→</span>
+            </div>
+          </div>
+          <div class="ch-actions">
+            <button class="ch-btn" id="ch-btn-s1" style="flex:1" onclick="chGoStep(2)" disabled>CONTINUE →</button>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- STEP 2 -->
     <div class="ch-step" id="ch-s2">
-      <p class="ch-num">STEP 02 / 04</p>
-      <h2 class="ch-h">HERE ARE<br>THE RULES.</h2>
-      
-      <div class="ch-box">
-        <ul class="ch-rules" style="gap:16px">
-          <li style="display:block">
-            <strong style="display:block;font-size:14px;letter-spacing:.05em;margin-bottom:4px">1. STRICT BUDGET</strong>
-            The execution budget is capped at ₹1,45,000. We will stretch every rupee to maximize impact.
-          </li>
-          <li style="display:block">
-            <strong style="display:block;font-size:14px;letter-spacing:.05em;margin-bottom:4px">2. HIGH IMPACT ONLY</strong>
-            No tearing down functional walls or replacing fine tiles. We invest in what you actually feel and see.
-          </li>
-        </ul>
+      <div style="max-width:580px">
+        <h2 class="ch-h" style="font-size:clamp(32px,5vw,48px)">THE<br><em>RULEBOOK.</em></h2>
+        <p class="ch-subh">Three simple rules. No surprises.</p>
+        <div class="ch-rules">
+          <div class="ch-rule">
+            <span class="ch-rule-n">01</span>
+            <div class="ch-rule-body">
+              <p class="ch-rule-t">STRICT BUDGET</p>
+              <p class="ch-rule-d">Hard capped at ₹1,45,000. Every rupee is maximised.</p>
+              <p class="ch-rule-amt">₹1,45,000</p>
+            </div>
+          </div>
+          <div class="ch-rule">
+            <span class="ch-rule-n">02</span>
+            <div class="ch-rule-body">
+              <p class="ch-rule-t">HIGH IMPACT ONLY</p>
+              <p class="ch-rule-d">Smart changes. No unnecessary demolition or civil work.</p>
+            </div>
+          </div>
+          <div class="ch-rule">
+            <span class="ch-rule-n">03</span>
+            <div class="ch-rule-body">
+              <p class="ch-rule-t">DESIGN + DIRECTION</p>
+              <p class="ch-rule-d">First 5 clients get complete design direction at no cost.</p>
+              <p class="ch-rule-amt"><s>₹25,000 standard</s> ₹0 launch offer</p>
+            </div>
+          </div>
+        </div>
+        <div class="ch-actions">
+          <button class="ch-btn ch-btn-ghost" style="flex:0 0 auto" onclick="chGoStep(1)">← BACK</button>
+          <button class="ch-btn" style="flex:1" onclick="chGoStep(3)">ACCEPT RULES →</button>
+        </div>
       </div>
-
-      <div class="ch-box" style="background:rgba(242,169,59,0.08);border-color:rgba(242,169,59,0.4)">
-        <ul class="ch-rules">
-          <li style="display:block">
-            <strong style="display:block;font-size:14px;letter-spacing:.05em;margin-bottom:6px;color:#F2A93B;display:flex;align-items:center;gap:6px;"><span style="font-size:16px">🎁</span> ₹25,000 VALUE GIFTED</strong>
-            As a reward for moving fast, we are waiving our entire <strong>₹25k design & booking fee</strong> for the first 5 clients. You pay absolutely nothing upfront.
-          </li>
-        </ul>
-      </div>
-
-      <button class="ch-btn" onclick="chGoStep(3)">I ACCEPT THE RULES →</button>
     </div>
 
     <!-- STEP 3 -->
     <div class="ch-step" id="ch-s3">
-      <p class="ch-num">STEP 03 / 04</p>
-      <h2 class="ch-h">TELL US<br>ABOUT YOU.</h2>
-
-      <div class="ch-fields">
-        <div class="ch-field"><input type="text" id="ch-f-name" placeholder="FULL NAME"></div>
-        <div class="ch-field"><input type="tel" id="ch-f-wa" placeholder="WHATSAPP NUMBER"></div>
-        <div class="ch-field"><input type="text" id="ch-f-loc" placeholder="LOCATION (IN MUMBAI)"></div>
-        <div class="ch-field"><input type="text" id="ch-f-addr" placeholder="DETAILED ADDRESS FOR SITE VISIT"></div>
+      <div style="max-width:520px">
+        <h2 class="ch-h" style="font-size:clamp(32px,5vw,48px)">READY TO<br><em>COMMIT?</em></h2>
+        <p class="ch-subh">Review your challenge details before locking in.</p>
+        <div class="ch-rev-block">
+          <div class="ch-rev-head">YOUR CHALLENGE</div>
+          <div class="ch-rev-row"><div class="ch-rev-k">SPACE</div><div class="ch-rev-v" id="ch-prm-space">—</div></div>
+          <div class="ch-rev-row"><div class="ch-rev-k">EXECUTION</div><div class="ch-rev-v">₹1,45,000</div></div>
+          <div class="ch-rev-row hl"><div class="ch-rev-k">DESIGN FEE</div><div class="ch-rev-v">₹0 (FIRST 5 ONLY)</div></div>
+        </div>
+        <label class="ch-cb-wrap">
+          <input type="checkbox" id="ch-f-agree">
+          <div class="ch-cb-box">✓</div>
+          <div class="ch-cb-text">I accept the TAAS Challenge Rules and want to secure my spot.</div>
+        </label>
+        <div class="ch-actions">
+          <button class="ch-btn ch-btn-ghost" style="flex:0 0 auto" onclick="chGoStep(2)">← BACK</button>
+          <button class="ch-btn" id="ch-proceedBtn" style="flex:1" onclick="chGoStep(4)" disabled>COMMIT & CONTINUE →</button>
+        </div>
       </div>
-
-      <div class="ch-check">
-        <input type="checkbox" id="ch-f-agree">
-        <label for="ch-f-agree">I agree to the challenge rules.</label>
-      </div>
-
-      <button class="ch-btn" id="ch-proceedBtn" onclick="chHandleProceed()" disabled>REVIEW &amp; PROCEED →</button>
-      <p class="ch-micro">Questions? WhatsApp us.</p>
     </div>
 
     <!-- STEP 4 -->
     <div class="ch-step" id="ch-s4">
-      <p class="ch-num">STEP 04 / 04</p>
-      <h2 class="ch-h">LOCK IT IN.</h2>
-
-      <div class="ch-review">
-        <div class="ch-rev-grid">
-          <div class="ch-rev-item"><p class="rl">NAME</p><p class="rv" id="ch-rv-name">—</p></div>
-          <div class="ch-rev-item"><p class="rl">WHATSAPP</p><p class="rv" id="ch-rv-wa">—</p></div>
-          <div class="ch-rev-item"><p class="rl">LOCATION</p><p class="rv" id="ch-rv-loc">—</p></div>
-          <div class="ch-rev-item"><p class="rl">SPACE TYPE</p><p class="rv" id="ch-rv-space">—</p></div>
-          <div class="ch-rev-item span2"><p class="rl">DETAILED ADDRESS</p><p class="rv" id="ch-rv-addr">—</p></div>
+      <div style="max-width:640px">
+        <h2 class="ch-h" style="font-size:clamp(32px,5vw,48px)">LET'S<br><em>LOCK IT IN.</em></h2>
+        <p class="ch-subh">Where is the challenge happening?</p>
+        <div class="ch-form-grid">
+          <div class="ch-field">
+            <input type="text" class="ch-input" id="ch-f-name" placeholder="John Doe">
+            <label class="ch-label-txt">FULL NAME *</label>
+          </div>
+          <div class="ch-field">
+            <input type="tel" class="ch-input" id="ch-f-wa" placeholder="+91 98765 43210">
+            <label class="ch-label-txt">WHATSAPP *</label>
+          </div>
+          <div class="ch-field">
+            <input type="text" class="ch-input" id="ch-f-loc" placeholder="Mumbai, Pune…">
+            <label class="ch-label-txt">CITY / LOCATION *</label>
+          </div>
+          <div class="ch-field">
+            <input type="text" class="ch-input" id="ch-f-addr" placeholder="Flat, Building, Street">
+            <label class="ch-label-txt">DETAILED ADDRESS *</label>
+          </div>
         </div>
-        <hr class="ch-divider">
-        <div class="ch-fee-wrap" style="background:linear-gradient(135deg, rgba(242,169,59,0.12), rgba(242,169,59,0.02));">
-          <p class="ch-fee-label" style="display:flex;align-items:center;gap:6px;"><span style="font-size:14px">🎁</span> EARLY BIRD GIFT</p>
-          <p class="ch-fee-amt">₹0 <span style="font-size:18px;color:rgba(246,244,238,0.3);text-decoration:line-through;font-weight:700;vertical-align:middle;margin-left:6px;">₹25,000</span></p>
-          <p style="font-size:12px;font-weight:700;color:#F2A93B;margin:10px 0 0;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;">100% Free Design & Booking Fees for the first 5 clients</p>
+        <div class="ch-actions">
+          <button class="ch-btn ch-btn-ghost" style="flex:0 0 auto" onclick="chGoStep(3)">← BACK</button>
+          <button class="ch-btn" id="ch-confirmBtn" style="flex:1" onclick="chConfirm()" disabled>CONFIRM CHALLENGE →</button>
         </div>
       </div>
-
-      <button class="ch-btn" onclick="chConfirm()">CONFIRM CHALLENGE →</button>
-      <p class="ch-micro" style="margin-top:20px;letter-spacing:.1em;text-transform:uppercase;font-weight:700">LIMITED SLOTS AVAILABLE THIS MONTH.</p>
-      <p class="ch-wa-note">Questions? <a href="https://wa.me/917400162509" target="_blank" rel="noopener noreferrer">+91 74001 62509</a></p>
     </div>
 
     <!-- STEP 5 -->
     <div class="ch-step" id="ch-s5">
-      <div class="ch-success">
-        <div class="ch-tick">✓</div>
-        <h2 class="ch-h">CHALLENGE<br><em>ACCEPTED.</em></h2>
-        <div class="ch-ref-badge" id="ch-sv-ref"></div>
-        <p>Send us a quick hello on WhatsApp — we'll coordinate your space photos and confirm your slot eligibility.</p>
-        <a id="ch-wa-link" href="#" target="_blank" rel="noopener noreferrer" class="ch-btn" style="margin-bottom:20px">SEND WHATSAPP →</a>
-        <button class="ch-close" style="display:block;width:100%;text-align:center;border:none;background:none;cursor:pointer;font-weight:700;color:var(--mute)" onclick="closeChallenge()">← RETURN TO HOME</button>
+      <div style="max-width:520px;text-align:center">
+        <div class="ch-success">
+          <div class="ch-tick">✓</div>
+          <h2 class="ch-h">YOU'RE<br><em>IN.</em></h2>
+          <span style="display:block;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px">CHALLENGE ACCEPTED</span>
+          <div class="ch-ref-badge" id="ch-sv-ref">TAAS-XXX</div>
+          <p class="ch-success-msg"><strong>Now show us the space.</strong><br>Send a few real photos on WhatsApp so we can assess the starting point and confirm your slot.</p>
+          <a id="ch-wa-link" href="#" target="_blank" rel="noopener noreferrer" class="ch-btn" style="background:var(--ch-acc);border-color:var(--ch-acc);color:var(--ch-on-acc);width:100%;margin-bottom:10px">SEND PHOTOS ON WHATSAPP ↗</a>
+          <button class="ch-btn ch-btn-ghost" style="width:100%;border:none" onclick="closeChallenge()">← RETURN TO HOME</button>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+
+  </div><!-- /ch-body -->
+</div><!-- /ch-overlay -->
 
 <script>
-/* Overlay logic */
 const chOverlay = document.getElementById('chOverlay');
-const chProgBar = document.getElementById('chProgBar');
-const CH_PROG = {1:0, 2:25, 3:50, 4:75, 5:100};
+const CH_LABELS = {
+  1: 'DEFINE THE SPACE',
+  2: 'THE RULEBOOK',
+  3: 'COMMITMENT',
+  4: 'LOCK IT IN',
+  5: 'CHALLENGE SECURED'
+};
 const chState = { spaceType:'', name:'', whatsapp:'', location:'', address:'' };
 let chStep = 1;
 
 function openChallenge(e) {
   if (e) e.preventDefault();
   chOverlay.classList.add('open');
-  // Small delay for transition
   setTimeout(function(){ chOverlay.classList.add('visible'); }, 10);
   document.body.style.overflow = 'hidden';
-  chGoStep(1); // Reset to step 1
+  chGoStep(1);
 }
 
 function closeChallenge() {
   chOverlay.classList.remove('visible');
-  setTimeout(function(){ 
-    chOverlay.classList.remove('open'); 
+  setTimeout(function(){
+    chOverlay.classList.remove('open');
     document.body.style.overflow = '';
-  }, 350);
+  }, 260);
 }
 
-function chSetProgress(n) {
-  if(chProgBar) chProgBar.style.width = CH_PROG[n] + '%';
+function updateTrack(n) {
+  var lbl = document.getElementById('chStepLabel');
+  if (lbl) lbl.textContent = CH_LABELS[n] || '';
+  for (var i = 1; i <= 4; i++) {
+    var dot = document.getElementById('chD' + i);
+    if (dot) {
+      if (i <= n) dot.classList.add('active');
+      else dot.classList.remove('active');
+    }
+    if (i < 4) {
+      var line = document.getElementById('chL' + i);
+      if (line) {
+        if (i < n) line.classList.add('done');
+        else line.classList.remove('done');
+      }
+    }
+  }
 }
 
 function chGoStep(n) {
-  const current = document.getElementById('ch-s' + chStep);
+  var current = document.getElementById('ch-s' + chStep);
   if (current) current.classList.remove('active');
   chStep = n;
-  const next = document.getElementById('ch-s' + n);
+  var next = document.getElementById('ch-s' + n);
   if (next) next.classList.add('active');
-  chSetProgress(n);
-  chOverlay.scrollTo({top:0, behavior:'smooth'});
+  updateTrack(n);
+  chOverlay.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function chPickSpace(type) {
+function chPickSpace(btn, type) {
+  document.querySelectorAll('.ch-opt').forEach(function(el) {
+    el.classList.remove('selected');
+    el.querySelector('.ch-opt-num').textContent = el.getAttribute('data-num');
+  });
+  btn.classList.add('selected');
   chState.spaceType = type;
-  chGoStep(2);
+  var prm = document.getElementById('ch-prm-space');
+  if (prm) prm.textContent = type;
+  var s1btn = document.getElementById('ch-btn-s1');
+  if (s1btn) s1btn.disabled = false;
+  setTimeout(function(){ chGoStep(2); }, 250);
 }
 
 function chValidate() {
-  const ok = chState.name && chState.whatsapp && chState.location && chState.address
-             && document.getElementById('ch-f-agree').checked;
-  document.getElementById('ch-proceedBtn').disabled = !ok;
+  var ok = document.getElementById('ch-f-agree').checked;
+  var proceedBtn = document.getElementById('ch-proceedBtn');
+  if (proceedBtn) proceedBtn.disabled = !ok;
+
+  var ok2 = chState.name && chState.whatsapp && chState.location && chState.address;
+  var confirmBtn = document.getElementById('ch-confirmBtn');
+  if (confirmBtn) confirmBtn.disabled = !ok2;
 }
 
 ['ch-f-name','ch-f-wa','ch-f-loc','ch-f-addr'].forEach(function(id) {
-  const el = document.getElementById(id);
-  if(el) {
+  var el = document.getElementById(id);
+  if (el) {
     el.addEventListener('input', function() {
-      const map = {'ch-f-name':'name','ch-f-wa':'whatsapp','ch-f-loc':'location','ch-f-addr':'address'};
+      var map = { 'ch-f-name':'name', 'ch-f-wa':'whatsapp', 'ch-f-loc':'location', 'ch-f-addr':'address' };
       chState[map[id]] = this.value.trim();
       chValidate();
     });
   }
 });
-const agreeCb = document.getElementById('ch-f-agree');
-if(agreeCb) agreeCb.addEventListener('change', chValidate);
 
-function chHandleProceed() {
-  document.getElementById('ch-rv-name').textContent  = chState.name    || '—';
-  document.getElementById('ch-rv-wa').textContent    = chState.whatsapp|| '—';
-  document.getElementById('ch-rv-loc').textContent   = chState.location|| '—';
-  document.getElementById('ch-rv-space').textContent = chState.spaceType|| '—';
-  document.getElementById('ch-rv-addr').textContent  = chState.address  || '—';
-  chGoStep(4);
-}
+var agreeCb = document.getElementById('ch-f-agree');
+if (agreeCb) agreeCb.addEventListener('change', chValidate);
 
 function chConfirm() {
-  const refCode = '1.45LAKH-' + Math.floor(1000 + 9000 * Math.random());
-  document.getElementById('ch-sv-ref').textContent = 'REF: ' + refCode;
+  var d = new Date();
+  var dateStr = ('0'+d.getDate()).slice(-2) + ('0'+(d.getMonth()+1)).slice(-2) + d.getFullYear().toString().slice(-2);
+  var refCode = 'TAAS-' + dateStr + '-' + Math.floor(1000 + 9000 * Math.random());
+  var refEl = document.getElementById('ch-sv-ref');
+  if (refEl) refEl.textContent = refCode;
 
-  const msg = 'Hi TAAS! I just booked the ₹1.45 Lakh Interior Challenge.'
-    + '\n\nMy Reference: ' + refCode
-    + '\nName: ' + chState.name
-    + '\nSpace: ' + chState.spaceType
-    + '\nLocation: ' + chState.location
-    + '\n\nI am claiming the ₹25k Early Bird Gift! Please let me know if I made it into the first 5 slots.'
-    + '\n\nHere is my detailed address for the on-site visit:\n' + chState.address
-    + '\n\nI am ready to share my space photos!';
+  var msg = 'Hi TAAS! I just confirmed the ₹1.45 Lakh Interior Challenge.\n\nMy Reference: ' + refCode + '\nName: ' + chState.name + '\nSpace: ' + chState.spaceType + '\nLocation: ' + chState.location + '\n\nI am claiming the Early Bird Gift! Please let me know if I made it into the first 5 slots.\n\nDetailed address:\n' + chState.address + '\n\nI am ready to share my space photos!';
 
-  document.getElementById('ch-wa-link').href = 'https://wa.me/917400162509?text=' + encodeURIComponent(msg);
+  if (waLink) waLink.href = 'https://wa.me/917400162509?text=' + encodeURIComponent(msg);
   chGoStep(5);
 }
+
+// Store data-num on each opt for reset
+document.querySelectorAll('.ch-opt').forEach(function(el) {
+  var numEl = el.querySelector('.ch-opt-num');
+  if (numEl) el.setAttribute('data-num', numEl.textContent);
+});
 </script>
 </body></html>
-
-
-
-
-
-
-
