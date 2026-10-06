@@ -180,7 +180,7 @@ h1{font-size:30px}h2{font-size:24px}
 
 /* Shared Typo */
 .h-disp { font-size: clamp(46px, 6vw, 86px); font-weight: 700; letter-spacing: -0.045em; line-height: 0.92; margin: 0; }
-.h-step { font-size: clamp(32px, 4.5vw, 56px); font-weight: 700; letter-spacing: -0.03em; line-height: 0.95; margin: 0 0 12px; }
+.h-step { font-size: clamp(32px, 4.5vw, 56px); font-weight: 700; letter-spacing: -0.03em; line-height: 0.95; margin: 8px 0 12px; padding-top: 4px; }
 .lbl { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
 
 /* Header */
@@ -211,6 +211,7 @@ h1{font-size:30px}h2{font-size:24px}
 /* Hero & Split */
 .ch-split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: flex-start; }
 .ch-split > * { min-width: 0; overflow: visible; }
+.ch-split-l { padding-top: 0; }
 @media(max-width: 860px) { .ch-split { grid-template-columns: 1fr; gap: 32px; } }
 
 /* Options List */
@@ -446,30 +447,30 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
           <div class="ch-deal-hero"><div class="ch-deal-bdg">FREE</div><div class="ch-deal-info"><div class="ch-deal-val">₹25,000 Design Service</div><div class="ch-deal-sub">Complimentary for First 5 Spots</div></div></div>
           </div>
           <div class="ch-split-r">
-            <div class="lbl" style="margin-bottom:8px">STEP 01</div>
+            <div class="lbl" style="margin-bottom:14px">STEP 01</div>
             <h3 class="h-step">WHAT ARE WE<br>TRANSFORMING?</h3>
             <p class="lbl" style="color:var(--gry);margin-bottom:32px">CHOOSE YOUR SPACE.</p>
 
             <div class="ch-list">
               <div class="ch-opt" onclick="chPick(this, 'STUDIO APARTMENT')">
-                <div class="ch-opt-n">01</div><div class="ch-opt-t">STUDIO APARTMENT</div><div class="ch-opt-sel">SELECTED</div><div class="ch-opt-arr">?</div><div class="ch-opt-sq"></div>
+                <div class="ch-opt-n">01</div><div class="ch-opt-t">STUDIO APARTMENT</div><div class="ch-opt-sel">SELECTED</div><div class="ch-opt-arr">→</div><div class="ch-opt-sq"></div>
               </div>
               <div class="ch-opt" onclick="chPick(this, '1BHK / 2BHK')">
-                <div class="ch-opt-n">02</div><div class="ch-opt-t">1BHK / 2BHK</div><div class="ch-opt-sel">SELECTED</div><div class="ch-opt-arr">?</div><div class="ch-opt-sq"></div>
+                <div class="ch-opt-n">02</div><div class="ch-opt-t">1BHK / 2BHK</div><div class="ch-opt-sel">SELECTED</div><div class="ch-opt-arr">→</div><div class="ch-opt-sq"></div>
               </div>
               <div class="ch-opt" onclick="chPick(this, 'ROOM')">
-                <div class="ch-opt-n">03</div><div class="ch-opt-t">ROOM</div><div class="ch-opt-sel">SELECTED</div><div class="ch-opt-arr">?</div><div class="ch-opt-sq"></div>
+                <div class="ch-opt-n">03</div><div class="ch-opt-t">ROOM</div><div class="ch-opt-sel">SELECTED</div><div class="ch-opt-arr">→</div><div class="ch-opt-sq"></div>
               </div>
               <div class="ch-opt" onclick="chPick(this, 'RENTAL SPACE')">
-                <div class="ch-opt-n">04</div><div class="ch-opt-t">RENTAL SPACE</div><div class="ch-opt-sel">SELECTED</div><div class="ch-opt-arr">?</div><div class="ch-opt-sq"></div>
+                <div class="ch-opt-n">04</div><div class="ch-opt-t">RENTAL SPACE</div><div class="ch-opt-sel">SELECTED</div><div class="ch-opt-arr">→</div><div class="ch-opt-sq"></div>
               </div>
               <div class="ch-opt" style="border-bottom:none" onclick="chPick(this, 'CAF� / COMMERCIAL')">
-                <div class="ch-opt-n">05</div><div class="ch-opt-t">CAF� / COMMERCIAL</div><div class="ch-opt-sel">SELECTED</div><div class="ch-opt-arr">?</div><div class="ch-opt-sq"></div>
+                <div class="ch-opt-n">05</div><div class="ch-opt-t">CAF� / COMMERCIAL</div><div class="ch-opt-sel">SELECTED</div><div class="ch-opt-arr">→</div><div class="ch-opt-sq"></div>
               </div>
             </div>
 
             <div class="lbl" style="margin-top:40px;margin-bottom:12px;padding-top:16px;border-top:1px solid var(--txt)">YOUR MOVE</div>
-            <button class="ch-btn" id="btn-s1" onclick="chGo(2)" disabled>CONTINUE ?</button>
+            <button class="ch-btn" id="btn-s1" onclick="chGo(2)" disabled>CONTINUE →</button>
           </div>
         </div>
       </div>
@@ -478,7 +479,7 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       <div class="ch-step-v" id="s2">
         <div class="ch-split">
           <div class="ch-split-l">
-            <div class="lbl" style="margin-bottom:8px">STEP 02 / 04</div>
+            <div class="lbl" style="margin-bottom:14px">STEP 02 / 04</div>
             <h3 class="h-step">THE RULES.</h3>
           </div>
           <div class="ch-split-r">
@@ -497,8 +498,8 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
               </div>
             </div>
             <div style="display:flex;gap:12px">
-              <button class="ch-btn ch-btn-sec" onclick="chGo(1)">? BACK</button>
-              <button class="ch-btn" onclick="chGo(3)">ACCEPT RULES ?</button>
+              <button class="ch-btn ch-btn-sec" onclick="chGo(1)">← BACK</button>
+              <button class="ch-btn" onclick="chGo(3)">ACCEPT RULES →</button>
             </div>
           </div>
         </div>
@@ -508,7 +509,7 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       <div class="ch-step-v" id="s3">
         <div class="ch-split">
           <div class="ch-split-l">
-            <div class="lbl" style="margin-bottom:8px">STEP 03 / 04</div>
+            <div class="lbl" style="margin-bottom:14px">STEP 03 / 04</div>
             <h3 class="h-step">READY TO<br>COMMIT?</h3>
           </div>
           <div class="ch-split-r">
@@ -525,8 +526,8 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
             </label>
 
             <div style="display:flex;gap:12px">
-              <button class="ch-btn ch-btn-sec" onclick="chGo(2)">? BACK</button>
-              <button class="ch-btn" id="btn-s3" onclick="chGo(4)" disabled>COMMIT ?</button>
+              <button class="ch-btn ch-btn-sec" onclick="chGo(2)">← BACK</button>
+              <button class="ch-btn" id="btn-s3" onclick="chGo(4)" disabled>COMMIT →</button>
             </div>
           </div>
         </div>
@@ -536,7 +537,7 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       <div class="ch-step-v" id="s4">
         <div class="ch-split">
           <div class="ch-split-l">
-            <div class="lbl" style="margin-bottom:8px">STEP 04 / 04</div>
+            <div class="lbl" style="margin-bottom:14px">STEP 04 / 04</div>
             <h3 class="h-step">LOCK IT IN.</h3>
           </div>
           <div class="ch-split-r">
@@ -562,8 +563,8 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
             </div>
 
             <div style="display:flex;gap:12px">
-              <button class="ch-btn ch-btn-sec" onclick="chGo(3)">? BACK</button>
-              <button class="ch-btn" id="btn-sub" onclick="chSub()">CONFIRM CHALLENGE ?</button>
+              <button class="ch-btn ch-btn-sec" onclick="chGo(3)">← BACK</button>
+              <button class="ch-btn" id="btn-sub" onclick="chSub()">CONFIRM CHALLENGE →</button>
             </div>
           </div>
         </div>
@@ -577,7 +578,7 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
           <div class="ch-ref" id="ref-id">TAAS-XXX</div>
 
           <div class="h-step" style="font-size:24px;margin:32px 0 16px">NOW SHOW US THE SPACE.</div>
-          <button class="ch-btn" id="wa-btn" style="width:auto">OPEN WHATSAPP TO CLAIM ?</button>
+          <button class="ch-btn" id="wa-btn" style="width:auto">OPEN WHATSAPP TO CLAIM →</button>
         </div>
       </div>
 
