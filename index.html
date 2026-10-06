@@ -1024,7 +1024,7 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
 
       var fee=fmtCurrency(cfg.launchFee);
 
-      var msg='Hi TAAS Team!\n\nI just confirmed the TAAS Design Challenge.\n\n'+'Reference: '+ref+'\n'+'Name: '+name+'\n'+'WhatsApp: '+wa+'\n'+'Email: '+em+'\n\n'+'Space: '+state.space+'\n'+'Location: '+addr+'\n'+(maps?'Maps: '+maps+'\n':'')+'\n'+'Execution Budget: ₹1,45,000\n'+'Design + Direction: '+fee+' (Launch Offer)\n\n'+'I am claiming the Early Bird Design Offer and ready to share photos. Please confirm my slot!';
+      var msg='TAAS DESIGN CHALLENGE — NEW SUBMISSION\n'+'================================\n\n'+'REF: '+ref+'\n'+'NAME: '+name+'\n'+'WHATSAPP: '+wa+'\n'+'EMAIL: '+em+'\n\n'+'SPACE TYPE: '+state.space+'\n'+'LOCATION: '+addr+'\n'+(maps?'MAPS: '+maps+'\n':'')+'\n'+'EXECUTION BUDGET: ₹1,45,000\n'+'DESIGN + DIRECTION: '+fee+' — Launch Offer\n\n'+'================================\n'+'NEXT STEPS\n'+'================================\n'+'1. I will now share photos / a short video of the space in this chat.\n'+'2. Please review and confirm whether my slot is secured.\n'+'3. Once confirmed, I am ready to proceed with the site visit.\n\n'+'Looking forward to working with the TAAS team.';
       var waUrl='https://wa.me/'+cfg.waNumber+'?text='+encodeURIComponent(msg);
       var waBtn=document.getElementById('chWaBtn');
       if(waBtn) waBtn.href=waUrl;
