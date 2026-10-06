@@ -1,8 +1,5 @@
 {
   "buildCommand": null,
   "outputDirectory": ".",
-  "framework": null,
-  "rewrites": [
-    { "source": "/challenge", "destination": "/challenge/index.html" }
-  ]
+  "framework": null
 }
