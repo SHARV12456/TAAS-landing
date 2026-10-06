@@ -158,240 +158,154 @@ h1{font-size:30px}h2{font-size:24px}
 @media(min-width:2200px){.wrap{max-width:1640px}body{font-size:22px}h1{font-size:92px}h2{font-size:56px}.btn{font-size:21px}}
 
 /* ============================================================
-   CHALLENGE OVERLAY — COMPACT EDITORIAL DESIGN
-   TAAS × CREATIVE STUDIO × DESIGN CHALLENGE
-   Accent: Electric Blue #003DFF
+   CHALLENGE OVERLAY � FUNKY BOLD NEO-BRUTALIST
+   TAAS � CREATIVE STUDIO � DESIGN CHALLENGE
+   Accent: Acid Lime #D7FF3F
    ============================================================ */
 
 .ch-overlay{
-  --ch-bg:#F5F4F0;
-  --ch-ink:#0A0A0A;
-  --ch-acc:#003DFF;
-  --ch-on-acc:#FFFFFF;
-  --ch-mute:rgba(10,10,10,0.38);
-  --ch-line:rgba(10,10,10,0.10);
-  --ch-card:#FFFFFF;
+  --c-bg: #F4F1EA;
+  --c-txt: #111111;
+  --c-acc: #D7FF3F;
+  --c-brd: 2px solid #111111;
+  --c-shad: 5px 5px 0 #111111;
+  --c-shad-h: 7px 7px 0 #111111;
+  --c-mut: rgba(17,17,17,0.5);
   position:fixed;inset:0;z-index:100;
-  background:var(--ch-bg);
+  background:var(--c-bg);
   overflow-y:auto;
   display:none;opacity:0;
-  transform:translateY(16px);
-  transition:opacity .25s ease, transform .28s cubic-bezier(0.16,1,0.3,1);
-  color:var(--ch-ink);
+  color:var(--c-txt);
   font-family:inherit;
+  padding-bottom:60px;
 }
 .ch-overlay *{box-sizing:border-box}
-.ch-overlay.open{display:block}
-.ch-overlay.visible{opacity:1;transform:translateY(0)}
+.ch-overlay.open{display:block;animation:chPop .25s ease-out both}
+.ch-overlay.visible{opacity:1}
 
-/* top bar */
-.ch-bar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 32px;
-  position:sticky;top:0;background:var(--ch-bg);
-  border-bottom:1px solid var(--ch-line);z-index:20;
-}
-@media(max-width:768px){.ch-bar{padding:12px 16px}}
-.ch-bar .logo{font-weight:800;font-size:15px;letter-spacing:.12em;color:var(--ch-ink)}
-.ch-close{
-  background:none;border:1px solid rgba(10,10,10,0.25);border-radius:3px;
-  font-family:inherit;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
-  padding:7px 14px;cursor:pointer;color:var(--ch-ink);
-  transition:all .18s;
-}
-.ch-close:hover{background:var(--ch-ink);color:var(--ch-bg);border-color:var(--ch-ink)}
+@keyframes chPop{from{opacity:0;transform:scale(0.98)}to{opacity:1;transform:scale(1)}}
 
-/* step progress track */
-.ch-prog-wrap{
-  padding:14px 32px;
-  border-bottom:1px solid var(--ch-line);
-  max-width:1180px;margin:0 auto;
-}
-@media(max-width:768px){.ch-prog-wrap{padding:12px 16px}}
-.ch-prog-dots{display:flex;align-items:center;margin-bottom:5px}
-.ch-dot{
-  font-size:10px;font-weight:800;letter-spacing:.1em;
-  color:var(--ch-mute);transition:color .2s;
-}
-.ch-dot.active{color:var(--ch-acc)}
-.ch-prog-line{flex:1;height:1px;background:var(--ch-line);margin:0 10px;transition:background .3s}
-.ch-prog-line.done{background:var(--ch-acc)}
-.ch-step-title{font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--ch-ink)}
+/* Top bar */
+.ch-top{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:var(--c-brd);background:var(--c-bg);position:sticky;top:0;z-index:10}
+.ch-top-l{display:flex;align-items:center;gap:16px}
+.ch-logo{font-weight:900;font-size:18px;letter-spacing:-0.02em}
+.ch-mode{font-size:10px;font-weight:800;background:var(--c-txt);color:var(--c-bg);padding:4px 8px;text-transform:uppercase;letter-spacing:0.1em;display:flex;align-items:center;gap:6px}
+.ch-mode::before{content:'';display:block;width:6px;height:6px;background:var(--c-acc);border-radius:50%;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.ch-close{background:transparent;border:var(--c-brd);font-weight:900;font-size:12px;padding:6px 12px;cursor:pointer;transition:all 0.15s;text-transform:uppercase}
+.ch-close:hover{background:var(--c-txt);color:var(--c-bg);transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--c-txt)}
 
-/* main body container */
-.ch-body{max-width:1180px;margin:0 auto;padding:32px;min-height:calc(100vh - 120px)}
-@media(max-width:768px){.ch-body{padding:20px 16px}}
+/* Body & Grid */
+.ch-body{max-width:1100px;margin:0 auto;padding:40px 24px}
+@media(max-width:768px){.ch-body{padding:24px 16px}}
 
-/* step transitions */
 .ch-step{display:none}
-.ch-step.active{display:block;animation:chFadeIn .22s cubic-bezier(0.16,1,0.3,1) both}
-@keyframes chFadeIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
+.ch-step.active{display:block;animation:chSlide .25s ease-out both}
+@keyframes chSlide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── HEADINGS ── */
-.ch-h{
-  font-size:clamp(36px,5.5vw,58px);
-  font-weight:800;letter-spacing:-.04em;line-height:0.93;
-  margin:0 0 8px;text-transform:uppercase;color:var(--ch-ink);
-}
-.ch-h em{font-style:normal;color:var(--ch-acc)}
-.ch-subh{font-size:14px;color:var(--ch-mute);margin:0 0 20px;line-height:1.4;font-weight:500}
-
-/* ── STEP 1: SPLIT LAYOUT ── */
-.ch-split{display:flex;gap:56px;align-items:flex-start}
-@media(max-width:860px){.ch-split{flex-direction:column;gap:20px}}
-.ch-split-l{flex:0 0 300px}
+/* Graphic Poster Split */
+.ch-split{display:flex;gap:40px;align-items:flex-start}
+@media(max-width:860px){.ch-split{flex-direction:column;gap:32px}}
+.ch-split-l{flex:0 0 340px}
 @media(max-width:860px){.ch-split-l{flex:none;width:100%}}
 .ch-split-r{flex:1;min-width:0}
 
-.ch-badge{
-  display:inline-block;
-  border:1px solid var(--ch-ink);
-  padding:3px 8px;
-  font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
-  margin-bottom:14px;border-radius:2px;
-}
-.ch-your-move{
-  display:flex;align-items:center;gap:6px;margin-top:18px;
-  font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--ch-acc);
-}
-.ch-your-move::before{content:'';width:5px;height:5px;background:var(--ch-acc);border-radius:50%;display:inline-block}
+/* Left side elements */
+.ch-offer-lbl{font-size:10px;font-weight:800;letter-spacing:0.1em;border:var(--c-brd);padding:4px 8px;display:inline-block;margin-bottom:12px;background:var(--c-acc);transform:rotate(-1deg)}
+.ch-hero-h{font-size:clamp(42px, 6vw, 64px);font-weight:900;line-height:0.9;text-transform:uppercase;letter-spacing:-0.03em;margin:0 0 24px}
+.ch-hero-h em{font-style:normal;background:var(--c-txt);color:var(--c-acc);padding:0 8px;display:inline-block;transform:rotate(1deg)}
 
-/* question header */
-.ch-q{font-size:clamp(20px,3vw,26px);font-weight:800;text-transform:uppercase;letter-spacing:-.03em;margin:0 0 5px}
-.ch-q-sub{font-size:13px;color:var(--ch-mute);margin:0 0 16px}
+/* Step Indicator Block */
+.ch-ind{border:var(--c-brd);padding:12px;display:inline-flex;flex-direction:column;gap:8px;background:#fff;box-shadow:var(--c-shad);transform:rotate(-1deg);margin-bottom:32px}
+.ch-ind-top{font-size:24px;font-weight:900;line-height:1}
+.ch-ind-top span{font-size:14px;color:var(--c-mut)}
+.ch-ind-boxes{display:flex;gap:4px}
+.ch-box{width:12px;height:12px;border:2px solid var(--c-txt)}
+.ch-box.active{background:var(--c-acc)}
 
-/* ── OPTION ROWS ── */
-.ch-opts{border-top:1.5px solid var(--ch-ink);margin-bottom:20px}
+/* Right side Q */
+.ch-q-lbl{font-size:12px;font-weight:900;text-transform:uppercase;margin:0 0 4px;color:var(--c-mut)}
+.ch-q{font-size:clamp(28px, 4vw, 36px);font-weight:900;text-transform:uppercase;line-height:1;margin:0 0 24px;letter-spacing:-0.02em}
+
+/* Options Grid */
+.ch-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+@media(max-width:600px){.ch-grid{grid-template-columns:1fr}}
 .ch-opt{
+  border:var(--c-brd);background:transparent;
+  min-height:64px;padding:12px 16px;
   display:flex;align-items:center;
-  min-height:54px;padding:0 12px;
-  border-bottom:1px solid var(--ch-line);
-  cursor:pointer;background:transparent;
-  transition:background .18s, transform .18s;
-  user-select:none;-webkit-tap-highlight-color:transparent;
+  cursor:pointer;transition:all 0.15s;
 }
-.ch-opt-num{
-  font-size:10px;font-weight:800;letter-spacing:.1em;
-  color:var(--ch-mute);width:28px;flex-shrink:0;
-  transition:color .18s;
-}
-.ch-opt-name{
-  font-size:14px;font-weight:800;text-transform:uppercase;
-  letter-spacing:-.01em;flex:1;
-  transition:transform .18s;
-}
-.ch-opt-arr{
-  font-size:14px;color:var(--ch-mute);
-  opacity:0;transform:translateX(-6px);
-  transition:all .18s;
-}
-.ch-opt:hover,.ch-opt.selected{
-  background:var(--ch-acc);
-  color:var(--ch-on-acc);
-  transform:rotate(0.4deg);
-}
-.ch-opt:hover .ch-opt-num,.ch-opt.selected .ch-opt-num{color:rgba(255,255,255,0.65)}
-.ch-opt:hover .ch-opt-name,.ch-opt.selected .ch-opt-name{transform:translateX(3px)}
-.ch-opt:hover .ch-opt-arr,.ch-opt.selected .ch-opt-arr{opacity:1;transform:translateX(0);color:var(--ch-on-acc)}
+.ch-opt:nth-child(1){transform:rotate(-0.5deg)}
+.ch-opt:nth-child(2){transform:rotate(0.4deg)}
+.ch-opt:nth-child(3){transform:rotate(-0.2deg)}
+.ch-opt:nth-child(4){transform:rotate(0.6deg)}
+.ch-opt:nth-child(5){grid-column:1/-1;transform:rotate(-0.3deg)}
 
-/* ── RULE ROWS ── */
-.ch-rules{border-top:1.5px solid var(--ch-ink);margin-bottom:24px}
-.ch-rule{
-  display:flex;gap:14px;align-items:flex-start;
-  padding:18px 12px;
-  border-bottom:1px solid var(--ch-line);
-}
-.ch-rule-n{font-size:10px;font-weight:800;color:var(--ch-mute);width:22px;flex-shrink:0;padding-top:2px}
-.ch-rule-body{flex:1}
-.ch-rule-t{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;margin:0 0 3px}
-.ch-rule-d{font-size:13px;color:var(--ch-mute);margin:0;line-height:1.4}
-.ch-rule-amt{font-size:13px;font-weight:800;color:var(--ch-acc);margin:4px 0 0}
-.ch-rule-amt s{color:var(--ch-mute);font-weight:500;margin-right:4px}
+.ch-opt-n{font-size:20px;font-weight:900;width:36px;color:var(--c-mut);transition:color 0.15s}
+.ch-opt-t{font-size:16px;font-weight:900;text-transform:uppercase;flex:1;letter-spacing:-0.02em}
+.ch-opt-arr{font-weight:900;font-size:18px;transition:transform 0.15s}
 
-/* ── COMPACT REVIEW ── */
-.ch-rev-block{border:1px solid var(--ch-ink);border-radius:3px;overflow:hidden;margin-bottom:20px}
-.ch-rev-head{background:var(--ch-ink);color:var(--ch-bg);padding:9px 14px;font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
-.ch-rev-row{display:flex;align-items:baseline;padding:10px 14px;border-bottom:1px solid var(--ch-line)}
-.ch-rev-row:last-child{border-bottom:none}
-.ch-rev-k{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ch-mute);width:110px;flex-shrink:0;padding-top:1px}
-.ch-rev-v{font-size:13px;font-weight:700;flex:1}
-.ch-rev-row.hl{background:rgba(0,61,255,0.05)}
-.ch-rev-row.hl .ch-rev-k{color:var(--ch-acc)}
-.ch-rev-row.hl .ch-rev-v{color:var(--ch-acc);font-weight:800}
+.ch-opt:hover{background:var(--c-acc);transform:translate(-3px,-3px);box-shadow:var(--c-shad)}
+.ch-opt.selected{background:var(--c-txt);color:var(--c-bg)}
+.ch-opt.selected .ch-opt-n{color:var(--c-acc)}
+.ch-opt.selected .ch-opt-arr{color:var(--c-acc)}
+.ch-opt:hover .ch-opt-arr{transform:translateX(6px)}
 
-/* ── CHECKBOX ── */
-.ch-cb-wrap{display:flex;align-items:flex-start;gap:10px;padding:10px 0;cursor:pointer}
-.ch-cb-wrap input[type="checkbox"]{display:none}
-.ch-cb-box{
-  width:18px;height:18px;flex-shrink:0;margin-top:2px;
-  border:1px solid rgba(10,10,10,0.3);border-radius:2px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:11px;font-weight:800;color:transparent;
-  transition:all .15s;
-}
-.ch-cb-wrap:hover .ch-cb-box{border-color:var(--ch-acc)}
-.ch-cb-wrap input:checked + .ch-cb-box{
-  background:var(--ch-acc);border-color:var(--ch-acc);color:var(--ch-on-acc);
-  transform:scale(1.1);
-}
-.ch-cb-text{font-size:13px;font-weight:600;color:var(--ch-ink);line-height:1.45}
-
-/* ── FORM GRID ── */
-.ch-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 32px;margin-bottom:28px}
-@media(max-width:600px){.ch-form-grid{grid-template-columns:1fr;gap:20px}}
-.ch-field{display:flex;flex-direction:column-reverse;gap:4px}
-.ch-label-txt{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ch-mute);transition:color .18s}
-.ch-input{
-  border:none;border-bottom:1.5px solid var(--ch-line);
-  background:transparent;padding:8px 0;
-  font-family:inherit;font-size:15px;font-weight:600;color:var(--ch-ink);
-  outline:none;border-radius:0;
-  transition:border-color .18s;
-}
-.ch-input::placeholder{color:rgba(10,10,10,0.2)}
-.ch-input:focus{border-bottom-color:var(--ch-acc)}
-.ch-input:focus + .ch-label-txt{color:var(--ch-acc)}
-
-/* ── BUTTONS ── */
-.ch-actions{display:flex;gap:10px;margin-top:20px}
+/* Chunky Button */
 .ch-btn{
-  background:var(--ch-ink);color:var(--ch-bg);
-  border:1.5px solid var(--ch-ink);border-radius:3px;
-  height:46px;padding:0 22px;
-  font-family:inherit;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
-  display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  cursor:pointer;transition:all .18s;text-decoration:none;
-  white-space:nowrap;
+  background:var(--c-acc);border:var(--c-brd);color:var(--c-txt);
+  height:52px;padding:0 24px;font-family:inherit;font-size:14px;font-weight:900;letter-spacing:0.05em;text-transform:uppercase;
+  display:inline-flex;align-items:center;justify-content:center;
+  box-shadow:var(--c-shad);cursor:pointer;transition:all 0.15s;
 }
-.ch-btn:hover:not(:disabled){
-  background:var(--ch-acc);border-color:var(--ch-acc);color:var(--ch-on-acc);
-  transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,61,255,0.25);
-}
-.ch-btn:disabled{opacity:0.35;cursor:not-allowed;transform:none;box-shadow:none}
-.ch-btn-ghost{background:transparent;color:var(--ch-ink)}
-.ch-btn-ghost:hover:not(:disabled){background:rgba(10,10,10,0.06);color:var(--ch-ink);border-color:var(--ch-ink);box-shadow:none;transform:none}
+.ch-btn:hover:not(:disabled){transform:translate(-2px,-2px);box-shadow:var(--c-shad-h)}
+.ch-btn:disabled{background:#e0e0e0;box-shadow:none;transform:none;color:var(--c-mut);cursor:not-allowed}
+.ch-btn-g{background:transparent;box-shadow:none}
+.ch-btn-g:hover:not(:disabled){background:var(--c-txt);color:var(--c-bg);box-shadow:var(--c-shad)}
 
-/* ── SUCCESS ── */
-.ch-success{padding:32px 0;text-align:center}
-.ch-tick{
-  font-size:28px;color:var(--ch-acc);
-  display:flex;align-items:center;justify-content:center;
-  width:56px;height:56px;border:1.5px solid var(--ch-acc);border-radius:50%;
-  margin:0 auto 20px;
-  animation:tickPop .4s cubic-bezier(0.34,1.56,0.64,1) both;
+/* Step 2 Rules */
+.ch-rules{display:flex;flex-direction:column;gap:16px;margin-bottom:32px}
+.ch-rule{border:var(--c-brd);background:#fff;padding:20px;display:flex;gap:16px;align-items:flex-start;box-shadow:3px 3px 0 rgba(0,0,0,0.05)}
+.ch-rule-n{font-size:24px;font-weight:900;color:var(--c-acc);-webkit-text-stroke:1px var(--c-txt)}
+.ch-rule-b{flex:1}
+.ch-rule-t{font-size:18px;font-weight:900;margin:0 0 4px;text-transform:uppercase}
+.ch-rule-d{font-size:14px;font-weight:600;margin:0;color:var(--c-mut)}
+.ch-rule-a{font-size:16px;font-weight:900;margin:8px 0 0;background:var(--c-acc);display:inline-block;padding:2px 6px;border:2px solid var(--c-txt)}
+.ch-rule-a s{font-size:12px;font-weight:600;background:none;border:none}
+
+/* Step 3 Commit */
+.ch-rev{border:var(--c-brd);background:#fff;padding:24px;margin-bottom:24px;box-shadow:var(--c-shad)}
+.ch-rev-lbl{font-size:12px;font-weight:900;background:var(--c-txt);color:var(--c-bg);padding:4px 8px;display:inline-block;margin-bottom:16px}
+.ch-rev-r{display:flex;justify-content:space-between;border-bottom:2px solid #ddd;padding:12px 0;font-size:16px;font-weight:900;text-transform:uppercase}
+.ch-rev-r:last-child{border-bottom:none;padding-bottom:0}
+.ch-rev-r span:first-child{color:var(--c-mut)}
+
+.ch-cb{display:flex;align-items:flex-start;gap:12px;cursor:pointer;margin-bottom:32px;font-weight:700}
+.ch-cb input{display:none}
+.ch-cb-box{width:24px;height:24px;border:var(--c-brd);background:#fff;display:flex;align-items:center;justify-content:center;color:transparent;font-weight:900;transition:all 0.15s;flex-shrink:0}
+.ch-cb:hover .ch-cb-box{transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--c-txt)}
+.ch-cb input:checked + .ch-cb-box{background:var(--c-txt);color:var(--c-acc)}
+
+/* Step 4 Form */
+.ch-f-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px 32px;margin-bottom:32px}
+@media(max-width:600px){.ch-f-grid{grid-template-columns:1fr;gap:24px}}
+.ch-field{display:flex;flex-direction:column-reverse;gap:8px}
+.ch-lbl{font-size:12px;font-weight:900;text-transform:uppercase;color:var(--c-txt)}
+.ch-inp{
+  border:none;border-bottom:2px solid var(--c-txt);background:transparent;
+  padding:8px 0;font-family:inherit;font-size:18px;font-weight:700;
+  outline:none;transition:all 0.15s;border-radius:0;
 }
-@keyframes tickPop{from{opacity:0;transform:scale(0.4)}to{opacity:1;transform:scale(1)}}
-.ch-ref-badge{
-  display:inline-block;padding:5px 12px;
-  border:1px solid var(--ch-line);border-radius:2px;
-  font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--ch-ink);margin-bottom:20px;
-}
-.ch-success-msg{font-size:14px;color:var(--ch-mute);line-height:1.55;margin:0 auto 24px;max-width:380px}
-.ch-success-msg strong{color:var(--ch-ink)}
-.ch-wa-note{font-size:12px;color:var(--ch-mute);margin-top:12px}
-.ch-wa-note a{color:var(--ch-ink);font-weight:700}
+.ch-inp:focus{border-bottom:4px solid var(--c-acc);padding-bottom:6px}
+.ch-inp:focus + .ch-lbl{color:var(--c-acc);-webkit-text-stroke:1px var(--c-txt)}
+
+/* Success */
+.ch-win{text-align:center;padding:40px 0}
+.ch-win-h{font-size:clamp(64px, 10vw, 120px);font-weight:900;line-height:0.85;margin:0 0 24px;text-transform:uppercase}
+.ch-stamp{display:inline-block;border:4px solid var(--c-txt);padding:8px 16px;font-size:20px;font-weight:900;text-transform:uppercase;transform:rotate(-4deg);background:var(--c-acc);box-shadow:8px 8px 0 var(--c-txt);margin-bottom:32px}
+.ch-win-sub{font-size:18px;font-weight:800;text-transform:uppercase;margin:0 0 8px}
+.ch-win-p{font-size:14px;font-weight:600;max-width:400px;margin:0 auto 32px}
 </style></head><body>
 <div class="wrap">
 <div class="top"><span class="logo">TAAS®</span><span class="pill">First 5 clients: <b>Zero booking fee</b></span><button class="tg" id="tg" type="button" aria-label="Switch between light and dark mode" aria-pressed="false"></button></div>
@@ -510,62 +424,53 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
      CHALLENGE OVERLAY HTML
      ============================================================ -->
 <div class="ch-overlay" id="chOverlay">
-  <div class="ch-bar">
-    <span class="logo">TAAS®</span>
-    <button class="ch-close" onclick="closeChallenge()">CLOSE ✕</button>
-  </div>
-
-  <div class="ch-prog-wrap">
-    <div class="ch-prog-dots">
-      <span class="ch-dot active" id="chD1">01</span>
-      <div class="ch-prog-line" id="chL1"></div>
-      <span class="ch-dot" id="chD2">02</span>
-      <div class="ch-prog-line" id="chL2"></div>
-      <span class="ch-dot" id="chD3">03</span>
-      <div class="ch-prog-line" id="chL3"></div>
-      <span class="ch-dot" id="chD4">04</span>
+  <div class="ch-top">
+    <div class="ch-top-l">
+      <div class="ch-logo">TAAS�</div>
+      <div class="ch-mode">LIVE CHALLENGE</div>
     </div>
-    <div class="ch-step-title" id="chStepLabel">DEFINE THE SPACE</div>
+    <button class="ch-close" onclick="closeChallenge()">CLOSE ?</button>
   </div>
 
   <div class="ch-body">
-
     <!-- STEP 1 -->
     <div class="ch-step active" id="ch-s1">
       <div class="ch-split">
         <div class="ch-split-l">
-          <span class="ch-badge">EXCLUSIVE OFFER</span>
-          <h2 class="ch-h">TRANSFORM<br>YOUR SPACE<br><em>UNDER ₹1.45 LAKH.</em></h2>
-          <p class="ch-subh">Top-tier design. Strict budget.<br>First 5 clients get the design fee waived.</p>
-          <div class="ch-your-move">YOUR MOVE →</div>
-        </div>
-        <div class="ch-split-r">
-          <p class="ch-q">WHAT ARE WE TRANSFORMING?</p>
-          <p class="ch-q-sub">Choose your space for the challenge.</p>
-          <div class="ch-opts">
-            <div class="ch-opt" onclick="chPickSpace(this,'Studio Apartment')">
-              <span class="ch-opt-num">01</span>
-              <span class="ch-opt-name">Studio Apartment</span>
-              <span class="ch-opt-arr">→</span>
-            </div>
-            <div class="ch-opt" onclick="chPickSpace(this,'1BHK / 2BHK Room')">
-              <span class="ch-opt-num">02</span>
-              <span class="ch-opt-name">1BHK / 2BHK Room</span>
-              <span class="ch-opt-arr">→</span>
-            </div>
-            <div class="ch-opt" onclick="chPickSpace(this,'Rental Space')">
-              <span class="ch-opt-num">03</span>
-              <span class="ch-opt-name">Rental Space</span>
-              <span class="ch-opt-arr">→</span>
-            </div>
-            <div class="ch-opt" onclick="chPickSpace(this,'Café / Commercial')">
-              <span class="ch-opt-num">04</span>
-              <span class="ch-opt-name">Café / Commercial</span>
-              <span class="ch-opt-arr">→</span>
+          <div class="ch-offer-lbl">EXCLUSIVE OFFER</div>
+          <h2 class="ch-hero-h">TRANSFORM<br>YOUR SPACE<br><em>UNDER ?1.45L</em></h2>
+          <div class="ch-ind">
+            <div class="ch-ind-top">01 <span>/04</span></div>
+            <div class="ch-ind-boxes">
+              <div class="ch-box active"></div><div class="ch-box"></div><div class="ch-box"></div><div class="ch-box"></div>
             </div>
           </div>
-          <div class="ch-actions">
-            <button class="ch-btn" id="ch-btn-s1" style="flex:1" onclick="chGoStep(2)" disabled>CONTINUE →</button>
+        </div>
+        <div class="ch-split-r">
+          <p class="ch-q-lbl">STEP 01</p>
+          <p class="ch-q">WHAT ARE WE<br>TRANSFORMING?</p>
+          
+          <div class="ch-grid">
+            <div class="ch-opt" onclick="chPickSpace(this,'Studio Apartment')">
+              <span class="ch-opt-n">01</span><span class="ch-opt-t">Studio Apartment</span><span class="ch-opt-arr">?</span>
+            </div>
+            <div class="ch-opt" onclick="chPickSpace(this,'1BHK / 2BHK Room')">
+              <span class="ch-opt-n">02</span><span class="ch-opt-t">1BHK / 2BHK Room</span><span class="ch-opt-arr">?</span>
+            </div>
+            <div class="ch-opt" onclick="chPickSpace(this,'Rental Space')">
+              <span class="ch-opt-n">03</span><span class="ch-opt-t">Rental Space</span><span class="ch-opt-arr">?</span>
+            </div>
+            <div class="ch-opt" onclick="chPickSpace(this,'Caf� / Commercial')">
+              <span class="ch-opt-n">04</span><span class="ch-opt-t">Caf� / Commercial</span><span class="ch-opt-arr">?</span>
+            </div>
+            <div class="ch-opt" onclick="chPickSpace(this,'Other Space')">
+              <span class="ch-opt-n">05</span><span class="ch-opt-t">Other Space</span><span class="ch-opt-arr">?</span>
+            </div>
+          </div>
+          
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:24px">
+            <div style="font-weight:900;font-size:12px;letter-spacing:0.1em;text-transform:uppercase">YOUR MOVE ?</div>
+            <button class="ch-btn" id="ch-btn-s1" onclick="chGoStep(2)" disabled>CONTINUE ?</button>
           </div>
         </div>
       </div>
@@ -573,157 +478,159 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
 
     <!-- STEP 2 -->
     <div class="ch-step" id="ch-s2">
-      <div style="max-width:580px">
-        <h2 class="ch-h" style="font-size:clamp(32px,5vw,48px)">THE<br><em>RULEBOOK.</em></h2>
-        <p class="ch-subh">Three simple rules. No surprises.</p>
-        <div class="ch-rules">
-          <div class="ch-rule">
-            <span class="ch-rule-n">01</span>
-            <div class="ch-rule-body">
-              <p class="ch-rule-t">STRICT BUDGET</p>
-              <p class="ch-rule-d">Hard capped at ₹1,45,000. Every rupee is maximised.</p>
-              <p class="ch-rule-amt">₹1,45,000</p>
+      <div class="ch-split">
+        <div class="ch-split-l">
+          <div class="ch-ind">
+            <div class="ch-ind-top">02 <span>/04</span></div>
+            <div class="ch-ind-boxes">
+              <div class="ch-box"></div><div class="ch-box active"></div><div class="ch-box"></div><div class="ch-box"></div>
             </div>
           </div>
-          <div class="ch-rule">
-            <span class="ch-rule-n">02</span>
-            <div class="ch-rule-body">
-              <p class="ch-rule-t">HIGH IMPACT ONLY</p>
-              <p class="ch-rule-d">Smart changes. No unnecessary demolition or civil work.</p>
-            </div>
-          </div>
-          <div class="ch-rule">
-            <span class="ch-rule-n">03</span>
-            <div class="ch-rule-body">
-              <p class="ch-rule-t">DESIGN + DIRECTION</p>
-              <p class="ch-rule-d">First 5 clients get complete design direction at no cost.</p>
-              <p class="ch-rule-amt"><s>₹25,000 standard</s> ₹0 launch offer</p>
-            </div>
-          </div>
+          <p class="ch-q-lbl">STEP 02</p>
+          <p class="ch-q">THE RULEBOOK.</p>
         </div>
-        <div class="ch-actions">
-          <button class="ch-btn ch-btn-ghost" style="flex:0 0 auto" onclick="chGoStep(1)">← BACK</button>
-          <button class="ch-btn" style="flex:1" onclick="chGoStep(3)">ACCEPT RULES →</button>
+        <div class="ch-split-r">
+          <div class="ch-rules">
+            <div class="ch-rule">
+              <div class="ch-rule-n">01</div>
+              <div class="ch-rule-b">
+                <p class="ch-rule-t">STRICT BUDGET</p>
+                <p class="ch-rule-d">Hard capped at ?1,45,000. Every rupee is maximised.</p>
+                <div class="ch-rule-a">?1,45,000</div>
+              </div>
+            </div>
+            <div class="ch-rule">
+              <div class="ch-rule-n">02</div>
+              <div class="ch-rule-b">
+                <p class="ch-rule-t">HIGH IMPACT ONLY</p>
+                <p class="ch-rule-d">Smart changes. No unnecessary demolition or civil work.</p>
+              </div>
+            </div>
+            <div class="ch-rule">
+              <div class="ch-rule-n">03</div>
+              <div class="ch-rule-b">
+                <p class="ch-rule-t">DESIGN + DIRECTION</p>
+                <p class="ch-rule-d">First 5 clients get complete design direction at no cost.</p>
+                <div class="ch-rule-a"><s>?25,000 STANDARD</s> ?0 LAUNCH</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;margin-top:24px">
+            <button class="ch-btn ch-btn-g" onclick="chGoStep(1)">? BACK</button>
+            <button class="ch-btn" onclick="chGoStep(3)">ACCEPT RULES ?</button>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- STEP 3 -->
     <div class="ch-step" id="ch-s3">
-      <div style="max-width:520px">
-        <h2 class="ch-h" style="font-size:clamp(32px,5vw,48px)">READY TO<br><em>COMMIT?</em></h2>
-        <p class="ch-subh">Review your challenge details before locking in.</p>
-        <div class="ch-rev-block">
-          <div class="ch-rev-head">YOUR CHALLENGE</div>
-          <div class="ch-rev-row"><div class="ch-rev-k">SPACE</div><div class="ch-rev-v" id="ch-prm-space">—</div></div>
-          <div class="ch-rev-row"><div class="ch-rev-k">EXECUTION</div><div class="ch-rev-v">₹1,45,000</div></div>
-          <div class="ch-rev-row hl"><div class="ch-rev-k">DESIGN FEE</div><div class="ch-rev-v">₹0 (FIRST 5 ONLY)</div></div>
+      <div class="ch-split">
+        <div class="ch-split-l">
+          <div class="ch-ind">
+            <div class="ch-ind-top">03 <span>/04</span></div>
+            <div class="ch-ind-boxes">
+              <div class="ch-box"></div><div class="ch-box"></div><div class="ch-box active"></div><div class="ch-box"></div>
+            </div>
+          </div>
+          <p class="ch-q-lbl">STEP 03</p>
+          <p class="ch-q">TAKE THE<br>CHALLENGE.</p>
         </div>
-        <label class="ch-cb-wrap">
-          <input type="checkbox" id="ch-f-agree">
-          <div class="ch-cb-box">✓</div>
-          <div class="ch-cb-text">I accept the TAAS Challenge Rules and want to secure my spot.</div>
-        </label>
-        <div class="ch-actions">
-          <button class="ch-btn ch-btn-ghost" style="flex:0 0 auto" onclick="chGoStep(2)">← BACK</button>
-          <button class="ch-btn" id="ch-proceedBtn" style="flex:1" onclick="chGoStep(4)" disabled>COMMIT & CONTINUE →</button>
+        <div class="ch-split-r">
+          <div class="ch-rev">
+            <div class="ch-rev-lbl">YOUR CHALLENGE</div>
+            <div class="ch-rev-r"><span>SPACE</span> <span id="ch-prm-space">�</span></div>
+            <div class="ch-rev-r"><span>EXECUTION</span> <span>?1,45,000</span></div>
+            <div class="ch-rev-r" style="color:var(--c-acc);-webkit-text-stroke:1px var(--c-txt);font-size:18px"><span>DESIGN</span> <span>?0 (FIRST 5)</span></div>
+          </div>
+          
+          <label class="ch-cb">
+            <input type="checkbox" id="ch-f-agree" onchange="document.getElementById('ch-proceedBtn').disabled = !this.checked">
+            <div class="ch-cb-box">?</div>
+            <div>I accept the TAAS Challenge Rules and want to secure my spot.</div>
+          </label>
+          
+          <div style="display:flex;gap:16px;margin-top:24px">
+            <button class="ch-btn ch-btn-g" onclick="chGoStep(2)">? BACK</button>
+            <button class="ch-btn" id="ch-proceedBtn" onclick="chGoStep(4)" disabled>COMMIT ?</button>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- STEP 4 -->
     <div class="ch-step" id="ch-s4">
-      <div style="max-width:640px">
-        <h2 class="ch-h" style="font-size:clamp(32px,5vw,48px)">LET'S<br><em>LOCK IT IN.</em></h2>
-        <p class="ch-subh">Where is the challenge happening?</p>
-        <div class="ch-form-grid">
-          <div class="ch-field">
-            <input type="text" class="ch-input" id="ch-f-name" placeholder="John Doe">
-            <label class="ch-label-txt">FULL NAME *</label>
+      <div class="ch-split">
+        <div class="ch-split-l">
+          <div class="ch-ind">
+            <div class="ch-ind-top">04 <span>/04</span></div>
+            <div class="ch-ind-boxes">
+              <div class="ch-box"></div><div class="ch-box"></div><div class="ch-box"></div><div class="ch-box active"></div>
+            </div>
           </div>
-          <div class="ch-field">
-            <input type="tel" class="ch-input" id="ch-f-wa" placeholder="+91 98765 43210">
-            <label class="ch-label-txt">WHATSAPP *</label>
-          </div>
-          <div class="ch-field">
-            <input type="text" class="ch-input" id="ch-f-loc" placeholder="Mumbai, Pune…">
-            <label class="ch-label-txt">CITY / LOCATION *</label>
-          </div>
-          <div class="ch-field">
-            <input type="text" class="ch-input" id="ch-f-addr" placeholder="Flat, Building, Street">
-            <label class="ch-label-txt">DETAILED ADDRESS *</label>
-          </div>
+          <p class="ch-q-lbl">STEP 04</p>
+          <p class="ch-q">LOCK IT IN.</p>
         </div>
-        <div class="ch-actions">
-          <button class="ch-btn ch-btn-ghost" style="flex:0 0 auto" onclick="chGoStep(3)">← BACK</button>
-          <button class="ch-btn" id="ch-confirmBtn" style="flex:1" onclick="chConfirm()">CONFIRM CHALLENGE →</button>
+        <div class="ch-split-r">
+          <div class="ch-f-grid">
+            <div class="ch-field">
+              <input type="text" class="ch-inp" id="ch-f-name" placeholder="John Doe">
+              <label class="ch-lbl">FULL NAME</label>
+            </div>
+            <div class="ch-field">
+              <input type="tel" class="ch-inp" id="ch-f-wa" placeholder="+91 98765 43210">
+              <label class="ch-lbl">WHATSAPP</label>
+            </div>
+            <div class="ch-field">
+              <input type="text" class="ch-inp" id="ch-f-loc" placeholder="Mumbai, Pune�">
+              <label class="ch-lbl">CITY</label>
+            </div>
+            <div class="ch-field">
+              <input type="text" class="ch-inp" id="ch-f-addr" placeholder="Flat, Building">
+              <label class="ch-lbl">ADDRESS</label>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;margin-top:24px">
+            <button class="ch-btn ch-btn-g" onclick="chGoStep(3)">? BACK</button>
+            <button class="ch-btn" id="ch-confirmBtn" onclick="chConfirm()">CONFIRM CHALLENGE ?</button>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- STEP 5 -->
     <div class="ch-step" id="ch-s5">
-      <div style="max-width:520px;text-align:center">
-        <div class="ch-success">
-          <div class="ch-tick">✓</div>
-          <h2 class="ch-h">YOU'RE<br><em>IN.</em></h2>
-          <span style="display:block;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px">CHALLENGE ACCEPTED</span>
-          <div class="ch-ref-badge" id="ch-sv-ref">TAAS-XXX</div>
-          <p class="ch-success-msg"><strong>Now show us the space.</strong><br>Send a few real photos on WhatsApp so we can assess the starting point and confirm your slot.</p>
-          <a id="ch-wa-link" href="#" target="_blank" rel="noopener noreferrer" class="ch-btn" style="background:var(--ch-acc);border-color:var(--ch-acc);color:var(--ch-on-acc);width:100%;margin-bottom:10px">SEND PHOTOS ON WHATSAPP ↗</a>
-          <button class="ch-btn ch-btn-ghost" style="width:100%;border:none" onclick="closeChallenge()">← RETURN TO HOME</button>
-        </div>
+      <div class="ch-win">
+        <h2 class="ch-win-h">YOU'RE<br>IN.</h2>
+        <div class="ch-stamp">CHALLENGE ACCEPTED ?</div>
+        <div style="font-size:12px;font-weight:900;margin-bottom:32px">REF: <span id="ch-sv-ref" style="background:#fff;border:2px solid #111;padding:4px 8px;margin-left:4px">TAAS-XXX</span></div>
+        
+        <p class="ch-win-sub">NOW SHOW US THE SPACE.</p>
+        <p class="ch-win-p">Send a few real photos on WhatsApp so we can assess the starting point and confirm your slot.</p>
+        
+        <a id="ch-wa-link" href="#" target="_blank" rel="noopener noreferrer" class="ch-btn" style="width:100%;max-width:400px;margin-bottom:16px">SEND PHOTOS ON WHATSAPP ?</a>
+        <button class="ch-btn ch-btn-g" style="width:100%;max-width:400px;border:none" onclick="closeChallenge()">? RETURN TO HOME</button>
       </div>
     </div>
 
-  </div><!-- /ch-body -->
-</div><!-- /ch-overlay -->
+  </div>
+</div>
 
 <script>
 const chOverlay = document.getElementById('chOverlay');
-const CH_LABELS = {
-  1: 'DEFINE THE SPACE',
-  2: 'THE RULEBOOK',
-  3: 'COMMITMENT',
-  4: 'LOCK IT IN',
-  5: 'CHALLENGE SECURED'
-};
 const chState = { spaceType:'', name:'', whatsapp:'', location:'', address:'' };
 let chStep = 1;
 
 function openChallenge(e) {
   if (e) e.preventDefault();
   chOverlay.classList.add('open');
-  setTimeout(function(){ chOverlay.classList.add('visible'); }, 10);
   document.body.style.overflow = 'hidden';
   chGoStep(1);
 }
 
 function closeChallenge() {
-  chOverlay.classList.remove('visible');
-  setTimeout(function(){
-    chOverlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }, 260);
-}
-
-function updateTrack(n) {
-  var lbl = document.getElementById('chStepLabel');
-  if (lbl) lbl.textContent = CH_LABELS[n] || '';
-  for (var i = 1; i <= 4; i++) {
-    var dot = document.getElementById('chD' + i);
-    if (dot) {
-      if (i <= n) dot.classList.add('active');
-      else dot.classList.remove('active');
-    }
-    if (i < 4) {
-      var line = document.getElementById('chL' + i);
-      if (line) {
-        if (i < n) line.classList.add('done');
-        else line.classList.remove('done');
-      }
-    }
-  }
+  chOverlay.classList.remove('open');
+  document.body.style.overflow = '';
 }
 
 function chGoStep(n) {
@@ -732,46 +639,31 @@ function chGoStep(n) {
   chStep = n;
   var next = document.getElementById('ch-s' + n);
   if (next) next.classList.add('active');
-  updateTrack(n);
   chOverlay.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function chPickSpace(btn, type) {
   document.querySelectorAll('.ch-opt').forEach(function(el) {
     el.classList.remove('selected');
-    el.querySelector('.ch-opt-num').textContent = el.getAttribute('data-num');
+    el.querySelector('.ch-opt-n').textContent = el.getAttribute('data-n');
   });
   btn.classList.add('selected');
+  btn.querySelector('.ch-opt-n').textContent = '?';
+  
   chState.spaceType = type;
   var prm = document.getElementById('ch-prm-space');
   if (prm) prm.textContent = type;
   var s1btn = document.getElementById('ch-btn-s1');
   if (s1btn) s1btn.disabled = false;
-  setTimeout(function(){ chGoStep(2); }, 250);
+  setTimeout(function(){ chGoStep(2); }, 200);
 }
 
-function chValidate() {
-  var ok = document.getElementById('ch-f-agree').checked;
-  var proceedBtn = document.getElementById('ch-proceedBtn');
-  if (proceedBtn) proceedBtn.disabled = !ok;
-}
-
-['ch-f-name','ch-f-wa','ch-f-loc','ch-f-addr'].forEach(function(id) {
-  var el = document.getElementById(id);
-  if (el) {
-    el.addEventListener('input', function() {
-      var map = { 'ch-f-name':'name', 'ch-f-wa':'whatsapp', 'ch-f-loc':'location', 'ch-f-addr':'address' };
-      chState[map[id]] = this.value.trim();
-      chValidate();
-    });
-  }
+document.querySelectorAll('.ch-opt').forEach(function(el) {
+  var nEl = el.querySelector('.ch-opt-n');
+  if (nEl) el.setAttribute('data-n', nEl.textContent);
 });
 
-var agreeCb = document.getElementById('ch-f-agree');
-if (agreeCb) agreeCb.addEventListener('change', chValidate);
-
 function chConfirm() {
-  // read field values fresh
   var n = document.getElementById('ch-f-name');
   var w = document.getElementById('ch-f-wa');
   var l = document.getElementById('ch-f-loc');
@@ -784,8 +676,14 @@ function chConfirm() {
   if (!chState.name || !chState.whatsapp || !chState.location || !chState.address) {
     var btn = document.getElementById('ch-confirmBtn');
     if (btn) {
-      btn.textContent = 'FILL ALL FIELDS FIRST →';
-      setTimeout(function(){ btn.textContent = 'CONFIRM CHALLENGE →'; }, 2000);
+      btn.textContent = 'FILL ALL FIELDS FIRST ?';
+      btn.style.background = '#111';
+      btn.style.color = '#fff';
+      setTimeout(function(){ 
+        btn.textContent = 'CONFIRM CHALLENGE ?'; 
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 2000);
     }
     return;
   }
@@ -802,11 +700,6 @@ function chConfirm() {
   if (waLink) waLink.href = 'https://wa.me/917400162509?text=' + encodeURIComponent(msg);
   chGoStep(5);
 }
-
-// Store data-num on each opt for reset
-document.querySelectorAll('.ch-opt').forEach(function(el) {
-  var numEl = el.querySelector('.ch-opt-num');
-  if (numEl) el.setAttribute('data-num', numEl.textContent);
-});
 </script>
+
 </body></html>
