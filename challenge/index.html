@@ -106,20 +106,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .hdr-cta a:hover { background: var(--pearl); }
 
-/* hamburger */
-.burger {
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
-  width: 36px; height: 36px; gap: 5px;
-  background: none; border: none; cursor: pointer; z-index: 10; position: relative;
-}
-@media(min-width:768px){ .burger{ display:none; } }
-.burger span {
-  display: block; width: 20px; height: 1.5px;
-  background: var(--pearl); transition: all .3s; transform-origin: center;
-}
-.burger.open span:nth-child(1){ transform: translateY(6.5px) rotate(45deg); }
-.burger.open span:nth-child(2){ opacity: 0; }
-.burger.open span:nth-child(3){ transform: translateY(-6.5px) rotate(-45deg); }
+.burger { display: none !important; }
 
 /* mobile overlay */
 .mob-menu {
@@ -585,17 +572,6 @@ body { padding-bottom: 60px; }
   <div class="hdr-inner">
     <a class="logo" href="/">TAAS&#174;</a>
 
-    <nav class="hdr-nav">
-      <a href="/#what">SPACE</a>
-      <a href="/#cost">COST</a>
-      <a href="/work">WORK</a>
-      <a href="/about">ABOUT</a>
-    </nav>
-
-    <div class="hdr-cta">
-      <a href="/challenge">TAKE CHALLENGE &#8594;</a>
-    </div>
-
     <button class="burger" id="burger" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
@@ -605,14 +581,7 @@ body { padding-bottom: 60px; }
 <!-- mobile overlay -->
 <div class="mob-menu" id="mobMenu">
   <div class="mh"></div>
-  <nav class="mob-nav">
-    <a href="/#what">SPACE</a>
-    <a href="/#cost">COST</a>
-    <a href="/work">WORK</a>
-    <a href="/about">ABOUT</a>
-  </nav>
   <div class="mob-foot">
-    <a class="mob-cta" href="/challenge">TAKE CHALLENGE &#8594;</a>
     <p class="mob-brand">TAAS&#174; &middot; Mumbai</p>
   </div>
 </div>
