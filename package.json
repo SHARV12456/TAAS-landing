@@ -1,6 +1,0 @@
-{
-  "scripts": {
-    "build": "echo \"No build step required\"",
-    "buid": "echo \"No build step required\""
-  }
-}
