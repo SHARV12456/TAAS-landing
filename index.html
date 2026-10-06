@@ -194,10 +194,10 @@ h1{font-size:30px}h2{font-size:24px}
 /* ─── HEADER ──────────────────────────────── */
 .ch-hdr{
   display:flex;align-items:center;justify-content:space-between;
-  height:60px;border-bottom:var(--brd);
+  height:52px;border-bottom:var(--brd);
   position:sticky;top:0;background:var(--bg);z-index:20;
 }
-.ch-hdr-brand{font-size:20px;font-weight:800;letter-spacing:0.05em}
+.ch-hdr-brand{font-size:17px;font-weight:800;letter-spacing:0.05em}
 .ch-hdr-tag{
   font-size:11px;font-weight:700;letter-spacing:0.15em;
   text-transform:uppercase;color:var(--mut);
@@ -218,11 +218,11 @@ h1{font-size:30px}h2{font-size:24px}
 }
 .ch-nav::-webkit-scrollbar{display:none}
 .ch-nav-item{
-  font-size:11px;font-weight:700;letter-spacing:0.12em;
-  text-transform:uppercase;padding:14px 20px;
+  font-size:10px;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;padding:10px 16px;
   border-right:var(--brd);color:var(--mut);
   white-space:nowrap;transition:all 150ms;
-  display:flex;align-items:center;gap:8px;
+  display:flex;align-items:center;gap:6px;
 }
 .ch-nav-item:last-child{border-right:none}
 .ch-nav-item .ni{
@@ -237,46 +237,46 @@ h1{font-size:30px}h2{font-size:24px}
 .ch-nav-item.active .ni{background:var(--red);border-color:var(--red);color:var(--wht)}
 
 /* ─── STEPS ──────────────────────────────── */
-.ch-step{display:none;padding-top:48px}
+.ch-step{display:none;padding-top:24px}
 .ch-step.active{display:block;animation:chIn 220ms ease-out}
 @keyframes chIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:768px){.ch-step{padding-top:28px}}
+@media(max-width:768px){.ch-step{padding-top:16px}}
 
 /* ─── HERO GRID ──────────────────────────── */
 .ch-hero{
-  display:grid;grid-template-columns:1fr 380px;
-  gap:40px;align-items:start;margin-bottom:48px;
+  display:grid;grid-template-columns:1fr 280px;
+  gap:32px;align-items:start;margin-bottom:32px;
 }
-@media(max-width:1024px){.ch-hero{grid-template-columns:1fr 280px;gap:24px}}
-@media(max-width:768px){.ch-hero{grid-template-columns:1fr;gap:24px;margin-bottom:32px}}
+@media(max-width:1024px){.ch-hero{grid-template-columns:1fr 220px;gap:20px}}
+@media(max-width:768px){.ch-hero{grid-template-columns:1fr;gap:16px;margin-bottom:20px}}
 
 /* Hero left */
 .ch-eyebrow{
-  font-size:11px;font-weight:700;letter-spacing:0.15em;
+  font-size:10px;font-weight:700;letter-spacing:0.15em;
   text-transform:uppercase;color:var(--red);
-  display:flex;align-items:center;gap:8px;margin-bottom:16px;
+  display:flex;align-items:center;gap:8px;margin-bottom:10px;
 }
 .ch-eyebrow::before{
   content:'';width:20px;height:2px;background:var(--red);flex-shrink:0;
 }
 .ch-headline{
-  font-size:clamp(48px,6.5vw,96px);
-  font-weight:800;letter-spacing:-0.04em;line-height:0.9;
-  text-transform:uppercase;margin-bottom:24px;
+  font-size:clamp(36px,4.5vw,64px);
+  font-weight:800;letter-spacing:-0.04em;line-height:0.88;
+  text-transform:uppercase;margin-bottom:16px;
 }
 .ch-headline em{
   font-style:normal;color:var(--red);
 }
 .ch-sub{
-  font-size:15px;line-height:1.5;color:var(--mut);
-  max-width:480px;border-left:3px solid var(--red);
-  padding-left:16px;
+  font-size:13px;line-height:1.5;color:var(--mut);
+  max-width:480px;border-left:2px solid var(--red);
+  padding-left:12px;
 }
 
 /* Hero right — challenge badge */
 .ch-badge{
-  border:var(--brd);padding:28px;
-  display:flex;flex-direction:column;gap:16px;
+  border:var(--brd);padding:16px 20px;
+  display:flex;flex-direction:column;gap:10px;
   position:relative;overflow:hidden;
 }
 .ch-badge::before{
@@ -285,27 +285,27 @@ h1{font-size:30px}h2{font-size:24px}
   clip-path:polygon(100% 0,0 0,100% 100%);
 }
 .ch-badge-num{
-  font-size:72px;font-weight:800;letter-spacing:-0.05em;
+  font-size:48px;font-weight:800;letter-spacing:-0.05em;
   line-height:0.85;color:var(--txt);
 }
 .ch-badge-num span{font-size:0.35em;color:var(--mut);vertical-align:super}
-.ch-badge-lbl{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase}
-.ch-badge-pills{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.ch-badge-lbl{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
+.ch-badge-pills{display:flex;flex-direction:column;gap:4px;margin-top:0}
 .ch-badge-pill{
-  font-size:11px;font-weight:700;letter-spacing:0.08em;
+  font-size:10px;font-weight:700;letter-spacing:0.06em;
   text-transform:uppercase;background:var(--txt);color:var(--bg);
-  padding:5px 12px;display:inline-block;width:fit-content;
+  padding:4px 10px;display:inline-block;width:fit-content;
 }
 .ch-badge-pill.lime{background:var(--lime);color:var(--txt)}
 
 /* ─── SECTION HEADER ─────────────────────── */
 .ch-sec-hdr{
   border-top:var(--brd);border-bottom:var(--brd);
-  padding:16px 0;margin-bottom:32px;
-  display:flex;align-items:baseline;gap:16px;
+  padding:12px 0;margin-bottom:20px;
+  display:flex;align-items:baseline;gap:12px;
 }
 .ch-sec-hdr h3{
-  font-size:clamp(28px,3.5vw,42px);
+  font-size:clamp(20px,2.5vw,28px);
   font-weight:800;letter-spacing:-0.03em;text-transform:uppercase;
 }
 .ch-sec-hdr span{font-size:12px;font-weight:600;color:var(--mut);letter-spacing:0.08em;text-transform:uppercase}
@@ -314,7 +314,7 @@ h1{font-size:30px}h2{font-size:24px}
 .ch-opts{border-bottom:var(--brd)}
 .ch-opt{
   display:flex;align-items:center;
-  border-top:var(--brd);min-height:66px;padding:0 20px;
+  border-top:var(--brd);min-height:56px;padding:0 16px;
   cursor:pointer;transition:all 150ms;position:relative;
   user-select:none;
 }
@@ -323,8 +323,8 @@ h1{font-size:30px}h2{font-size:24px}
   width:48px;flex-shrink:0;color:var(--mut);transition:color 150ms;
 }
 .ch-opt-t{
-  font-size:clamp(18px,2.5vw,26px);font-weight:700;
-  letter-spacing:-0.02em;text-transform:uppercase;flex:1;
+  font-size:clamp(15px,1.8vw,20px);font-weight:700;
+  letter-spacing:-0.01em;text-transform:uppercase;flex:1;
   transition:all 150ms;
 }
 .ch-opt-arr{
@@ -351,15 +351,15 @@ h1{font-size:30px}h2{font-size:24px}
 /* ─── STEP FOOTER ────────────────────────── */
 .ch-foot{
   display:flex;align-items:center;justify-content:space-between;
-  padding-top:32px;border-top:var(--brd);margin-top:32px;
+  padding-top:20px;border-top:var(--brd);margin-top:20px;
 }
 .ch-foot-note{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--mut)}
 
 /* ─── BUTTONS ────────────────────────────── */
 .ch-btn{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  height:50px;padding:0 28px;border:none;cursor:pointer;
-  font-family:inherit;font-size:12px;font-weight:700;
+  height:44px;padding:0 22px;border:none;cursor:pointer;
+  font-family:inherit;font-size:11px;font-weight:700;
   letter-spacing:0.12em;text-transform:uppercase;
   background:var(--txt);color:var(--bg);
   transition:all 150ms;
@@ -369,7 +369,7 @@ h1{font-size:30px}h2{font-size:24px}
 .ch-btn:disabled:hover{background:var(--txt);color:var(--bg)}
 .ch-btn-ghost{background:none;color:var(--txt);border:var(--brd)}
 .ch-btn-ghost:hover{background:var(--txt);color:var(--bg)}
-.ch-btn-lg{height:56px;font-size:13px;padding:0 36px}
+.ch-btn-lg{height:46px;font-size:12px;padding:0 28px}
 
 /* ─── RULES ──────────────────────────────── */
 .ch-rules{display:flex;flex-direction:column;border-bottom:var(--brd)}
