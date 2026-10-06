@@ -244,31 +244,56 @@ h1{font-size:30px}h2{font-size:24px}
 .ch-h em{font-style:normal;color:#F2A93B}
 
 /* space option cards */
-.ch-opts{display:flex;flex-direction:column;gap:10px}
+.ch-opts{display:flex;flex-direction:column;gap:12px}
 .ch-opt{
   display:flex;align-items:center;justify-content:space-between;
-  padding:20px 22px;border-radius:18px;
-  border:1.5px solid rgba(255,255,255,0.08);
-  background:rgba(255,255,255,0.04);
-  font:inherit;font-weight:700;font-size:16px;
-  color:rgba(246,244,238,0.85);
+  padding:24px 28px;border-radius:24px;
+  border:1.5px solid rgba(255,255,255,0.06);
+  background:linear-gradient(145deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+  font:inherit;font-weight:800;font-size:22px;
+  color:rgba(246,244,238,0.7);
   cursor:pointer;text-align:left;
-  transition:all .3s cubic-bezier(0.16,1,0.3,1);
-  min-height:60px;touch-action:manipulation;
-  letter-spacing:.01em;
+  transition:all .4s cubic-bezier(0.16,1,0.3,1);
+  min-height:76px;touch-action:manipulation;
+  letter-spacing:-.02em;
+  position:relative;overflow:hidden;
+  text-transform:uppercase;
+  box-shadow: 0 8px 24px -12px rgba(0,0,0,0.5);
+  animation:chOptIn .6s cubic-bezier(0.16,1,0.3,1) both;
+}
+.ch-opts .ch-opt:nth-child(1){animation-delay:0.1s}
+.ch-opts .ch-opt:nth-child(2){animation-delay:0.15s}
+.ch-opts .ch-opt:nth-child(3){animation-delay:0.2s}
+.ch-opts .ch-opt:nth-child(4){animation-delay:0.25s}
+
+@keyframes chOptIn{
+  from{opacity:0;transform:translateY(32px) scale(0.96)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.ch-opt::before{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg, rgba(242,169,59,0.25), rgba(242,169,59,0));
+  opacity:0;
+  transition:opacity .4s ease;
+  z-index:0;
 }
 .ch-opt:hover{
   border-color:#F2A93B;
-  background:rgba(242,169,59,0.08);
   color:#F6F4EE;
-  transform:translateY(-4px) scale(1.015);
-  box-shadow:0 16px 32px -10px rgba(242,169,59,0.25), inset 0 1px 0 rgba(242,169,59,0.2);
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 24px 48px -12px rgba(242,169,59,0.3), inset 0 1px 0 rgba(242,169,59,0.4);
 }
+.ch-opt:hover::before{opacity:1}
+
+.ch-opt span.text {position:relative;z-index:1;}
+
 .ch-opt .arr{
-  opacity:0;color:#F2A93B;font-size:1.3rem;
-  transform:translateX(-12px);
-  transition:all .35s cubic-bezier(0.16,1,0.3,1);
-  flex-shrink:0;
+  opacity:0;color:#F2A93B;font-size:26px;
+  transform:translateX(-16px);
+  transition:all .4s cubic-bezier(0.16,1,0.3,1);
+  flex-shrink:0;position:relative;z-index:1;
 }
 .ch-opt:hover .arr{opacity:1;transform:translateX(0)}
 
@@ -555,10 +580,10 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       <p class="ch-num">STEP 01 / 04</p>
       <h2 class="ch-h">WHAT ARE WE<br>WORKING WITH?</h2>
       <div class="ch-opts">
-        <button class="ch-opt" onclick="chPickSpace('Studio Apartment')">Studio Apartment <span class="arr">→</span></button>
-        <button class="ch-opt" onclick="chPickSpace('1BHK / 2BHK Room')">1BHK / 2BHK Room <span class="arr">→</span></button>
-        <button class="ch-opt" onclick="chPickSpace('Rental Space')">Rental Space <span class="arr">→</span></button>
-        <button class="ch-opt" onclick="chPickSpace('Café / Commercial')">Café / Commercial <span class="arr">→</span></button>
+        <button class="ch-opt" onclick="chPickSpace('Studio Apartment')"><span class="text">Studio Apartment</span> <span class="arr">→</span></button>
+        <button class="ch-opt" onclick="chPickSpace('1BHK / 2BHK Room')"><span class="text">1BHK / 2BHK Room</span> <span class="arr">→</span></button>
+        <button class="ch-opt" onclick="chPickSpace('Rental Space')"><span class="text">Rental Space</span> <span class="arr">→</span></button>
+        <button class="ch-opt" onclick="chPickSpace('Café / Commercial')"><span class="text">Café / Commercial</span> <span class="arr">→</span></button>
       </div>
     </div>
 
