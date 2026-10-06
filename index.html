@@ -803,12 +803,12 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
           <div class="ch-field" id="fld-wa">
             <input type="tel" class="ch-input" id="f-wa" placeholder="+91 00000 00000" autocomplete="tel">
             <label class="ch-label" for="f-wa">WhatsApp *</label>
-            <span class="ch-field-err">Please enter a valid WhatsApp number</span>
+            <span class="ch-field-err">Enter your WhatsApp number</span>
           </div>
           <div class="ch-field" id="fld-em">
             <input type="email" class="ch-input" id="f-em" placeholder="you@email.com" autocomplete="email">
             <label class="ch-label" for="f-em">Email *</label>
-            <span class="ch-field-err">Please enter a valid email</span>
+            <span class="ch-field-err">Enter your email address</span>
           </div>
         </div>
       </div>
@@ -834,7 +834,7 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
           <div class="ch-field" id="fld-pin">
             <input type="text" class="ch-input" id="f-pin" placeholder="6-digit PIN" maxlength="6" inputmode="numeric">
             <label class="ch-label" for="f-pin">PIN Code *</label>
-            <span class="ch-field-err">Please enter a valid 6-digit PIN</span>
+            <span class="ch-field-err">Enter your PIN code</span>
           </div>
           </div>
       </div>
@@ -959,11 +959,11 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       var checks=[
         {id:'f-name', fld:'fld-name', test:function(v){return v.trim().length>1;}},
         {id:'f-wa',   fld:'fld-wa',   test:function(v){var d=v.replace(/\D/g,'');return d.length>=10;}},
-        {id:'f-em',   fld:'fld-em',   test:function(v){return v.indexOf('@')>0&&v.indexOf('.')>0;}},
+        {id:'f-em',   fld:'fld-em',   test:function(v){return v.trim().length>3&&v.indexOf('@')>0;}},
         {id:'f-bldg', fld:'fld-bldg', test:function(v){return v.trim().length>1;}},
         {id:'f-area', fld:'fld-area', test:function(v){return v.trim().length>1;}},
         {id:'f-city', fld:'fld-city', test:function(v){return v.trim().length>1;}},
-        {id:'f-pin',  fld:'fld-pin',  test:function(v){return /^\d{6}$/.test(v.trim());}}
+        {id:'f-pin',  fld:'fld-pin',  test:function(v){var d=v.replace(/\D/g,'');return d.length>=5;}}
       ];
       checks.forEach(function(c){
         var inp=document.getElementById(c.id);
