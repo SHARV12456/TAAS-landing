@@ -430,21 +430,21 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       <h2 class="ch-h">HERE ARE<br>THE RULES.</h2>
       
       <div class="ch-box">
-        <p class="ch-box-label">THE ₹1 LAKH CHALLENGE</p>
+        <p class="ch-box-label">THE ₹1.45 LAKH CHALLENGE</p>
         <ul class="ch-rules">
-          <li><span class="ck">✓</span> We design your entire space for under ₹1,00,000 in material and labour.</li>
-          <li><span class="ck">✓</span> We do a paid on-site visit first — this is the Design Fee, not part of the ₹1L budget.</li>
+          <li><span class="ck">✓</span> We design your entire space for under ₹1,45,000 in material and labour.</li>
+          <li><span class="ck">✓</span> We do a paid on-site visit first — this is the Design Fee, not part of the ₹1.45L budget.</li>
           <li><span class="ck">✓</span> You share honest photos of your current space before the visit.</li>
           <li><span class="ck">✓</span> We show you a full breakdown of where every rupee goes.</li>
-          <li><span class="ck">✓</span> If we can't do it under ₹1L, we tell you upfront — no surprises.</li>
+          <li><span class="ck">✓</span> If we can't do it under ₹1.45L, we tell you upfront — no surprises.</li>
         </ul>
       </div>
 
       <div class="ch-box" style="background:rgba(242,169,59,0.05);border-color:var(--acc)">
         <p class="ch-box-label" style="color:var(--acc)">ADVANCE TERMS</p>
         <ul class="ch-adv">
-          <li>₹25,000 upfront confirms your slot.</li>
-          <li>The ₹25,000 fee is for the ₹1L Interior Challenge only.</li>
+          <li>₹25,000 upfront confirms your slot (<strong>Waived for the first 5 clients!</strong>)</li>
+          <li>The ₹25,000 fee is for the ₹1.45L Interior Challenge only.</li>
           <li>This advance is separate from the final project budget and scope.</li>
         </ul>
       </div>
@@ -489,7 +489,7 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
         <hr class="ch-divider">
         <div>
           <p class="ch-fee-label" style="color:var(--acc)">CHALLENGE DESIGN FEE</p>
-          <p class="ch-fee-amt">₹25,000</p>
+          <p class="ch-fee-amt"><span style="text-decoration:line-through;opacity:0.4;font-size:0.6em">₹25,000</span> ₹0 <span style="font-size:14px;color:var(--acc);vertical-align:middle;text-transform:uppercase">(First 5 users)</span></p>
         </div>
       </div>
 
@@ -584,15 +584,15 @@ function chHandleProceed() {
 }
 
 function chConfirm() {
-  const refCode = '1LAKH-' + Math.floor(1000 + 9000 * Math.random());
+  const refCode = '1.45LAKH-' + Math.floor(1000 + 9000 * Math.random());
   document.getElementById('ch-sv-ref').textContent = refCode;
 
-  const msg = 'Hi TAAS! I just booked the ₹1 Lakh Interior Challenge.'
+  const msg = 'Hi TAAS! I just booked the ₹1.45 Lakh Interior Challenge.'
     + '\n\nMy Reference: ' + refCode
     + '\nName: ' + chState.name
     + '\nSpace: ' + chState.spaceType
     + '\nLocation: ' + chState.location
-    + '\n\nI am ready to pay the ₹25,000 design fee. Please send me the payment link.'
+    + '\n\nAs one of the first 5 users, my ₹25,000 design fee is waived!'
     + '\n\nHere is my detailed address for the on-site visit:\n' + chState.address
     + '\n\nI am ready to share my space photos!';
 
