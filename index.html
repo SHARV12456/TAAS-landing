@@ -958,12 +958,12 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       var ok=true;
       var checks=[
         {id:'f-name', fld:'fld-name', test:function(v){return v.trim().length>1;}},
-        {id:'f-wa',   fld:'fld-wa',   test:function(v){return /^[6-9]d{9}$/.test(v.replace(/[s+-]/g,''));}},
-        {id:'f-em',   fld:'fld-em',   test:function(v){return /^[^s@]+@[^s@]+.[^s@]+$/.test(v);}},
+        {id:'f-wa',   fld:'fld-wa',   test:function(v){var d=v.replace(/\D/g,'');return d.length>=10;}},
+        {id:'f-em',   fld:'fld-em',   test:function(v){return v.indexOf('@')>0&&v.indexOf('.')>0;}},
         {id:'f-bldg', fld:'fld-bldg', test:function(v){return v.trim().length>1;}},
         {id:'f-area', fld:'fld-area', test:function(v){return v.trim().length>1;}},
         {id:'f-city', fld:'fld-city', test:function(v){return v.trim().length>1;}},
-        {id:'f-pin',  fld:'fld-pin',  test:function(v){return /^d{6}$/.test(v.trim());}}
+        {id:'f-pin',  fld:'fld-pin',  test:function(v){return /^\d{6}$/.test(v.trim());}}
       ];
       checks.forEach(function(c){
         var inp=document.getElementById(c.id);
