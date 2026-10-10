@@ -27,6 +27,8 @@ src="https://www.facebook.com/tr?id=1857159411798429&ev=PageView&noscript=1"
 <meta name="format-detection" content="telephone=no">
 <title>TAAS® – ₹1.45L Interior Challenge</title>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="animated-logo.js" type="module"></script>
+<script src="splash.js" defer></script>
 <style>
 :root{--bg:#F3F0E2;--card:#fff;--ink:#22221F;--mute:#6B7352;--line:#E1DACB;--dk:#10150E;--on-dk:#F3F0E2;--acc:#C05E2C;--on-acc:#F3F0E2;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);--logo-arch:var(--dk);--logo-bg:var(--bg);--logo-t:var(--bg);--logo-arch:var(--dk);--logo-bg:var(--bg);--logo-t:var(--bg)}
@@ -511,53 +513,16 @@ h1{font-size:30px}h2{font-size:24px}
 }
 
 .logo { display: inline-flex; align-items: center; }
-#splash {
-  position: fixed; inset: 0; z-index: 99999;
-  background: var(--bg); display: flex; align-items: center; justify-content: center;
-  animation: splashFadeOut 0.6s ease-in-out 1.5s forwards;
-  pointer-events: none;
-}
-.splash-logo {
-  display: flex; flex-direction: column; align-items: center; gap: 16px;
-  animation: splashPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  opacity: 0; transform: scale(0.8);
-}
-.splash-logo .logo-mark { width: 80px; height: 104px; }
-.splash-text {
-  font-family: 'Jost', sans-serif; font-weight: 800; font-size: 32px;
-  letter-spacing: 0.12em; color: var(--ink);
-}
-@keyframes splashPop {
-  0% { opacity: 0; transform: scale(0.8); }
-  100% { opacity: 1; transform: scale(1); }
-}
-@keyframes splashFadeOut {
-  0% { opacity: 1; visibility: visible; }
-  100% { opacity: 0; visibility: hidden; }
-}
 </style></head><body>
 
-<div id="splash">
-  <div class="splash-logo">
-    <svg class="logo-mark" viewBox="0 0 260 340">
-      <path d="M 0 340 L 0 130 A 130 130 0 0 1 260 130 L 260 340 Z" fill="var(--logo-arch)" />
-      <path d="M 14 340 L 14 130 A 116 116 0 0 1 246 130 L 246 340" fill="none" stroke="var(--logo-bg)" stroke-width="8"/>
-      <rect x="60" y="110" width="140" height="32" fill="var(--logo-t)"/>
-      <rect x="114" y="142" width="32" height="198" fill="var(--acc)"/>
-    </svg>
-    <div class="splash-text">TAAS&reg;</div>
-  </div>
+<div id="splash-screen" style="position: fixed; inset: 0; z-index: 99999; background: #10150E; display: flex; align-items: center; justify-content: center; transition: transform 0.6s ease, opacity 0.6s ease;">
+  <animated-logo variant="intro" theme="dark" full="true" style="--logo-width: 200px;"></animated-logo>
+  <button id="splash-skip" style="position: absolute; bottom: 40px; right: 40px; background: none; border: none; color: #F3F0E2; font-family: 'Jost', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; opacity: 0.6; transition: opacity 0.2s;">Skip</button>
 </div>
 
 <div class="wrap">
 <div class="top"><span class="logo">
-  <svg class="logo-mark" viewBox="0 0 260 340" style="width:24px;height:31px;margin-right:8px;margin-bottom:2px;">
-    <path d="M 0 340 L 0 130 A 130 130 0 0 1 260 130 L 260 340 Z" fill="var(--logo-arch)" />
-    <path d="M 14 340 L 14 130 A 116 116 0 0 1 246 130 L 246 340" fill="none" stroke="var(--logo-bg)" stroke-width="8"/>
-    <rect x="60" y="110" width="140" height="32" fill="var(--logo-t)"/>
-    <rect x="114" y="142" width="32" height="198" fill="var(--acc)"/>
-  </svg>
-  TAAS&reg;
+  <animated-logo variant="static" full="true" style="--logo-width: 140px; margin-top: 4px;"></animated-logo>
 </span><span class="pill">First 5 clients: <b>Zero booking fee</b></span><button class="tg" id="tg" type="button" aria-label="Switch between light and dark mode" aria-pressed="false"></button></div>
 
 <header class="hero">
@@ -580,6 +545,7 @@ h1{font-size:30px}h2{font-size:24px}
 <span class="lbl" style="left:12px">Before</span><span class="lbl" style="right:12px">After</span>
 <div class="line"></div><div class="knob">↔</div>
 <input type="range" min="2" max="98" value="50" id="rng" aria-label="Drag to compare before and after">
+  <animated-logo variant="static" style="--logo-width: 32px; position: absolute; bottom: 12px; right: 12px; opacity: 0.7; z-index: 5; pointer-events: none;"></animated-logo>
 </div>
 <p class="hint">Drag to compare. Same space, a few smart changes.</p>
 </div>
@@ -639,13 +605,16 @@ h1{font-size:30px}h2{font-size:24px}
 <p class="micro" style="text-align:left;margin-top:12px">Example on a ₹1,45,000 project. All payments are cleared before the Day 10 handover. Extra work only with your written approval.</p>
 </section>
 
-<div class="final">
-<h2>Ready to transform your space?</h2>
-<p>Talk to us on WhatsApp at <a href="https://wa.me/917400162509" style="color:inherit;font-weight:700">+91 74001 62509</a> &#8211; we'll walk you through everything before you decide.</p>
+<div class="final" style="background: var(--dk); color: var(--on-dk); padding: 64px 24px; text-align: center; border-radius: 24px; margin: 40px 0;">
+  <animated-logo variant="static" full="true" theme="dark" style="--logo-width: 140px; margin-bottom: 24px;"></animated-logo>
+  <h2 style="color: var(--on-dk);">Ready to transform your space?</h2>
+  <p style="margin-bottom: 32px;">Talk to us on WhatsApp at <a href="https://wa.me/917400162509" style="color:inherit;font-weight:700">+91 74001 62509</a> &#8211; we'll walk you through everything before you decide.</p>
 <a class="btn wa" href="#" onclick="openChallenge(event)">Start your project →</a>
 </div>
 <p class="imp"><b>Important.</b> The ₹1.45 lakh figure is the defined TAAS Challenge budget and scope, not an unlimited renovation. Final scope, inclusions, exclusions, materials, timelines and payment terms are explained before you proceed.</p>
-<footer>TAAS®. One Space. One Challenge. One Transformation.</footer>
+<footer>
+  <animated-logo variant="static" full="true" style="--logo-width: 160px; margin: 0 auto; display: block; opacity: 0.8;"></animated-logo>
+</footer>
 </div>
 
 <div class="bar"><a class="btn wa" href="#" onclick="openChallenge(event)">Start your project →</a></div>
@@ -677,7 +646,9 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
 
     <!-- HEADER -->
     <header class="ch-hdr">
-      <div class="ch-hdr-brand">TAAS®</div>
+      <div class="ch-hdr-brand" style="display:flex; align-items:center;">
+        <animated-logo id="ch-logo" variant="static" style="--logo-width: 40px; margin-right: 12px;"></animated-logo>
+      </div>
       
       <button class="ch-hdr-close" onclick="CH.close()" aria-label="Close challenge">× CLOSE</button>
     </header>
@@ -960,6 +931,7 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
 
 <section class="ch-step" id="chS6">
       <div class="ch-success">
+        <animated-logo variant="intro" full="true" theme="light" style="--logo-width: 160px; margin-bottom: 24px;"></animated-logo>
         <div class="ch-success-eyebrow">Challenge Accepted</div>
         <h2 class="ch-success-h">You're<br><em>In.</em></h2>
         <div class="ch-ref-block">
@@ -1041,6 +1013,8 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       state.step=n;
       updateNav(n);
       document.getElementById('chOverlay').scrollTo({top:0,behavior:'smooth'});
+      var lg = document.getElementById('ch-logo');
+      if (lg && lg.pulse) lg.pulse();
     },
     pickSpace: function(el){
       document.querySelectorAll('.ch-opt').forEach(function(o){
@@ -1125,13 +1099,36 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       var waBtn=document.getElementById('chWaBtn');
       if(waBtn) waBtn.href=waUrl;
 
-      this.go(6);
+      var btn = document.getElementById('chBtn5');
+      if (btn) {
+        var og = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<animated-logo variant="loader" style="--logo-width: 24px; vertical-align: middle;"></animated-logo>';
+        setTimeout(function() {
+          btn.innerHTML = og;
+          btn.disabled = false;
+          CH.go(6);
+        }, 1500);
+      } else {
+        this.go(6);
+      }
     }
   };
 
   /* Attach openChallenge globally for all existing CTAs */
   window.openChallenge = function(e){ CH.open(e); };
+
+  // Nav logo shrink on scroll
+  window.addEventListener('scroll', function() {
+    var logo = document.querySelector('.top animated-logo');
+    if (logo) {
+      if (window.scrollY > 50) {
+        logo.removeAttribute('full');
+      } else {
+        logo.setAttribute('full', 'true');
+      }
+    }
+  });
 })();
 </script>
-
 </body></html>
