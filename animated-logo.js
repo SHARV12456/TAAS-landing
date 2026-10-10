@@ -2,7 +2,7 @@ class AnimatedLogo extends HTMLElement {
   static get observedAttributes() {
     return ['variant', 'theme', 'full'];
   }
-  
+
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -21,151 +21,95 @@ class AnimatedLogo extends HTMLElement {
     }
   }
 
-  pulse() {
-    const stem = this.shadowRoot.querySelector('.stem');
-    if (stem) {
-      stem.style.animation = 'none';
-      stem.offsetHeight; /* trigger reflow */
-      stem.style.animation = 'pulse-stem 0.4s ease-out';
-    }
-  }
-
   render() {
     const variant = this.getAttribute('variant') || 'static';
-    const theme = this.getAttribute('theme') || 'light';
-    
-    // Using placeholder SVG paths based on favicon since original SVGs were not provided
-    const archColor = theme === 'dark' ? '#10150E' : '#F3F0E2';
-    const tColor = theme === 'dark' ? '#F3F0E2' : '#10150E';
-    const stemColor = '#C05E2C';
-    const bgColor = theme === 'dark' ? '#F3F0E2' : 'transparent';
-    const strokeColor = theme === 'dark' ? '#F3F0E2' : '#10150E';
-    
+    const theme = this.getAttribute('theme') || 'auto';
+
+    // On dark backgrounds the PNG is fine as-is.
+    // On light/auto backgrounds use mix-blend-mode:screen so the Forest Night
+    // background pixels cancel out and only the cream+terracotta mark shows.
+    const blendMode = theme === 'dark' ? 'normal' : 'screen';
+
     let html = `
       <style>
         :host {
           display: inline-block;
           width: var(--logo-width, 120px);
           contain: content;
+          line-height: 0;
         }
-        svg {
+        img {
           width: 100%;
           height: auto;
           display: block;
+          mix-blend-mode: ${blendMode};
         }
-        .arch {
-          fill: ${archColor};
-          stroke: ${strokeColor};
-          stroke-width: 4;
-        }
-        .t-bar {
-          fill: ${tColor};
-        }
-        .stem {
-          fill: ${stemColor};
-          transform-origin: top center;
-        }
-        
-        /* Intro Animations */
+
+        /* ── Intro: scale-up fade ── */
         @media (prefers-reduced-motion: no-preference) {
-          :host([variant="intro"]) .arch {
-            fill: transparent;
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: draw-arch 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-          }
-          :host([variant="intro"]) .t-bar {
-            transform: translateX(-150%);
-            animation: slide-t 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
-          }
-          :host([variant="intro"]) .stem {
-            transform: scaleY(0);
-            animation: grow-stem 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.0s forwards;
-          }
-          :host([variant="intro"]) .wordmark {
+          :host([variant="intro"]) img {
             opacity: 0;
-            letter-spacing: 0.5em;
-            animation: fade-wordmark 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.4s forwards;
+            transform: scale(0.92) translateY(14px);
+            animation: logo-enter 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
           }
         }
-        
-        /* Loader Animation */
-        :host([variant="loader"]) .stem {
-          animation: pulse-stem-loop 1s infinite alternate ease-in-out;
+
+        /* ── Loader: gentle pulse ── */
+        :host([variant="loader"]) img {
+          animation: logo-pulse 1s cubic-bezier(0.22, 1, 0.36, 1) infinite alternate;
         }
-        
-        @keyframes draw-arch {
-          50% { fill: transparent; }
-          100% { stroke-dashoffset: 0; fill: ${archColor}; }
+
+        /* ── Step pulse (called via .pulse()) ── */
+        .pulsing {
+          animation: logo-step-pulse 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
         }
-        @keyframes slide-t {
-          to { transform: translateX(0); }
+
+        @keyframes logo-enter {
+          to { opacity: 1; transform: scale(1) translateY(0); }
         }
-        @keyframes grow-stem {
-          to { transform: scaleY(1); }
+        @keyframes logo-pulse {
+          from { opacity: 0.7; transform: scale(0.93); }
+          to   { opacity: 1;   transform: scale(1.07); }
         }
-        @keyframes fade-wordmark {
-          to { opacity: 1; letter-spacing: normal; }
+        @keyframes logo-step-pulse {
+          0%   { transform: scale(1); }
+          45%  { transform: scale(1.12); }
+          100% { transform: scale(1); }
         }
-        @keyframes pulse-stem {
-          0% { transform: scaleY(1); }
-          50% { transform: scaleY(1.2); }
-          100% { transform: scaleY(1); }
-        }
-        @keyframes pulse-stem-loop {
-          0% { transform: scaleY(0.8); opacity: 0.7; }
-          100% { transform: scaleY(1.2); opacity: 1; }
-        }
-        
-        .wordmark {
-          font-family: 'Jost', sans-serif;
-          font-weight: 800;
-          font-size: 80px;
-          fill: ${tColor};
-        }
-        .tagline {
-          font-family: 'Jost', sans-serif;
-          font-weight: 600;
-          font-size: 14px;
-          letter-spacing: 0.15em;
-          fill: ${tColor};
-          opacity: 0;
-          animation: fade-wordmark 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.6s forwards;
+
+        /* ── Reduced motion: just show it ── */
+        @media (prefers-reduced-motion: reduce) {
+          :host([variant="intro"]) img { opacity: 1; transform: none; animation: none; }
         }
       </style>
-      
-      <!-- Placeholder SVG until real SVGs are uploaded -->
-      <svg viewBox="0 0 512 600" aria-label="TAAS" role="img">
-        <g class="mark">
-          <path class="arch" d="M 126 380 L 126 220 A 130 130 0 0 1 386 220 L 386 380 Z" />
-          <path d="M 142 380 L 142 220 A 114 114 0 0 1 370 220 L 370 380" fill="none" stroke="${strokeColor}" stroke-width="8" opacity="0.5"/>
-          <rect class="t-bar" x="186" y="200" width="140" height="32" />
-          <rect class="stem" x="240" y="232" width="32" height="150" />
-        </g>
+
+      <img
+        src="logo-stacked.png"
+        alt="TAAS — Interior Spaces. Better Living."
+        aria-label="TAAS"
+        draggable="false"
+      />
     `;
-    
-    if (variant === 'intro' || this.hasAttribute('full')) {
-      html += `
-        <text class="wordmark" x="256" y="480" text-anchor="middle">TAAS<tspan font-size="30" dy="-40">®</tspan></text>
-        <text class="tagline" x="256" y="520" text-anchor="middle">INTERIOR SPACES. BETTER LIVING.</text>
-      `;
-    }
-    
-    html += `</svg>`;
-    
+
     this.shadowRoot.innerHTML = html;
   }
-  
+
+  /** Trigger a quick scale pulse — called from CH.go() on step change */
+  pulse() {
+    const img = this.shadowRoot.querySelector('img');
+    if (!img) return;
+    img.classList.remove('pulsing');
+    void img.offsetWidth; // reflow
+    img.classList.add('pulsing');
+    img.addEventListener('animationend', () => img.classList.remove('pulsing'), { once: true });
+  }
+
   playIntro() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setTimeout(() => {
-        this.dispatchEvent(new CustomEvent('intro-complete'));
-      }, 500);
-      return;
-    }
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const duration = reduced ? 500 : 2400;
     setTimeout(() => {
-      this.dispatchEvent(new CustomEvent('intro-complete'));
-    }, 2400); // Sequence completes at 2.4s
+      this.dispatchEvent(new CustomEvent('intro-complete', { bubbles: true }));
+    }, duration);
   }
 }
 

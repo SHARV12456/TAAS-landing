@@ -522,7 +522,7 @@ h1{font-size:30px}h2{font-size:24px}
 
 <div class="wrap">
 <div class="top"><span class="logo">
-  <animated-logo variant="static" full="true" style="--logo-width: 140px; margin-top: 4px;"></animated-logo>
+  <animated-logo variant="static" style="--logo-width: 100px;"></animated-logo>
 </span><span class="pill">First 5 clients: <b>Zero booking fee</b></span><button class="tg" id="tg" type="button" aria-label="Switch between light and dark mode" aria-pressed="false"></button></div>
 
 <header class="hero">
@@ -1123,9 +1123,9 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
     var logo = document.querySelector('.top animated-logo');
     if (logo) {
       if (window.scrollY > 50) {
-        logo.removeAttribute('full');
+        logo.style.setProperty('--logo-width', '56px');
       } else {
-        logo.setAttribute('full', 'true');
+        logo.style.setProperty('--logo-width', '100px');
       }
     }
   });
