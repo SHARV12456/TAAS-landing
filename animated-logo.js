@@ -9,89 +9,79 @@ class AnimatedLogo extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (oldValue !== newValue) {
-      this.render();
-    }
+    if (oldValue !== newValue) this.render();
   }
 
   connectedCallback() {
     this.render();
-    if (this.getAttribute('variant') === 'intro') {
-      this.playIntro();
-    }
+    if (this.getAttribute('variant') === 'intro') this.playIntro();
   }
 
   render() {
-    const variant = this.getAttribute('variant') || 'static';
-    const theme = this.getAttribute('theme') || 'auto';
+    const variant  = this.getAttribute('variant') || 'static';
+    const theme    = this.getAttribute('theme') || 'auto';
+    const isFull   = this.hasAttribute('full');
 
-    // On dark backgrounds the PNG is fine as-is.
-    // On light/auto backgrounds use mix-blend-mode:screen so the Forest Night
-    // background pixels cancel out and only the cream+terracotta mark shows.
-    const blendMode = theme === 'dark' ? 'normal' : 'screen';
+    // logo-stacked.png has opaque Forest Night background → needs screen blend on light bg
+    // logo-mark.png has transparent background → always normal
+    const src       = isFull ? 'logo-stacked.png' : 'logo-mark.png';
+    const blendMode = (isFull && theme !== 'dark') ? 'screen' : 'normal';
 
-    let html = `
+    this.shadowRoot.innerHTML = `
       <style>
         :host {
           display: inline-block;
-          width: var(--logo-width, 120px);
-          contain: content;
+          width: var(--logo-width, 48px);
           line-height: 0;
+          flex-shrink: 0;
         }
         img {
           width: 100%;
           height: auto;
           display: block;
           mix-blend-mode: ${blendMode};
+          transition: width 0.3s ease, opacity 0.3s ease;
         }
 
-        /* ── Intro: scale-up fade ── */
+        /* ── Intro: fade + lift ── */
         @media (prefers-reduced-motion: no-preference) {
           :host([variant="intro"]) img {
             opacity: 0;
             transform: scale(0.92) translateY(14px);
-            animation: logo-enter 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+            animation: logo-enter 1.2s cubic-bezier(0.22,1,.36,1) 0.3s forwards;
           }
         }
 
-        /* ── Loader: gentle pulse ── */
+        /* ── Loader: breathe ── */
         :host([variant="loader"]) img {
-          animation: logo-pulse 1s cubic-bezier(0.22, 1, 0.36, 1) infinite alternate;
+          animation: logo-breathe 1s cubic-bezier(0.22,1,.36,1) infinite alternate;
         }
 
-        /* ── Step pulse (called via .pulse()) ── */
+        /* step-pulse triggered via .pulse() */
         .pulsing {
-          animation: logo-step-pulse 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
+          animation: logo-step-pulse 0.4s cubic-bezier(0.22,1,.36,1) !important;
         }
 
         @keyframes logo-enter {
           to { opacity: 1; transform: scale(1) translateY(0); }
         }
-        @keyframes logo-pulse {
-          from { opacity: 0.7; transform: scale(0.93); }
-          to   { opacity: 1;   transform: scale(1.07); }
+        @keyframes logo-breathe {
+          from { opacity: 0.6; transform: scale(0.9);  }
+          to   { opacity: 1;   transform: scale(1.08); }
         }
         @keyframes logo-step-pulse {
-          0%   { transform: scale(1); }
-          45%  { transform: scale(1.12); }
-          100% { transform: scale(1); }
+          0%   { transform: scale(1);    }
+          45%  { transform: scale(1.14); }
+          100% { transform: scale(1);    }
         }
 
-        /* ── Reduced motion: just show it ── */
+        /* Reduced motion */
         @media (prefers-reduced-motion: reduce) {
-          :host([variant="intro"]) img { opacity: 1; transform: none; animation: none; }
+          :host([variant="intro"]) img { opacity:1; transform:none; animation:none; }
         }
       </style>
-
-      <img
-        src="logo-stacked.png"
-        alt="TAAS — Interior Spaces. Better Living."
-        aria-label="TAAS"
-        draggable="false"
-      />
+      <img src="${src}" alt="TAAS" aria-label="TAAS" draggable="false" />
     `;
-
-    this.shadowRoot.innerHTML = html;
   }
 
   /** Trigger a quick scale pulse — called from CH.go() on step change */
@@ -99,18 +89,18 @@ class AnimatedLogo extends HTMLElement {
     const img = this.shadowRoot.querySelector('img');
     if (!img) return;
     img.classList.remove('pulsing');
-    void img.offsetWidth; // reflow
+    void img.offsetWidth;
     img.classList.add('pulsing');
     img.addEventListener('animationend', () => img.classList.remove('pulsing'), { once: true });
   }
 
   playIntro() {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const duration = reduced ? 500 : 2400;
+    const reduced  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     setTimeout(() => {
       this.dispatchEvent(new CustomEvent('intro-complete', { bubbles: true }));
-    }, duration);
+    }, reduced ? 500 : 2400);
   }
 }
 
 customElements.define('animated-logo', AnimatedLogo);
+
