@@ -29,9 +29,9 @@ src="https://www.facebook.com/tr?id=1857159411798429&ev=PageView&noscript=1"
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#F3F0E2;--card:#fff;--ink:#22221F;--mute:#6B7352;--line:#E1DACB;--dk:#10150E;--on-dk:#F3F0E2;--acc:#C05E2C;--on-acc:#F3F0E2;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10150E;--card:#181F15;--ink:#F3F0E2;--mute:#9BA384;--line:#293323;--dk:#1C2418}}
-:root[data-theme="dark"]{--bg:#10150E;--card:#181F15;--ink:#F3F0E2;--mute:#9BA384;--line:#293323;--dk:#1C2418}
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);--logo-arch:var(--dk);--logo-bg:var(--bg);--logo-t:var(--bg);--logo-arch:var(--dk);--logo-bg:var(--bg);--logo-t:var(--bg)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10150E;--card:#181F15;--ink:#F3F0E2;--mute:#9BA384;--line:#293323;--dk:#1C2418;--logo-arch:var(--bg);--logo-bg:var(--dk);--logo-t:var(--dk)}}
+:root[data-theme="dark"]{--bg:#10150E;--card:#181F15;--ink:#F3F0E2;--mute:#9BA384;--line:#293323;--dk:#1C2418;--logo-arch:var(--bg);--logo-bg:var(--dk);--logo-t:var(--dk)}
 html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.55;font-size:16.5px;-webkit-font-smoothing:antialiased;padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
@@ -509,9 +509,56 @@ h1{font-size:30px}h2{font-size:24px}
   font-size:28px;font-weight:800;letter-spacing:-0.02em;
   text-transform:uppercase;margin-bottom:24px;
 }
+
+.logo { display: inline-flex; align-items: center; }
+#splash {
+  position: fixed; inset: 0; z-index: 99999;
+  background: var(--bg); display: flex; align-items: center; justify-content: center;
+  animation: splashFadeOut 0.6s ease-in-out 1.5s forwards;
+  pointer-events: none;
+}
+.splash-logo {
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  animation: splashPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  opacity: 0; transform: scale(0.8);
+}
+.splash-logo .logo-mark { width: 80px; height: 104px; }
+.splash-text {
+  font-family: 'Jost', sans-serif; font-weight: 800; font-size: 32px;
+  letter-spacing: 0.12em; color: var(--ink);
+}
+@keyframes splashPop {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes splashFadeOut {
+  0% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
 </style></head><body>
+
+<div id="splash">
+  <div class="splash-logo">
+    <svg class="logo-mark" viewBox="0 0 260 340">
+      <path d="M 0 340 L 0 130 A 130 130 0 0 1 260 130 L 260 340 Z" fill="var(--logo-arch)" />
+      <path d="M 14 340 L 14 130 A 116 116 0 0 1 246 130 L 246 340" fill="none" stroke="var(--logo-bg)" stroke-width="8"/>
+      <rect x="60" y="110" width="140" height="32" fill="var(--logo-t)"/>
+      <rect x="114" y="142" width="32" height="198" fill="var(--acc)"/>
+    </svg>
+    <div class="splash-text">TAAS&reg;</div>
+  </div>
+</div>
+
 <div class="wrap">
-<div class="top"><span class="logo">TAAS®</span><span class="pill">First 5 clients: <b>Zero booking fee</b></span><button class="tg" id="tg" type="button" aria-label="Switch between light and dark mode" aria-pressed="false"></button></div>
+<div class="top"><span class="logo">
+  <svg class="logo-mark" viewBox="0 0 260 340" style="width:24px;height:31px;margin-right:8px;margin-bottom:2px;">
+    <path d="M 0 340 L 0 130 A 130 130 0 0 1 260 130 L 260 340 Z" fill="var(--logo-arch)" />
+    <path d="M 14 340 L 14 130 A 116 116 0 0 1 246 130 L 246 340" fill="none" stroke="var(--logo-bg)" stroke-width="8"/>
+    <rect x="60" y="110" width="140" height="32" fill="var(--logo-t)"/>
+    <rect x="114" y="142" width="32" height="198" fill="var(--acc)"/>
+  </svg>
+  TAAS&reg;
+</span><span class="pill">First 5 clients: <b>Zero booking fee</b></span><button class="tg" id="tg" type="button" aria-label="Switch between light and dark mode" aria-pressed="false"></button></div>
 
 <header class="hero">
 <div>
