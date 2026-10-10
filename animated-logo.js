@@ -20,12 +20,19 @@ class AnimatedLogo extends HTMLElement {
   render() {
     const variant  = this.getAttribute('variant') || 'static';
     const theme    = this.getAttribute('theme') || 'auto';
-    const isFull   = this.hasAttribute('full');
+    const layout   = this.getAttribute('layout') || (this.hasAttribute('full') ? 'stacked' : 'mark');
 
     // logo-stacked.png has opaque Forest Night background → needs screen blend on light bg
-    // logo-mark.png has transparent background → always normal
-    const src       = isFull ? 'logo-stacked.png' : 'logo-mark.png';
-    const blendMode = (isFull && theme !== 'dark') ? 'screen' : 'normal';
+    // logo-mark.png and logo-horizontal.png have transparent backgrounds → always normal
+    let src = 'logo-mark.png';
+    let blendMode = 'normal';
+    
+    if (layout === 'stacked') {
+      src = 'logo-stacked.png';
+      if (theme !== 'dark') blendMode = 'screen';
+    } else if (layout === 'horizontal') {
+      src = 'logo-horizontal.png';
+    }
 
     this.shadowRoot.innerHTML = `
       <style>
