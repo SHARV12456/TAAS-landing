@@ -27,6 +27,9 @@ src="https://www.facebook.com/tr?id=1857159411798429&ev=PageView&noscript=1"
 <meta name="format-detection" content="telephone=no">
 <title>TAAS® – ₹1.45L Interior Challenge</title>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="/challenge-dark.css" as="style">
+<link rel="stylesheet" href="/challenge-dark.css">
+<link rel="preload" href="/brand/pattern-arches.png" as="image">
 <script src="animated-logo.js" type="module"></script>
 <script src="splash.js" defer></script>
 <style>
@@ -161,356 +164,9 @@ h1{font-size:30px}h2{font-size:24px}
 @media(min-width:1700px){.wrap{max-width:1360px}body{font-size:19px}h1{font-size:76px}h2{font-size:46px}}
 @media(min-width:2200px){.wrap{max-width:1640px}body{font-size:22px}h1{font-size:92px}h2{font-size:56px}.btn{font-size:21px}}
 
-/* ============================================================
-   TAAS CHALLENGE OVERLAY v3
-   Bold × Premium × Modern × Funky × Creative
-   ============================================================ */
+/* TAAS CHALLENGE OVERLAY styles loaded via challenge-dark.css */
 
-/* RESET */
-.ch *{box-sizing:border-box;margin:0;padding:0}
-.ch button,.ch input,.ch textarea,.ch select{font-family:inherit}
-.ch a{text-decoration:none;color:inherit}
 
-/* TOKENS */
-.ch{
-  --bg:#F3F0E2; --txt:#22221F; --red:#C05E2C;
-  --lime:#C7FF00; --mut:#6B7352; --wht:#FFFFFF;
-  --brd:1.5px solid #22221F;
-  --f:-1px;
-}
-
-/* OVERLAY */
-.ch{
-  position:fixed;inset:0;z-index:1000;
-  background:var(--bg);color:var(--txt);
-  font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;
-  display:none;overflow-y:auto;overflow-x:hidden;
-}
-.ch.open{display:block}
-
-/* SCROLL WRAPPER */
-.ch-wrap{
-  max-width:1240px;margin:0 auto;
-  padding:0 32px 80px;
-}
-@media(max-width:768px){.ch-wrap{padding:0 16px 60px}}
-
-/* ─── HEADER ──────────────────────────────── */
-.ch-hdr{
-  display:flex;align-items:center;justify-content:space-between;
-  height:52px;border-bottom:var(--brd);
-  position:sticky;top:0;background:var(--bg);z-index:20;
-}
-.ch-hdr-brand{font-size:17px;font-weight:800;letter-spacing:0.05em}
-.ch-hdr-tag{
-  font-size:11px;font-weight:700;letter-spacing:0.15em;
-  text-transform:uppercase;color:var(--mut);
-}
-.ch-hdr-close{
-  background:none;border:none;cursor:pointer;
-  font-size:12px;font-weight:700;letter-spacing:0.1em;
-  text-transform:uppercase;color:var(--txt);
-  padding:8px 16px;border:var(--brd);
-  transition:all 150ms;
-}
-.ch-hdr-close:hover{background:var(--txt);color:var(--bg)}
-
-/* ─── STEP NAV ────────────────────────────── */
-.ch-nav{
-  display:flex;gap:0;border-bottom:var(--brd);
-  overflow-x:auto;scrollbar-width:none;
-}
-.ch-nav::-webkit-scrollbar{display:none}
-.ch-nav-item{
-  font-size:10px;font-weight:700;letter-spacing:0.1em;
-  text-transform:uppercase;padding:10px 16px;
-  border-right:var(--brd);color:var(--mut);
-  white-space:nowrap;transition:all 150ms;
-  display:flex;align-items:center;gap:6px;
-}
-.ch-nav-item:last-child{border-right:none}
-.ch-nav-item .ni{
-  width:20px;height:20px;border-radius:50%;
-  border:1.5px solid var(--mut);
-  display:flex;align-items:center;justify-content:center;
-  font-size:9px;font-weight:800;transition:all 150ms;
-}
-.ch-nav-item.done{color:var(--txt)}
-.ch-nav-item.done .ni{background:var(--txt);border-color:var(--txt);color:var(--bg)}
-.ch-nav-item.active{color:var(--red)}
-.ch-nav-item.active .ni{background:var(--red);border-color:var(--red);color:var(--wht)}
-
-/* ─── STEPS ──────────────────────────────── */
-.ch-step{display:none;padding-top:24px}
-.ch-step.active{display:block;animation:chIn 220ms ease-out}
-@keyframes chIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:768px){.ch-step{padding-top:16px}}
-
-/* ─── HERO GRID ──────────────────────────── */
-.ch-hero{
-  display:grid;grid-template-columns:1fr 280px;
-  gap:32px;align-items:start;margin-bottom:32px;
-}
-@media(max-width:1024px){.ch-hero{grid-template-columns:1fr 220px;gap:20px}}
-@media(max-width:768px){.ch-hero{grid-template-columns:1fr;gap:16px;margin-bottom:20px}}
-
-/* Hero left */
-.ch-eyebrow{
-  font-size:10px;font-weight:700;letter-spacing:0.15em;
-  text-transform:uppercase;color:var(--red);
-  display:flex;align-items:center;gap:8px;margin-bottom:10px;
-}
-.ch-eyebrow::before{
-  content:'';width:20px;height:2px;background:var(--red);flex-shrink:0;
-}
-.ch-headline{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(36px,4.5vw,64px);
-  font-weight:800;letter-spacing:-0.04em;line-height:0.88;
-  margin-bottom:16px;
-}
-.ch-headline em{
-  font-style:normal;color:var(--red);
-}
-.ch-sub{
-  font-size:13px;line-height:1.5;color:var(--mut);
-  max-width:480px;border-left:2px solid var(--red);
-  padding-left:12px;
-}
-
-/* Hero right — challenge badge */
-.ch-badge{
-  border:var(--brd);padding:16px 20px;
-  display:flex;flex-direction:column;gap:10px;
-  position:relative;overflow:hidden;
-}
-.ch-badge::before{
-  content:'';position:absolute;top:0;right:0;
-  width:80px;height:80px;background:var(--lime);
-  clip-path:polygon(100% 0,0 0,100% 100%);
-}
-.ch-badge-num{
-  font-size:48px;font-weight:800;letter-spacing:-0.05em;
-  line-height:0.85;color:var(--txt);
-}
-.ch-badge-num span{font-size:0.35em;color:var(--mut);vertical-align:super}
-.ch-badge-lbl{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
-.ch-badge-pills{display:flex;flex-direction:column;gap:4px;margin-top:0}
-.ch-badge-pill{
-  font-size:10px;font-weight:700;letter-spacing:0.06em;
-  text-transform:uppercase;background:var(--txt);color:var(--bg);
-  padding:4px 10px;display:inline-block;width:fit-content;
-}
-.ch-badge-pill.lime{background:var(--lime);color:var(--txt)}
-
-/* ─── SECTION HEADER ─────────────────────── */
-.ch-sec-hdr{
-  border-top:var(--brd);border-bottom:var(--brd);
-  padding:12px 0;margin-bottom:20px;
-  display:flex;align-items:baseline;gap:12px;
-}
-.ch-sec-hdr h3{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(20px,2.5vw,28px);
-  font-weight:800;letter-spacing:-0.03em;
-}
-.ch-sec-hdr span{font-size:12px;font-weight:600;color:var(--mut);letter-spacing:0.08em;text-transform:uppercase}
-
-/* ─── SPACE OPTIONS ──────────────────────── */
-.ch-opts{border-bottom:var(--brd)}
-.ch-opt{
-  display:flex;align-items:center;
-  border-top:var(--brd);min-height:56px;padding:0 16px;
-  cursor:pointer;transition:all 150ms;position:relative;
-  user-select:none;
-}
-.ch-opt-n{
-  font-size:11px;font-weight:700;letter-spacing:0.1em;
-  width:48px;flex-shrink:0;color:var(--mut);transition:color 150ms;
-}
-.ch-opt-t{
-  font-size:clamp(15px,1.8vw,20px);font-weight:700;
-  letter-spacing:-0.01em;text-transform:uppercase;flex:1;
-  transition:all 150ms;
-}
-.ch-opt-arr{
-  font-size:22px;font-weight:300;transition:transform 150ms;
-  flex-shrink:0;
-}
-.ch-opt-sel{
-  font-size:10px;font-weight:700;letter-spacing:0.12em;
-  text-transform:uppercase;background:var(--lime);
-  color:var(--txt);padding:4px 8px;display:none;margin-right:12px;
-}
-
-/* hover */
-.ch-opt:hover{background:var(--txt);color:var(--bg);padding-left:28px}
-.ch-opt:hover .ch-opt-n{color:var(--red)}
-.ch-opt:hover .ch-opt-arr{transform:translateX(8px)}
-
-/* selected */
-.ch-opt.sel{background:var(--red);color:var(--txt);padding-left:28px}
-.ch-opt.sel .ch-opt-n{color:var(--txt);font-weight:800}
-.ch-opt.sel .ch-opt-sel{display:block}
-.ch-opt.sel .ch-opt-arr{display:none}
-
-/* ─── STEP FOOTER ────────────────────────── */
-.ch-foot{
-  display:flex;align-items:center;justify-content:space-between;
-  padding-top:20px;border-top:var(--brd);margin-top:20px;
-}
-.ch-foot-note{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--mut)}
-
-/* ─── BUTTONS ────────────────────────────── */
-.ch-btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  height:44px;padding:0 22px;border:none;cursor:pointer;
-  font-family:inherit;font-size:11px;font-weight:700;
-  letter-spacing:0.12em;text-transform:uppercase;
-  background:var(--txt);color:var(--bg);
-  transition:all 150ms;
-}
-.ch-btn:hover{background:var(--red);color:var(--txt)}
-.ch-btn:disabled{opacity:0.35;cursor:not-allowed}
-.ch-btn:disabled:hover{background:var(--txt);color:var(--bg)}
-.ch-btn-ghost{background:none;color:var(--txt);border:var(--brd)}
-.ch-btn-ghost:hover{background:var(--txt);color:var(--bg)}
-.ch-btn-lg{height:46px;font-size:12px;padding:0 28px}
-
-/* ─── RULES ──────────────────────────────── */
-.ch-rules{display:flex;flex-direction:column;border-bottom:var(--brd);margin-bottom:0}
-.ch-rule{
-  border-top:var(--brd);padding:10px 0;
-  display:grid;grid-template-columns:40px 1fr auto;
-  gap:12px;align-items:start;
-}
-.ch-rule-n{
-  font-size:11px;font-weight:700;letter-spacing:0.1em;
-  padding-top:4px;color:var(--mut);
-}
-.ch-rule-body h4{
-  font-size:15px;font-weight:800;letter-spacing:-0.01em;
-  text-transform:uppercase;margin-bottom:2px;
-}
-.ch-rule-body p{font-size:12px;color:var(--mut);line-height:1.4}
-.ch-rule-badge{
-  font-size:12px;font-weight:800;letter-spacing:-0.01em;
-  white-space:nowrap;padding-top:2px;
-}
-.ch-rule-badge.red{color:var(--red)}
-.ch-rule-badge.lime-bg{
-  background:var(--lime);padding:3px 8px;color:var(--txt);
-  border:var(--brd);display:inline-block;margin-top:2px;font-size:11px;
-}
-@media(max-width:600px){
-  .ch-rule{grid-template-columns:40px 1fr;gap:12px}
-  .ch-rule-badge{grid-column:2}
-}
-
-/* ─── SUMMARY ────────────────────────────── */
-.ch-sum{border:var(--brd);margin-bottom:32px}
-.ch-sum-row{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:14px 20px;border-bottom:1px solid rgba(17,17,17,0.12);
-  font-size:14px;font-weight:600;
-}
-.ch-sum-row:last-child{border-bottom:none}
-.ch-sum-row .sk{color:var(--mut);text-transform:uppercase;letter-spacing:0.08em;font-size:11px}
-.ch-sum-row .sv{font-size:16px;font-weight:800;letter-spacing:-0.01em}
-.ch-sum-row.highlight{background:var(--lime)}
-.ch-sum-row.highlight .sk{color:var(--txt)}
-.ch-sum-row.highlight .sv{color:var(--txt);font-size:18px}
-
-/* ─── AGREEMENTS ─────────────────────────── */
-.ch-agreements{margin-bottom:32px}
-.ch-agreement{
-  display:flex;gap:14px;align-items:flex-start;
-  padding:14px 0;border-bottom:1px solid rgba(17,17,17,0.1);
-  cursor:pointer;
-}
-.ch-agreement:first-child{border-top:var(--brd)}
-.ch-agreement-box{
-  width:20px;height:20px;border:var(--brd);flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  background:var(--wht);transition:all 150ms;margin-top:2px;
-}
-.ch-agreement input{display:none}
-.ch-agreement.checked .ch-agreement-box{background:var(--red);border-color:var(--red);color:var(--wht)}
-.ch-agreement-text{font-size:14px;line-height:1.5;font-weight:500}
-
-/* ─── FORM ───────────────────────────────── */
-.ch-form-section{margin-bottom:32px}
-.ch-form-section-title{
-  font-size:11px;font-weight:700;letter-spacing:0.12em;
-  text-transform:uppercase;color:var(--mut);
-  padding:12px 0;border-bottom:var(--brd);margin-bottom:24px;
-}
-.ch-form-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:24px 32px;
-}
-.ch-form-grid.full{grid-template-columns:1fr}
-@media(max-width:640px){.ch-form-grid{grid-template-columns:1fr;gap:20px}}
-
-.ch-field{display:flex;flex-direction:column-reverse;position:relative}
-.ch-label{
-  font-size:10px;font-weight:700;letter-spacing:0.1em;
-  text-transform:uppercase;color:var(--txt);
-  margin-bottom:6px;transition:color 150ms;
-}
-.ch-input{
-  background:transparent;border:none;
-  border-bottom:1.5px solid var(--txt);
-  height:42px;font-family:inherit;font-size:16px;font-weight:600;
-  color:var(--txt);padding:0;outline:none;border-radius:0;
-  transition:border-color 150ms,border-bottom-width 150ms;
-}
-.ch-input:focus{border-bottom:2.5px solid var(--red)}
-.ch-input:focus + .ch-label{color:var(--red)}
-.ch-input.err{border-bottom-color:var(--red)}
-.ch-input::placeholder{color:rgba(17,17,17,0.3)}
-.ch-field-err{
-  font-size:11px;font-weight:600;color:var(--red);
-  position:absolute;bottom:-18px;left:0;display:none;
-}
-.ch-field.has-err .ch-field-err{display:block}
-.ch-field.has-err .ch-input{border-bottom-color:var(--red)}
-
-/* ─── SUCCESS ────────────────────────────── */
-.ch-success{padding:60px 0;max-width:640px}
-.ch-success-eyebrow{
-  font-size:11px;font-weight:700;letter-spacing:0.15em;
-  text-transform:uppercase;color:var(--red);
-  display:flex;align-items:center;gap:8px;margin-bottom:16px;
-}
-.ch-success-eyebrow::before{content:'';width:20px;height:2px;background:var(--red)}
-.ch-success-h{
-  font-size:clamp(80px,12vw,144px);font-weight:800;
-  letter-spacing:-0.05em;line-height:0.85;
-  text-transform:uppercase;margin-bottom:16px;
-}
-.ch-success-h em{font-style:normal;color:var(--red)}
-.ch-ref-block{
-  display:inline-flex;align-items:center;gap:0;
-  border:var(--brd);margin:24px 0;
-}
-.ch-ref-lbl{
-  font-size:10px;font-weight:700;letter-spacing:0.1em;
-  text-transform:uppercase;background:var(--txt);color:var(--bg);
-  padding:10px 14px;
-}
-.ch-ref-val{
-  font-size:14px;font-weight:700;letter-spacing:0.12em;
-  font-family:monospace;padding:10px 16px;
-}
-.ch-success-body{
-  font-size:16px;font-weight:500;line-height:1.6;
-  color:var(--mut);margin:24px 0 32px;border-left:3px solid var(--lime);
-  padding-left:16px;
-}
-.ch-success-next{
-  font-size:28px;font-weight:800;letter-spacing:-0.02em;
-  text-transform:uppercase;margin-bottom:24px;
-}
 
 .logo { display: inline-flex; align-items: center; }
 </style></head><body>
@@ -645,8 +301,8 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
 
     <!-- HEADER -->
     <header class="ch-hdr">
-      <div class="ch-hdr-brand" style="display:flex; align-items:center;">
-        <animated-logo id="ch-logo" variant="static" style="--logo-width: 36px; margin-right: 10px;"></animated-logo>
+      <div class="ch-hdr-brand">
+        <animated-logo id="ch-logo" variant="static" style="--logo-width: 36px;"></animated-logo>
       </div>
       
       <button class="ch-hdr-close" onclick="CH.close()" aria-label="Close challenge">× CLOSE</button>
@@ -663,12 +319,6 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
 
     <!-- ── STEP 1 — SPACE ─────────────────────── -->
     <section class="ch-step active" id="chS1">
-      <div class="ch-hero">
-        <div class="ch-hero-l">
-          
-          
-        </div>
-        
 
       <div class="ch-sec-hdr">
         <h3>What Are We Transforming?</h3>
@@ -805,22 +455,22 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       </div>
 
       <div class="ch-agreements" id="chAgreements">
-        <label class="ch-agreement" onclick="CH.toggleAgreement(this)">
+        <label class="ch-agreement" tabindex="0" onclick="CH.toggleAgreement(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();CH.toggleAgreement(this);}">
           <input type="checkbox" name="agree1">
           <div class="ch-agreement-box">✓</div>
           <div class="ch-agreement-text">I understand the ₹1,45,000 execution budget limit and the challenge scope.</div>
         </label>
-        <label class="ch-agreement" onclick="CH.toggleAgreement(this)">
+        <label class="ch-agreement" tabindex="0" onclick="CH.toggleAgreement(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();CH.toggleAgreement(this);}">
           <input type="checkbox" name="agree2">
           <div class="ch-agreement-box">✓</div>
           <div class="ch-agreement-text">I understand this challenge excludes all demolition, civil, structural, carpentry, plumbing and major works. Only cosmetic &amp; décor changes are in scope.</div>
         </label>
-        <label class="ch-agreement" onclick="CH.toggleAgreement(this)">
+        <label class="ch-agreement" tabindex="0" onclick="CH.toggleAgreement(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();CH.toggleAgreement(this);}">
           <input type="checkbox" name="agree3">
           <div class="ch-agreement-box">✓</div>
           <div class="ch-agreement-text">I agree to be contacted by TAAS regarding this design challenge.</div>
         </label>
-        <label class="ch-agreement" onclick="CH.toggleAgreement(this)">
+        <label class="ch-agreement" tabindex="0" onclick="CH.toggleAgreement(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();CH.toggleAgreement(this);}">
           <input type="checkbox" name="agree4">
           <div class="ch-agreement-box">✓</div>
           <div class="ch-agreement-text">The information I provide is accurate to the best of my knowledge.</div>
@@ -930,7 +580,11 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
 
 <section class="ch-step" id="chS6">
       <div class="ch-success">
-        <animated-logo variant="intro" full="true" theme="light" style="--logo-width: 160px; margin-bottom: 24px;"></animated-logo>
+        <svg class="ch-success-arch" viewBox="0 0 120 140" width="120" height="140" aria-hidden="true">
+          <path class="arch-fill" d="M 20,130 L 20,60 A 40,40 0 0,1 100,60 L 100,130 Z"></path>
+          <path class="arch-stroke" d="M 20,130 L 20,60 A 40,40 0 0,1 100,60 L 100,130 Z"></path>
+          <text class="arch-t" x="60" y="96" text-anchor="middle" font-family="'Playfair Display', serif" font-size="44" font-weight="700" fill="var(--taas-cream)">T</text>
+        </svg>
         <div class="ch-success-eyebrow">Challenge Accepted</div>
         <h2 class="ch-success-h">You're<br><em>In.</em></h2>
         <div class="ch-ref-block">
@@ -939,8 +593,8 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
         </div>
         <div class="ch-success-next">Now Show Us the Space.</div>
         <p class="ch-success-body">Our design team will personally review your space. Share a few clear photos or a short walkthrough video — this helps us assess the starting point and reserve your slot before someone else takes it.</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <a class="ch-btn ch-btn-lg" id="chWaBtn" href="#" target="_blank" rel="noopener" style="background:#25D366;color:#ffffff">CLAIM YOUR SLOT →</a>
+        <div class="ch-success-actions">
+          <a class="ch-btn ch-btn-lg" id="chWaBtn" href="#" target="_blank" rel="noopener">CLAIM YOUR SLOT →</a>
           <button class="ch-btn ch-btn-ghost" onclick="CH.close()">Return to Site</button>
         </div>
       </div>
@@ -991,6 +645,10 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       if(s===n) el.classList.add('active');
       else if(s<n) el.classList.add('done');
     });
+    var ov = document.getElementById('chOverlay');
+    if (ov) {
+      ov.style.setProperty('--ch-progress', (Math.min(1, n / 5)).toString());
+    }
   }
 
   window.CH = {
@@ -1006,9 +664,16 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       document.body.style.overflow='';
     },
     go: function(n){
-      document.querySelectorAll('.ch-step').forEach(function(el){el.classList.remove('active');});
+      var prev = state.step;
+      var isBack = n < prev;
+      document.querySelectorAll('.ch-step').forEach(function(el){
+        el.classList.remove('active', 'ch-back');
+      });
       var nxt=document.getElementById('chS'+n);
-      if(nxt){ nxt.classList.add('active'); }
+      if(nxt){
+        if (isBack) nxt.classList.add('ch-back');
+        nxt.classList.add('active');
+      }
       state.step=n;
       updateNav(n);
       document.getElementById('chOverlay').scrollTo({top:0,behavior:'smooth'});
@@ -1026,7 +691,13 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       var ss=document.getElementById('sumSpace');
       if(ss) ss.textContent=state.space;
       var b=document.getElementById('chBtn1');
-      if(b) b.disabled=false;
+      if(b){
+        if (b.disabled) {
+          b.disabled=false;
+          b.classList.add('ch-unlocking');
+          setTimeout(function(){ b.classList.remove('ch-unlocking'); }, 500);
+        }
+      }
       setTimeout(function(){ CH.go(2); }, 280);
     },
     toggleAgreement: function(el){
@@ -1037,7 +708,15 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       el.classList.toggle('checked',inp.checked);
       var allChecked=Object.values(state.agreements).every(Boolean);
       var b=document.getElementById('chBtn3');
-      if(b) b.disabled=!allChecked;
+      if(b){
+        if (allChecked && b.disabled) {
+          b.disabled=false;
+          b.classList.add('ch-unlocking');
+          setTimeout(function(){ b.classList.remove('ch-unlocking'); }, 500);
+        } else if (!allChecked) {
+          b.disabled=true;
+        }
+      }
     },
     pickAction: function(el){
       document.querySelectorAll('#chS5 .ch-opt').forEach(function(o){
@@ -1048,7 +727,13 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       el.setAttribute('aria-checked','true');
       state.action = el.dataset.action;
       var b=document.getElementById('chBtn5');
-      if(b) b.disabled=false;
+      if(b){
+        if (b.disabled) {
+          b.disabled=false;
+          b.classList.add('ch-unlocking');
+          setTimeout(function(){ b.classList.remove('ch-unlocking'); }, 500);
+        }
+      }
     },
     validate: function(){
       var ok=true;
@@ -1125,6 +810,35 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
         logo.style.setProperty('--logo-width', '56px');
       } else {
         logo.style.setProperty('--logo-width', '100px');
+      }
+    }
+  });
+
+  // Desktop mouse parallax on pattern (rAF throttled, 12px shift)
+  var ov = document.getElementById('chOverlay');
+  if (ov && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var raf = null, mx = 0, my = 0;
+    ov.addEventListener('mousemove', function(e) {
+      if (window.innerWidth < 768) return;
+      var cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+      mx = ((e.clientX - cx) / cx) * 12;
+      my = ((e.clientY - cy) / cy) * 12;
+      if (!raf) {
+        raf = requestAnimationFrame(function() {
+          ov.style.setProperty('--mx', mx.toFixed(1) + 'px');
+          ov.style.setProperty('--my', my.toFixed(1) + 'px');
+          raf = null;
+        });
+      }
+    });
+  }
+
+  // Keyboard accessibility: ESC to close
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      var ov = document.getElementById('chOverlay');
+      if (ov && ov.classList.contains('open')) {
+        CH.close();
       }
     }
   });
