@@ -143,6 +143,47 @@
   letter-spacing: 0.05em;
 }
 
+.ch .ch-hdr-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Instagram link in header */
+.ch .ch-hdr-instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 6px 12px;
+  color: var(--taas-cream-dim);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: color var(--t-fast) var(--ease-out);
+}
+.ch .ch-hdr-instagram .ig-icon {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  transition: stroke var(--t-fast) var(--ease-out);
+}
+.ch .ch-hdr-instagram:hover {
+  color: var(--taas-cream);
+}
+.ch .ch-hdr-instagram:hover .ig-icon {
+  stroke: var(--taas-terracotta);
+}
+.ch .ch-hdr-instagram:focus-visible {
+  outline: 2px solid var(--taas-terracotta);
+  outline-offset: 3px;
+}
+
 /* CLOSE button — cream outline, left-to-right sweep fill */
 .ch .ch-hdr-close {
   position: relative;
@@ -481,6 +522,48 @@
   font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
+}
+
+/* Quiet social row at bottom of step */
+.ch .ch-step-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+  padding: 4px 0;
+}
+.ch .ch-flow-instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 12px;
+  color: var(--taas-cream-dim);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  opacity: 0.65;
+  transition: opacity var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+.ch .ch-flow-instagram .ig-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  transition: stroke var(--t-fast) var(--ease-out);
+}
+.ch .ch-flow-instagram:hover {
+  opacity: 1;
+  color: var(--taas-cream);
+}
+.ch .ch-flow-instagram:hover .ig-icon {
+  stroke: var(--taas-terracotta);
+}
+.ch .ch-flow-instagram:focus-visible {
+  outline: 2px solid var(--taas-terracotta);
+  outline-offset: 3px;
 }
 
 /* ── 9. BUTTONS ──────────────────────────────────────────────── */
@@ -939,8 +1022,54 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Success secondary outlined Instagram button */
+.ch .ch-btn.ch-btn-instagram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 24px;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  color: var(--taas-cream-dim);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--t-fast) var(--ease-out), border-color var(--t-fast) var(--ease-out);
+}
+.ch .ch-btn.ch-btn-instagram .ig-icon {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  transition: stroke var(--t-fast) var(--ease-out);
+}
+.ch .ch-btn.ch-btn-instagram:hover {
+  color: var(--taas-cream);
+  border-color: var(--taas-cream);
+}
+.ch .ch-btn.ch-btn-instagram:hover .ig-icon {
+  stroke: var(--taas-terracotta);
+}
+.ch .ch-btn.ch-btn-instagram:focus-visible {
+  outline: 2px solid var(--taas-terracotta);
+  outline-offset: 3px;
+}
+
 /* ── 15. MOBILE RESPONSIVE ──────────────────────────────────── */
 @media (max-width: 720px) {
+  .ch .ch-hdr-instagram .ig-handle {
+    display: none;
+  }
+  .ch .ch-hdr-instagram {
+    padding: 10px;
+  }
+
   .ch .ch-foot {
     position: fixed;
     bottom: 0;

@@ -31,6 +31,7 @@ src="https://www.facebook.com/tr?id=1857159411798429&ev=PageView&noscript=1"
 <link rel="stylesheet" href="/challenge-dark.css">
 <link rel="preload" href="/brand/pattern-arches.png" as="image">
 <script src="animated-logo.js" type="module"></script>
+<script src="instagram-link.js" type="module"></script>
 <script src="splash.js" defer></script>
 <style>
 :root{--bg:#F3F0E2;--card:#fff;--ink:#22221F;--mute:#6B7352;--line:#E1DACB;--dk:#10150E;--on-dk:#F3F0E2;--acc:#C05E2C;--on-acc:#F3F0E2;
@@ -43,6 +44,14 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:'Jost',system-ui
 a{color:inherit}
 .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
 .top{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+.top-social{display:flex;align-items:center}
+@media(max-width:820px){.top-social{display:none}}
+.ft-social{display:flex;justify-content:center;align-items:center;margin-top:14px}
+.taas-instagram-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;min-width:44px;padding:8px 14px;color:var(--mute);font-family:'Jost',system-ui,sans-serif;font-size:14px;font-weight:500;text-decoration:none;border-radius:999px;transition:color .2s ease}
+.taas-instagram-link .ig-icon{width:18px;height:18px;flex-shrink:0;stroke:currentColor;transition:stroke .2s ease}
+.taas-instagram-link:hover{color:var(--ink)}
+.taas-instagram-link:hover .ig-icon{stroke:var(--acc)}
+.taas-instagram-link:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
 .logo{font-weight:800;font-size:21px;letter-spacing:.12em;text-decoration:none}
 .pill{background:var(--dk);color:var(--on-dk);font-size:13px;font-weight:700;padding:7px 14px;border-radius:999px}
 .pill b{color:var(--acc)}
@@ -179,7 +188,16 @@ h1{font-size:30px}h2{font-size:24px}
 <div class="wrap">
 <div class="top"><span class="logo">
   <animated-logo variant="static" style="--logo-width: 48px;"></animated-logo>
-</span><span class="pill">First 5 clients: <b>Zero booking fee</b></span><button class="tg" id="tg" type="button" aria-label="Switch between light and dark mode" aria-pressed="false"></button></div>
+</span><span class="pill">First 5 clients: <b>Zero booking fee</b></span>
+<div class="top-social">
+  <instagram-link placement="header">
+    <a class="taas-instagram-link" href="https://www.instagram.com/taas.living/" target="_blank" rel="noopener noreferrer" aria-label="TAAS on Instagram, @taas.living" onclick="fireInstagramGA('header')">
+      <svg viewBox="0 0 24 24" class="ig-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+      <span>@taas.living</span>
+    </a>
+  </instagram-link>
+</div>
+<button class="tg" id="tg" type="button" aria-label="Switch between light and dark mode" aria-pressed="false"></button></div>
 
 <header class="hero">
 <div>
@@ -269,6 +287,14 @@ h1{font-size:30px}h2{font-size:24px}
 <p class="imp"><b>Important.</b> The ₹1.45 lakh figure is the defined TAAS Challenge budget and scope, not an unlimited renovation. Final scope, inclusions, exclusions, materials, timelines and payment terms are explained before you proceed.</p>
 <footer>
   <img src="logo-horizontal.png" alt="TAAS Logo" style="width: 240px; margin: 0 auto; display: block;" draggable="false">
+  <div class="ft-social">
+    <instagram-link placement="footer">
+      <a class="taas-instagram-link" href="https://www.instagram.com/taas.living/" target="_blank" rel="noopener noreferrer" aria-label="TAAS on Instagram, @taas.living" onclick="fireInstagramGA('footer')">
+        <svg viewBox="0 0 24 24" class="ig-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+        <span>@taas.living</span>
+      </a>
+    </instagram-link>
+  </div>
 </footer>
 </div>
 
@@ -304,8 +330,15 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       <div class="ch-hdr-brand">
         <animated-logo id="ch-logo" variant="static" style="--logo-width: 36px;"></animated-logo>
       </div>
-      
-      <button class="ch-hdr-close" onclick="CH.close()" aria-label="Close challenge">× CLOSE</button>
+      <div class="ch-hdr-actions">
+        <instagram-link placement="flow" variant="header">
+          <a class="ch-hdr-instagram" href="https://www.instagram.com/taas.living/" target="_blank" rel="noopener noreferrer" aria-label="TAAS on Instagram, @taas.living" onclick="fireInstagramGA('flow')">
+            <svg viewBox="0 0 24 24" class="ig-icon" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+            <span class="ig-handle">@taas.living</span>
+          </a>
+        </instagram-link>
+        <button class="ch-hdr-close" onclick="CH.close()" aria-label="Close challenge">× CLOSE</button>
+      </div>
     </header>
 
     <!-- STEP NAV -->
@@ -361,6 +394,14 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       <div class="ch-foot">
         <span class="ch-foot-note">Your move →</span>
         <button class="ch-btn ch-btn-lg" id="chBtn1" onclick="CH.go(2)" disabled>Continue →</button>
+      </div>
+      <div class="ch-step-social">
+        <instagram-link placement="flow">
+          <a class="ch-flow-instagram" href="https://www.instagram.com/taas.living/" target="_blank" rel="noopener noreferrer" aria-label="TAAS on Instagram, @taas.living" onclick="fireInstagramGA('flow')">
+            <svg viewBox="0 0 24 24" class="ig-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+            <span>@taas.living</span>
+          </a>
+        </instagram-link>
       </div>
     </section>
 
@@ -430,6 +471,14 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
         <button class="ch-btn ch-btn-ghost" onclick="CH.go(1)">← Back</button>
         <button class="ch-btn ch-btn-lg" onclick="CH.go(3)">Accept Rules →</button>
       </div>
+      <div class="ch-step-social">
+        <instagram-link placement="flow">
+          <a class="ch-flow-instagram" href="https://www.instagram.com/taas.living/" target="_blank" rel="noopener noreferrer" aria-label="TAAS on Instagram, @taas.living" onclick="fireInstagramGA('flow')">
+            <svg viewBox="0 0 24 24" class="ig-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+            <span>@taas.living</span>
+          </a>
+        </instagram-link>
+      </div>
     </section>
 
     <!-- ── STEP 3 — COMMIT ────────────────────── -->
@@ -480,6 +529,14 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
       <div class="ch-foot">
         <button class="ch-btn ch-btn-ghost" onclick="CH.go(2)">← Back</button>
         <button class="ch-btn ch-btn-lg" id="chBtn3" onclick="CH.go(4)" disabled>I Commit →</button>
+      </div>
+      <div class="ch-step-social">
+        <instagram-link placement="flow">
+          <a class="ch-flow-instagram" href="https://www.instagram.com/taas.living/" target="_blank" rel="noopener noreferrer" aria-label="TAAS on Instagram, @taas.living" onclick="fireInstagramGA('flow')">
+            <svg viewBox="0 0 24 24" class="ig-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+            <span>@taas.living</span>
+          </a>
+        </instagram-link>
       </div>
     </section>
 
@@ -541,6 +598,14 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
         <button class="ch-btn ch-btn-ghost" onclick="CH.go(3)">← Back</button>
         <button class="ch-btn ch-btn-lg" onclick="if(CH.validate()) CH.go(5)">Next: Action →</button>
       </div>
+      <div class="ch-step-social">
+        <instagram-link placement="flow">
+          <a class="ch-flow-instagram" href="https://www.instagram.com/taas.living/" target="_blank" rel="noopener noreferrer" aria-label="TAAS on Instagram, @taas.living" onclick="fireInstagramGA('flow')">
+            <svg viewBox="0 0 24 24" class="ig-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+            <span>@taas.living</span>
+          </a>
+        </instagram-link>
+      </div>
     </section>
 
     <!-- ── STEP 5 — SUCCESS ───────────────────── -->
@@ -576,6 +641,14 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
         <button class="ch-btn ch-btn-ghost" onclick="CH.go(4)">← Back</button>
         <button class="ch-btn ch-btn-lg" id="chBtn5" onclick="CH.submit()" disabled>Confirm Challenge →</button>
       </div>
+      <div class="ch-step-social">
+        <instagram-link placement="flow">
+          <a class="ch-flow-instagram" href="https://www.instagram.com/taas.living/" target="_blank" rel="noopener noreferrer" aria-label="TAAS on Instagram, @taas.living" onclick="fireInstagramGA('flow')">
+            <svg viewBox="0 0 24 24" class="ig-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+            <span>@taas.living</span>
+          </a>
+        </instagram-link>
+      </div>
     </section>
 
 <section class="ch-step" id="chS6">
@@ -595,6 +668,12 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
         <p class="ch-success-body">Our design team will personally review your space. Share a few clear photos or a short walkthrough video — this helps us assess the starting point and reserve your slot before someone else takes it.</p>
         <div class="ch-success-actions">
           <a class="ch-btn ch-btn-lg" id="chWaBtn" href="#" target="_blank" rel="noopener">CLAIM YOUR SLOT →</a>
+          <instagram-link placement="success" variant="button">
+            <a class="ch-btn ch-btn-ghost ch-btn-instagram" href="https://www.instagram.com/taas.living/" target="_blank" rel="noopener noreferrer" aria-label="TAAS on Instagram, @taas.living" onclick="fireInstagramGA('success')">
+              <svg viewBox="0 0 24 24" class="ig-icon" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+              <span>FOLLOW @taas.living</span>
+            </a>
+          </instagram-link>
           <button class="ch-btn ch-btn-ghost" onclick="CH.close()">Return to Site</button>
         </div>
       </div>
@@ -613,7 +692,20 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved)ap
     standardFee: 25000,
     launchFee: 0,
     launchSlots: 5,
-    waNumber: '917400162509'
+    waNumber: '917400162509',
+    instagramHandle: 'taas.living',
+    instagramUrl: 'https://www.instagram.com/taas.living/'
+  };
+
+  window.fireInstagramGA = function(placement) {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'instagram_click', { placement: placement || 'unknown' });
+    } else if (window.dataLayer && Array.isArray(window.dataLayer)) {
+      window.dataLayer.push({
+        event: 'instagram_click',
+        placement: placement || 'unknown'
+      });
+    }
   };
 
   var state = {
